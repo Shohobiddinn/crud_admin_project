@@ -1,5 +1,7 @@
 <template>
     <div>
+        <NotFound></NotFound>
+        djfvnkmdl
     </div>
 </template>
 
@@ -9,6 +11,9 @@ export default {
         
 
         return {}
+    },
+    components:{
+        NotFound
     }
 }
 </script>
