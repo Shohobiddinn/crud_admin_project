@@ -1,5 +1,5 @@
 <template>
-    <div class="apps">
+    <div class="apps" v-if="false">
       <div class="bg_img">
         <img src="../../assets/images/backgruond.jpg" alt="" />
       </div>

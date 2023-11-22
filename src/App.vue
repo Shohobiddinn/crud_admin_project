@@ -1,5 +1,5 @@
 <template>
-  <div class="apps">
+  <div class="apps" v-if="false">
     <div class="bg_img">
       <img src="../src/assets/images/backgruond.jpg" alt="" />
     </div>
@@ -135,7 +135,7 @@
           </div>
           <div class="content">
             <router-view>
-              
+
             </router-view>
           </div>
           <div class="contents_bottom col-10"></div>
@@ -143,6 +143,9 @@
       </div>
     </div>
   </div>
+  <router-view>
+    
+  </router-view>
 </template>
 
 <script>
