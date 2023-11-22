@@ -7,7 +7,7 @@
       <div class="d-flex juctify-content-between col-13">
         <div class="sidebar col-2">
           <div class="sidebar_logo">
-            <img src="./assets/images/Logo.png" alt="photo" />
+            <img src="./assets/images/insell.png" alt="photo" />
           </div>
           <div class="item">
             <RouterLink to="/" class="item_link d-flex align-items-center">
@@ -45,7 +45,7 @@
                   />
                 </svg>
               </div>
-              <div class="item_link_title">prektlar</div>
+              <div class="item_link_title">loyihalar</div>
             </RouterLink>
           </div>
           <div class="item">
@@ -66,7 +66,7 @@
                   />
                 </svg>
               </div>
-              <div class="item_link_title">tergetlar</div>
+              <div class="item_link_title">targetlar</div>
             </RouterLink>
           </div>
           <div class="item">
@@ -135,7 +135,7 @@
           </div>
           <div class="content">
             <router-view>
-              <Cart></Cart>
+              
             </router-view>
           </div>
           <div class="contents_bottom col-10"></div>
@@ -147,19 +147,16 @@
 
 <script>
 import { RouterLink } from "vue-router";
-import Cart from "./components/Cart/cart.vue";
 export default {
   data() {
     return {
-      sidebar: ["Hodimlar", "prektlar", "targetlar", "sozlamar"],
     };
   },
   components: {
-    Cart,
     RouterLink,
   },
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss" scopd>
 </style>

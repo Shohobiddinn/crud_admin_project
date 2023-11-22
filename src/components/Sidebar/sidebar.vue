@@ -1,19 +1,15 @@
 <template>
     <div>
-        <NotFound></NotFound>
-        djfvnkmdl
+
     </div>
 </template>
 
 <script>
 export default {
-    data () {
+    setup () {
         
 
         return {}
-    },
-    components:{
-        NotFound
     }
 }
 </script>
