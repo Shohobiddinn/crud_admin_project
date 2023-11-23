@@ -5,7 +5,7 @@
         <input type="text" value="lorem" />
       </template>
       <template #footer>
-        <button class="btn btn-success text-capitalize" @click="tekshiruv()">close</button>
+        <button class="btn btn-success text-capitalize" >close</button>
       </template>
     </tahrirlash>
 
@@ -72,6 +72,7 @@
 <script>
 import Swal from 'sweetalert2';
 import tahrirlash from "../../components/tahrirlash.vue";
+import { info } from 'sass';
 export default {
   data() {
     return {};
@@ -83,23 +84,19 @@ export default {
     tekshiruv(){
       Swal.fire({
 						title: 'Buyurtma cheki chiqarilsinmi?',
+            icon: "success",
 						showCancelButton: true,
 						confirmButtonText: 'Xa',
 						cancelButtonText: "Yo'q",
+            position:"bottom-right"
 					}).then((result) => {
 						if (result.isConfirmed) {
-							this.getOrders();
-							this.$refs.confirmModal.closeModal();
-							this.$refs.order_check.start(this.order_confirm.order_id);
+          console.log(result);
 						} else {
-							this.getOrders();
-							this.$refs.confirmModal.closeModal();
+              console.log("yo'q");
 						}
 
-						if (this.$refs.orders.orders.data.length == 1) {
-							this.$refs.orders.addOrder();
-							this.changeOrder();
-						}
+				
 					});
     }
   }
