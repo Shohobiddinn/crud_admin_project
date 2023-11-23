@@ -7,12 +7,12 @@
         <div class="d-flex juctify-content-between col-13">
           <div class="sidebar col-2">
             <div class="sidebar_logo">
-                <router-link to="/">
-                    <img src="../assets/images/insell.png" alt="photo" />
+                <router-link to="/home">
+                    <img src="../assets/images/Logo2.png" alt="photo" />
                 </router-link>
             </div>
             <div class="item">
-              <RouterLink to="/" class="item_link d-flex align-items-center">
+              <RouterLink to="/home" class="item_link d-flex align-items-center">
                 <div class="item_link_icon">
                   <svg
                     width="20"
@@ -147,16 +147,16 @@
   </template>
   
   <script>
-  import { RouterLink } from "vue-router";
   export default {
     data() {
       return {
       };
     },
     components: {
-      RouterLink,
     },
-  };
+    created(){
+    }
+  }
   </script>
   
   <style lang="scss" scopd>

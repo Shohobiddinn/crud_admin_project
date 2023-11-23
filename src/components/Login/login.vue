@@ -10,7 +10,7 @@
         class="login_modal d-flex flex-column align-items-center justify-content-center col-4"
       >
         <div class="login_logo">
-          <img src="../../assets/images/insell.png" alt="logo" />
+          <img src="../../assets/images/Logo2.png" alt="logo" />
         </div>
         <div class="login_title">
             xush kelibsiz
