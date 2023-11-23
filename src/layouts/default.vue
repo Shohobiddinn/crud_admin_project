@@ -147,6 +147,7 @@
   </template>
   
   <script>
+  
   export default {
     data() {
       return {
@@ -155,7 +156,10 @@
     components: {
     },
     created(){
+      console.log("fkmdl");
+
     }
+  
   }
   </script>
   

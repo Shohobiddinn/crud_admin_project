@@ -1,0 +1,65 @@
+.hodimlar {
+    &_content {
+        &_title {
+            @include fond(700, 40, 40);
+            color: #990000;
+            margin: 20px 0 50px 30px;
+            z-index: 2;
+            // background: rgb(237, 240, 247, .5);
+        }
+
+        .items {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+
+            .hodim_content {
+                overflow: hidden;
+                width: 20rem;
+                background-color: rgb(245, 245, 245, .8), ;
+                min-height: 300px;
+
+                .card-body {
+                    position: relative;
+
+                    .content_item {
+                        @include fond(500, 16, 16);
+                        color: rgb(67, 65, 65);
+                        padding: 5px 0;
+
+                        &.item_2 {
+                            font-weight: 600;
+                            border: none;
+                            font-size: 20px;
+                            margin-bottom: 20px;
+                        }
+                    }
+
+                    .content_item_text {
+                        @include fond(500, 14, 14);
+                        color: black;
+                        padding: 5px 0;
+                    }
+
+                    .card_content_btn {
+                        margin-top: 50px;
+                        position: absolute;
+                        bottom: 20px;
+                        width: 90%;
+
+                    }
+
+                }
+            }
+        }
+
+        .paginations {
+            margin-top: 50px;
+            .form-select{
+                width: 5rem;
+                height: 40px;
+            }
+        }
+    }
+}
