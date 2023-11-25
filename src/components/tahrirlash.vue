@@ -1,18 +1,20 @@
 <template>
-  <div v-if="open">
-    <div class="v-backdrop"></div>
+  <div>
     <Transition>
-      <div class="v-modal" :class="modal_size">
-        <button class="v-close" @click="closeModal()">&#10006;</button>
-        <div class="v-modal-header">
-          <slot name="header"></slot>
+      <div class="v-backdrop" v-if="open">
+        <div class="v-modal"   :class="modal_size">
+          <button class="v-close" @click="closeModal()">&#10006;</button>
+          <div class="v-modal-header">
+            <slot name="header"></slot>
+          </div>
+          <div class="v-modal-body">
+            <slot name="body"></slot>
+          </div>
+          <div class="v-model-footer">
+            <slot name="footer"> </slot>
+          </div>
         </div>
-        <div class="v-modal-body">
-          <slot name="body"></slot>
-        </div>
-        <div class="v-model-footer">
-          <slot name="footer"> </slot>
-        </div>
+
       </div>
     </Transition>
   </div>
@@ -26,7 +28,7 @@ export default {
   data() {
     return {
       modal_size: String,
-      open: true,
+      open: false,
     };
   },
   created() {
@@ -34,8 +36,16 @@ export default {
   },
   methods: {
     closeModal() {
-      this.open = false;
+      this.open = !this.open;
     },
+  },
+  mounted() {
+    window.addEventListener("click", (event) => {
+      const element = event.target;
+      if (element.className == "v-backdrop") {
+        this.open = false;
+      }
+    });
   },
 };
 </script>
@@ -67,7 +77,7 @@ export default {
   z-index: 3;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -100%);
+  transform: translate(-50%, -50%);
 }
 
 .v-modal.sm {
@@ -109,6 +119,7 @@ export default {
 
 .v-toggle-modal-enter-active {
   animation: toggleBackdrop 0.3s;
+  transition: all .5s;
 }
 .v-toggle-modal-leave-active {
   animation: toggleBackdrop 0.3s reverse;

@@ -1,5 +1,10 @@
 <template>
     <div class="apps">
+      <tahrirlash ref="profil" size="lg">
+<template #header>
+  
+</template>
+      </tahrirlash>
       <div class="bg_img">
         <img src="../assets/images/backgruond.jpg" alt="" />
       </div>
@@ -119,7 +124,7 @@
                   aria-label="Search"
                 />
               </form>
-              <div class="exit d-flex align-items-end">
+              <div class="exit d-flex align-items-end " @click="$refs.profil.closeModal()">
                 <div class="exit_icon">
                   <svg
                     width="32"
@@ -147,17 +152,20 @@
   </template>
   
   <script>
-  
+  import tahrirlash from '../components/tahrirlash.vue';
   export default {
     data() {
       return {
       };
     },
     components: {
+      tahrirlash
     },
     created(){
-      console.log("fkmdl");
 
+    },
+    mounted(){
+      // this.$router.push('/home')
     }
   
   }

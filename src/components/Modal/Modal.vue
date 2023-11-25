@@ -1,40 +1,50 @@
 <template>
   <div>
-     <Transition>
-      <div class="v-backdrop">
-    
+    <Transition name="v-modal">
+      <div class="v-backdrop" v-if="open">
         <div class="v-modal" :class="modal_size">
           <button class="v-close" @click="closeModal()">&#10006;</button>
           <div class="v-modal-header">
-            <slot name="header"
-              ></slot
-            >
+            <slot name="header"></slot>
           </div>
           <div class="v-modal-body">
-            <slot name="body"
-              ></slot
-            >
+            <slot name="body"></slot>
           </div>
           <div class="v-modal-footer">
             <slot name="footer"></slot>
           </div>
         </div>
       </div>
-    </Transition> 
+    </Transition>
   </div>
 </template>
 
 <script>
 export default {
-  props:{
-    size:String},
+  props: {
+    size: String,
+  },
   data() {
     return {
-        modal_size:String
+      modal_size: String,
+      open: false,
     };
   },
   created() {
-    this.modal_size = this.size
+    this.modal_size = this.size;
+  },
+  methods: {
+    closeModal() {
+      this.open = !this.open;
+    },
+  },
+  mounted() {
+    window.addEventListener("click", (event) => {
+      const element = event.target;
+      if (element.className == "v-backdrop") {
+        this.open = false;
+      }
+    });
   },
 };
 </script>
