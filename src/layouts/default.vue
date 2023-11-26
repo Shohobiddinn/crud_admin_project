@@ -122,6 +122,7 @@
                   type="search"
                   placeholder="Qidiruv"
                   aria-label="Search"
+                  @keyup="console.log('hfjgkl')"
                 />
               </form>
               <div class="exit d-flex align-items-end " @click="$refs.profil.closeModal()">

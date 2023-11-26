@@ -226,7 +226,6 @@
 </template>
 
 <script>
-import Swal from "sweetalert2";
 import tahrirlash from "../../components/tahrirlash.vue";
 import ModalVue from "../../components/Modal/Modal.vue";
 export default {
