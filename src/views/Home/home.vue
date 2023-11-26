@@ -105,14 +105,23 @@
       </template>
     </tahrirlash>
     <ModalVue size="md" ref="warningModal">
-      <template #header> 
+      <template #header>
         <div class="warning_title text-uppercase text-success">
           hodimni o'chirmoqchimisiz
         </div>
-        <div class="btns d-flex align-items-center  col-10">
-          <button @click="$refs.warningModal.closeModal()" class="btn text-bg-success text-capitalize ">ha</button>
-          <button @click="$refs.warningModal.closeModal()" class="btn text-bg-danger text-capitalize">yo'q</button>
-
+        <div class="btns d-flex align-items-center col-10">
+          <button
+            @click="$refs.warningModal.closeModal()"
+            class="btn text-bg-success text-capitalize"
+          >
+            ha
+          </button>
+          <button
+            @click="$refs.warningModal.closeModal()"
+            class="btn text-bg-danger text-capitalize"
+          >
+            yo'q
+          </button>
         </div>
       </template>
     </ModalVue>
@@ -232,22 +241,8 @@ export default {
   },
   methods: {
     tekshiruv() {
-      Swal.fire({
-        title: "Buyurtma cheki chiqarilsinmi?",
-        showCancelButton: true,
-        confirmButtonText: "Xa",
-        cancelButtonText: "Yo'q",
-        popup: "swal2-show",
-        backdrop: "swal2-backdrop-show",
-        icon: "swal2-icon-show",
-        position: "top-right",
-      }).then((result) => {
-        if (result.isConfirmed) {
-          this.$refs.tahrirlash.closeModal();
-        } else {
-          this.$refs.tahrirlash.closeModal();
-        }
-      });
+      this.$util.toast("success", "Amaliyot bajarildi");
+      this.$refs.tahrirlash.closeModal()
     },
   },
 };
