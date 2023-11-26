@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Transition name="v-modal">
+    <Transition name="v-toggle-modal">
       <div class="v-backdrop" v-if="open">
         <div class="v-modal" :class="modal_size">
           <button class="v-close" @click="closeModal()">&#10006;</button>

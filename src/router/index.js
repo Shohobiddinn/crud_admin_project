@@ -20,7 +20,7 @@ const router = createRouter({
       component: () => import('../components/NotFound/notFound.vue'),
     },
     {
-      path: '/home',
+      path: '/',
       name: 'default',
       beforeEnter: auth,
       component: () => import('../layouts/default.vue'),
