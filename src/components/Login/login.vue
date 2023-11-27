@@ -71,7 +71,6 @@
 
 <script>
 import api from "../../server/api";
-
 export default {
   data() {
     return {
@@ -86,8 +85,8 @@ export default {
       api
         .login(this.data)
         .then((res) => {
-          localStorage.setItem("access_token", res?.data?.access_token);
           this.$router.push("/");
+          this.$store.dispatch("setUser", res.data);
         })
         .catch((err) => {
           if (err.response.status == 400) {

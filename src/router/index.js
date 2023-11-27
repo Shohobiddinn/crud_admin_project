@@ -1,8 +1,8 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router';
+import store from "../store";
 const token = () => {
-  return localStorage.getItem('access_token');
+  return store.state.user?.access_token;
 };
-
 const auth = (to, from, next) => {
   if (!token()) {
     next({ path: "/login" });

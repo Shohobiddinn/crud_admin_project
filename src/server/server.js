@@ -1,11 +1,16 @@
 import axios from 'axios';
 import baseurl from './baseurl';
+import store from '../store/index';
+import handleError from './handle';
+
 export default async function server(
 	endpoint = '',
 	method = 'get',
 	data = null
 ) {
-	let token = ' ';
+	await store.dispatch('setLoading', true);
+
+	let token = store.state.user?.access_token;
 	let result, error;
 
 	await axios
@@ -20,9 +25,10 @@ export default async function server(
 		})
 		.catch((err) => {
 			error = err;
+			handleError(err);
 		})
 		.finally(() => {
-			console.log("hello");
+			store.dispatch('setLoading', false);
 		});
 
 	return new Promise((resolve, reject) => {

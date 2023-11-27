@@ -1,10 +1,11 @@
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 import App from './App.vue'
-import router from './router'
+// import router from './router/'
 import util from "./server/util";
 import baseurl from "./server/baseurl";
 import  Modal  from '../src/components/Modal/Modal.vue';
+import router from './router/index';
 const app = createApp(App);
 app.config.globalProperties.$util = util;
 app.config.globalProperties.$baseurl = baseurl; 
