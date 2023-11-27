@@ -21,6 +21,7 @@
         padding-top: 20px;
         background: rgb(237, 240, 247, .8);
         padding: 0 20px;
+        width: 17%;
 
         &_logo {
             img {
@@ -43,6 +44,7 @@
                 border-radius: 10px;
                 transition: 0.3s;
                 user-select: none;
+                flex-wrap: wrap;
 
                 &:hover {
                     border-color: $pr_blue;
@@ -144,9 +146,10 @@
                 background-color: #998FB3;
                 border-radius: 50%;
                 padding: 10px;
-                &_icon{
-                    svg{
-                        fill:#fff
+
+                &_icon {
+                    svg {
+                        fill: #fff
                     }
                 }
             }
@@ -162,5 +165,3 @@
     height: 89vh;
     overflow-y: auto;
 }
-
-

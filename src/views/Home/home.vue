@@ -131,6 +131,10 @@
           class="hodimlar_content_top d-flex align-items-center justify-content-between"
         >
           <div class="hodimlar_content_top_title text-uppercase">hodimlar</div>
+          <h1>{{ $store.state.count }}</h1>
+          <button class="btn btn-success" @click="plus">
+            click me
+          </button>
           <div
             class="hodimlar_content_top_add text-bg-success"
             @click="$refs.userAdd.closeModal()"
@@ -243,6 +247,9 @@ export default {
       this.$util.toast("success", "Amaliyot bajarildi");
       this.$refs.tahrirlash.closeModal()
     },
+    plus(){
+      this.$store.commit('qosh')
+    }
   },
 };
 </script>

@@ -5,6 +5,9 @@
   
 </template>
       </tahrirlash>
+      <addUser ref="addUser">
+
+      </addUser>
       <div class="bg_img">
         <img src="../assets/images/backgruond.jpg" alt="" />
       </div>
