@@ -7,11 +7,6 @@ export default createStore({
         }
     },
     mutations: {
-        qosh(state) {
-            state.count = state.count + 2
-
-        }
-
     }
     
 });
