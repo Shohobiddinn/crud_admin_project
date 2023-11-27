@@ -1,20 +1,18 @@
 <template>
-
- <router-view>
-    
-  </router-view> 
-  <div>
-
-  </div>
+   <div>
+  <Loading />
+  <router-view> </router-view>
+ </div>
 </template>
 
 <script>
+import Loading from "./components/Animation/Loading.vue";
 export default {
   data() {
-    return {
-    };
+    return {};
   },
   components: {
+    Loading,
   },
 };
 </script>

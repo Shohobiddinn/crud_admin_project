@@ -27,22 +27,22 @@ const router = createRouter({
    
       children: [
         {
-          path: '/user',
-          name:'home',
-          beforeEnter: auth,
-          component: ()=>import('../views/User/user.vue'),
-        },
-        {
-          path: '/project',
-          name:'user',
+          path: '/users',
+          name:'users',
           beforeEnter: auth,
           component: ()=>import('../views/Users/users.vue'),
         },
         {
-          path:'/target',
-          name:'target',
+          path: '/projects',
+          name:'projects',
           beforeEnter: auth,
-          component:()=> import('../views/Targetlar/target.vue')
+          component: ()=>import('../views/Projects/projects.vue'),
+        },
+        {
+          path:'/targets',
+          name:'targets',
+          beforeEnter: auth,
+          component:()=> import('../views/Targetlar/targets.vue')
         },
         {
           path:'/setting',
@@ -51,12 +51,6 @@ const router = createRouter({
           component:()=>import('../views/Setting/setting.vue')
         }
       ],
-    },
-    {
-      path: '/',
-      name: 'users',
-      beforeEnter: auth,
-      component: () => import('../views/Users/users.vue')
     },
     {
       path:'/login',

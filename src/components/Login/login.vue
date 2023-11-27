@@ -68,7 +68,6 @@
     </div>
   </div>
 </template>
-
 <script>
 import api from "../../server/api";
 export default {

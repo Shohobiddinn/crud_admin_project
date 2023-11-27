@@ -15,12 +15,12 @@
         <div class="d-flex juctify-content-between col-13">
           <div class="sidebar col-2">
             <div class="sidebar_logo">
-                <router-link to="/user">
+                <router-link to="/users">
                     <img src="../assets/images/Logo2.png" alt="photo" />
                 </router-link>
             </div>
             <div class="item">
-              <RouterLink to="/user" class="item_link d-flex align-items-center">
+              <RouterLink to="/users" class="item_link d-flex align-items-center">
                 <div class="item_link_icon">
                   <svg
                     width="20"
@@ -39,7 +39,7 @@
             </div>
             <div class="item">
               <RouterLink
-                to="/project"
+                to="/projects"
                 class="item_link d-flex align-items-center"
               >
                 <div class="item_link_icon">
@@ -60,7 +60,7 @@
             </div>
             <div class="item">
               <RouterLink
-                to="/target"
+                to="/targets"
                 class="item_link d-flex align-items-center"
               >
                 <div class="item_link_icon">
@@ -125,7 +125,6 @@
                   type="search"
                   placeholder="Qidiruv"
                   aria-label="Search"
-                  @keyup="console.log('hfjgkl')"
                 />
               </form>
               <div class="exit d-flex align-items-end " @click="$refs.profil.closeModal()">
@@ -169,7 +168,7 @@
 
     },
     mounted(){
-      this.$router.push('/user')
+      this.$router.push('/users')
     }
   
   }
