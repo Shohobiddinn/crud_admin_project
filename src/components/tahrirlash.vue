@@ -3,7 +3,7 @@
     <Transition name="v-toggle-modal">
       <div class="v-backdrop" v-if="open">
         <div class="v-modal"   :class="modal_size">
-          <button class="v-close" @click="closeModal()">&#10006;</button>
+          <button class="v-close" @click="toggleModal()">&#10006;</button>
           <div class="v-modal-header">
             <slot name="header"></slot>
           </div>
@@ -35,7 +35,7 @@ export default {
     this.modal_size = this.size;
   },
   methods: {
-    closeModal() {
+    toggleModal() {
       this.open = !this.open;
     },
   },

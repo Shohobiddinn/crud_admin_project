@@ -1,7 +1,6 @@
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 import App from './App.vue'
-// import router from './router/'
 import util from "./server/util";
 import baseurl from "./server/baseurl";
 import  Modal  from '../src/components/Modal/Modal.vue';

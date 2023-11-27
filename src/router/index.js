@@ -27,10 +27,10 @@ const router = createRouter({
    
       children: [
         {
-          path: '/home',
+          path: '/user',
           name:'home',
           beforeEnter: auth,
-          component: ()=>import('../views/Home/home.vue'),
+          component: ()=>import('../views/User/user.vue'),
         },
         {
           path: '/project',

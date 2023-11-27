@@ -165,3 +165,50 @@
     height: 88vh;
     overflow-y: auto;
 }
+.tahrirlash {
+
+    .title {
+        @include fond(700, 25, 25);
+        margin-top: 50px;
+        margin-bottom: 30px;
+    }
+
+    .form_submit {
+        label {
+            @include fond(500, 18, 18);
+            color: rgb(42, 40, 40);
+            text-transform: capitalize;
+            &>div {
+                margin-top:15px;
+                justify-content: center;
+
+                input {
+                    @include fond(500, 15, 15);
+                    color: rgb(42, 40, 40);
+                    padding: 10px 20px;
+                    border-radius: 5px;
+                    margin-bottom: 20px;
+                    border: 2px solid rgb(42, 40, 40);
+                    outline: none;
+
+                    &[type="tel"] {
+                        transform: translateY(10px);
+                    }
+
+                    &::placeholder {
+                        @include fond(500, 15, 15);
+                        color: rgb(42, 40, 40);
+                    }
+                }
+            }
+        }
+
+
+    }
+
+    &_btn {
+        @include flex(center, center);
+        width: 100%;
+        margin-bottom: 50px;
+    }
+}

@@ -1,59 +1,67 @@
-<template>
-  <div>
-    <Transition name="v-toggle-modal">
-      <div class="v-backdrop" v-if="open">
-        <div class="v-modal" :class="modal_size">
-          <button class="v-close" @click="closeModal()">&#10006;</button>
-          <div class="v-modal-header">
-            <slot name="header"></slot>
-          </div>
-          <div class="v-modal-body">
-            <slot name="body"></slot>
-          </div>
-          <div class="v-modal-footer">
-            <slot name="footer"></slot>
-          </div>
-        </div>
-      </div>
-    </Transition>
-  </div>
-</template>
-
 <script>
 export default {
+  name: "Modal",
   props: {
     size: String,
   },
+  emits: ["open", "close"],
   data() {
     return {
-      modal_size: String,
       open: false,
+      timeout: null,
     };
   },
-  created() {
-    this.modal_size = this.size;
+  computed: {
+    modal_size() {
+      return String(this.$props.size || "md").toLowerCase();
+    },
   },
   methods: {
+    toggleModal() {
+      if (this.open) this.closeModal();
+      else this.openModal();
+    },
+    openModal() {
+      this.open = true;
+      this.$emit("open");
+    },
     closeModal() {
-      this.open = !this.open;
+      this.open = false;
+      this.$emit("close");
     },
   },
   mounted() {
     window.addEventListener("click", (event) => {
       const element = event.target;
-      if (element.className == "v-backdrop") {
-        this.open = false;
-      }
+      if (element.className == "v-backdrop")
+        if (element.closest(".v-backdrop") == this.$el) this.open = false;
     });
   },
 };
 </script>
 
-<style lang="scss" scoped>
+<template>
+  <Transition name="v-toggle-modal">
+    <div class="v-backdrop" v-if="open">
+      <div class="v-modal" :class="modal_size">
+        <button class="v-close" @click="closeModal()">&#10006;</button>
+        <div class="v-modal-header">
+          <slot name="header"></slot>
+        </div>
+        <div class="v-modal-body">
+          <slot name="body"></slot>
+        </div>
+        <div class="v-modal-footer">
+          <slot name="footer"></slot>
+        </div>
+      </div>
+    </div>
+  </Transition>
+</template>
+
+<style scoped>
 .v-backdrop {
   position: fixed;
-  width: 100vw;
-  height: 100vh;
   top: 0;
   left: 0;
   right: 0;

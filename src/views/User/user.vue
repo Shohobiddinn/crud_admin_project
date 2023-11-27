@@ -1,6 +1,8 @@
 <template>
   <div>
-    <tahrirlash size="md" ref="tahrirlash" class="tahrirlash">
+    <addUserModalVue @end="get()" ref="user" />
+
+    <!-- <tahrirlash size="md" ref="tahrirlash" class="tahrirlash">
       <template #header>
         <div class="title text-uppercase text-success">tahrirlash</div>
         <form
@@ -103,7 +105,7 @@
           </button>
         </div>
       </template>
-    </tahrirlash>
+    </tahrirlash> -->
     <ModalVue size="md" ref="warningModal">
       <template #header>
         <div class="warning_title text-uppercase text-success">
@@ -111,13 +113,13 @@
         </div>
         <div class="btns d-flex align-items-center col-10">
           <button
-            @click="$refs.warningModal.closeModal()"
+            @click="$refs.warningModal.toggleModal()"
             class="btn text-bg-success text-capitalize"
           >
             ha
           </button>
           <button
-            @click="$refs.warningModal.closeModal()"
+            @click="$refs.warningModal.toggleModal()"
             class="btn text-bg-danger text-capitalize"
           >
             yo'q
@@ -131,9 +133,10 @@
           class="hodimlar_content_top d-flex align-items-center justify-content-between"
         >
           <div class="hodimlar_content_top_title text-uppercase">hodimlar</div>
+          <!-- <pre>{{ users }}</pre> -->
           <div
             class="hodimlar_content_top_add text-bg-success"
-            @click="$refs.userAdd.closeModal()"
+            @click="($refs.user.status = 'user_add'), $refs.user.open()"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -148,32 +151,43 @@
           </div>
         </div>
         <div class="items">
-          <div class="hodim_content card" v-for="item in 8" :key="item">
+          <div
+            class="hodim_content card"
+            v-for="item in users?.data"
+            :key="item?.id"
+          >
             <div class="card-body">
               <h5
                 class="content_item item_2 card-title text-capitalize d-flex justify-content-between align-items-center"
               >
-                valiyev valijon
+                {{ item?.name }}
+              </h5>
+              <h5
+                class="content_item card-title text-capitalize d-flex justify-content-between align-items-center"
+              >
+                <span>foydalanuvchi: </span>{{ item?.username }}
               </h5>
 
               <h5
                 class="content_item card-title text-capitalize d-flex justify-content-between align-items-center"
               >
-                <span>tel: </span>+998-94-283-60-06
+                <span>tel: </span>{{ item?.number }}
               </h5>
 
               <div
                 class="btns d-flex align-items-center justify-content-between col-10"
               >
                 <div
-                  @click="$refs.tahrirlash.closeModal()"
+                  @click="
+                    ($refs.user.status = 'user_edit'), $refs.user.open(item)
+                  "
                   class="card_content_btn text-bg-success text-uppercase btn"
                 >
                   tahrirlash
                 </div>
                 <div
                   class="card_content_btn btn text-bg-danger"
-                  @click="$refs.warningModal.closeModal()"
+                  @click="$refs.warningModal.toggleModal()"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -191,58 +205,60 @@
             </div>
           </div>
         </div>
-        <div class="paginations d-flex justify-content-center">
-          <nav aria-label="Page navigation example">
-            <ul class="pagination">
-              <li class="page-item">
-                <a class="page-link" href="#" aria-label="Previous">
-                  <span aria-hidden="true">&laquo;</span>
-                </a>
-              </li>
-              <li class="page-item active">
-                <a class="page-link" href="#">1</a>
-              </li>
-              <li class="page-item" aria-current="page">
-                <span class="page-link">2</span>
-              </li>
-              <li class="page-item"><a class="page-link" href="#">3</a></li>
-              <li class="page-item">
-                <a class="page-link" href="#" aria-label="Next">
-                  <span aria-hidden="true">&raquo;</span>
-                </a>
-              </li>
-            </ul>
-          </nav>
-          <select class="form-select" aria-label="Default select example">
-            <option selected>10</option>
-            <option value="1">20</option>
-            <option value="2">50</option>
-            <option value="3">100</option>
-          </select>
-        </div>
+        <paginationVue style="margin-top: 50px" v-model="users" @get="get()" />
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import tahrirlash from "../../components/tahrirlash.vue";
+import api from "../../server/api";
 import ModalVue from "../../components/Modal/Modal.vue";
+import addUserModalVue from "../../components/Modal/addUserModal.vue";
+import paginationVue from "../../components/Pagination/pagination.vue";
 export default {
   data() {
     return {
       phone: "",
+      search: "",
+      users: {
+        current_page: 1,
+        pages: 1,
+        limit: 5,
+        data: [],
+      },
+      roll: "",
     };
   },
   components: {
-    tahrirlash,
     ModalVue,
+    addUserModalVue,
+    paginationVue,
   },
   methods: {
     tekshiruv() {
       this.$util.toast("success", "Amaliyot bajarildi");
-      this.$refs.tahrirlash.closeModal()
+      this.$refs.tahrirlash.toggleModal();
     },
+    get() {
+      const params = {
+        id: 0,
+        page: this.users.current_page,
+        limit: this.users.limit,
+        roll: "",
+        search: this.search,
+        status: true,
+      };
+      api
+        .user_all(params)
+        .then((res) => {
+          this.users = res?.data;
+        })
+        .catch((err) => {});
+    },
+  },
+  created() {
+    this.get();
   },
 };
 </script>

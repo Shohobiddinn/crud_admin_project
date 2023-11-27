@@ -15,12 +15,12 @@
         <div class="d-flex juctify-content-between col-13">
           <div class="sidebar col-2">
             <div class="sidebar_logo">
-                <router-link to="/home">
+                <router-link to="/user">
                     <img src="../assets/images/Logo2.png" alt="photo" />
                 </router-link>
             </div>
             <div class="item">
-              <RouterLink to="/home" class="item_link d-flex align-items-center">
+              <RouterLink to="/user" class="item_link d-flex align-items-center">
                 <div class="item_link_icon">
                   <svg
                     width="20"
@@ -169,7 +169,7 @@
 
     },
     mounted(){
-      this.$router.push('/home')
+      this.$router.push('/user')
     }
   
   }
