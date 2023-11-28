@@ -1,153 +1,57 @@
 <template>
   <div>
     <addUserModalVue @end="get()" ref="user" />
-
-    <!-- <tahrirlash size="md" ref="tahrirlash" class="tahrirlash">
-      <template #header>
-        <div class="title text-uppercase text-success">tahrirlash</div>
-        <form
-          id="submit"
-          @submit.prevent="tekshiruv"
-          class="form_submit d-flex flex-column"
-        >
-          <label class="col-12">
-            F.I.O
-            <div class="input-group d-flex align-items-center">
-              <input
-                type="text"
-                class="form-control"
-                required
-                v-model="FullName"
-                autocomplete="on"
-              />
-            </div>
-          </label>
-          <label class="col-12">
-            Telfon raqam
-            <div
-              class="input-group d-flex align-items-center"
-              style="height: 50px"
-              :tel="$util.tel(phone)"
-            >
-              <div class="input-group-text" style="height: 100%">+998</div>
-              <input
-                type="tel"
-                class="form-control"
-                minlength="9"
-                maxlength="9"
-                required
-                v-model="phone"
-                autocomplete="on"
-              />
-            </div>
-          </label>
-        </form>
-      </template>
-      <template #footer>
-        <div class="d-flex justify-content-center">
-          <button
-            class="btn btn-success text-capitalize tahrirlash_btn"
-            form="submit"
-          >
-            tasdiqlash
-          </button>
-        </div>
-      </template>
-    </tahrirlash>
-    <tahrirlash size="md" ref="userAdd" class="tahrirlash">
-      <template #header>
-        <div class="title text-uppercase text-success">Hodim qo'shish</div>
-        <form
-          id="submit"
-          @submit.prevent="tekshiruv"
-          class="form_submit d-flex flex-column"
-        >
-          <label class="col-12">
-            F.I.O
-            <div class="input-group d-flex align-items-center">
-              <input
-                type="text"
-                class="form-control"
-                required
-                v-model="FullName"
-                autocomplete="on"
-              />
-            </div>
-          </label>
-          <label class="col-12">
-            Telfon raqam
-            <div
-              class="input-group d-flex align-items-center"
-              style="height: 50px"
-              :tel="$util.tel(phone)"
-            >
-              <div class="input-group-text" style="height: 100%">+998</div>
-              <input
-                type="tel"
-                class="form-control"
-                minlength="9"
-                maxlength="9"
-                required
-                v-model="phone"
-                autocomplete="on"
-              />
-            </div>
-          </label>
-        </form>
-      </template>
-      <template #footer>
-        <div class="d-flex justify-content-center">
-          <button
-            class="btn btn-success text-capitalize tahrirlash_btn"
-            form="submit"
-          >
-            tasdiqlash
-          </button>
-        </div>
-      </template>
-    </tahrirlash> -->
-    <ModalVue size="md" ref="warningModal">
-      <template #header>
-        <div class="warning_title text-uppercase text-success">
-          hodimni o'chirmoqchimisiz
-        </div>
-        <div class="btns d-flex align-items-center col-10">
-          <button
-            @click="$refs.warningModal.toggleModal()"
-            class="btn text-bg-success text-capitalize"
-          >
-            ha
-          </button>
-          <button
-            @click="$refs.warningModal.toggleModal()"
-            class="btn text-bg-danger text-capitalize"
-          >
-            yo'q
-          </button>
-        </div>
-      </template>
-    </ModalVue>
+    <Delete @end="end" ref="delete" />
     <div class="hodimlar">
       <div class="hodimlar_content">
         <div
           class="hodimlar_content_top d-flex align-items-center justify-content-between"
         >
           <div class="hodimlar_content_top_title text-uppercase">hodimlar</div>
-          <!-- <pre>{{ users }}</pre> -->
-          <div
-            class="hodimlar_content_top_add text-bg-success"
-            @click="($refs.user.status = 'user_add'), $refs.user.open()"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              height="25"
-              width="25"
-              viewBox="0 0 448 512"
+          <div class="search d-flex align-items-center col-4 ">
+            <form
+              class="search_form d-flex col-10 align-items-center"
+              role="search"
+              @submit.prevent="get()"
             >
-              <path
-                d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z"
+              <input
+                class="form-control me-2"
+                type="search"
+                placeholder="Qidiruv"
+                aria-label="Search"
+                v-model="search"
+                @keyup="get()"
               />
-            </svg>
+              <button class="search_icon btn btn-success">
+                <svg
+                  width="25"
+                  height="25"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="#fff"
+                  viewBox="0 0 512 512"
+                >
+                  <path
+                    d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"
+                  />
+                </svg>
+              </button>
+            </form>
+            <div
+              class="hodimlar_content_top_add text-bg-success"
+              @click="($refs.user.status = 'user_add'), $refs.user.open()"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                height="25"
+                width="25"
+                viewBox="0 0 448 512"
+              >
+                <path
+                  d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z"
+                />
+              </svg>
+            </div>
+
           </div>
         </div>
         <div class="items">
@@ -175,19 +79,28 @@
               </h5>
 
               <div
-                class="btns d-flex align-items-center justify-content-between col-10"
+                class="btns d-flex align-items-center justify-content-end col-10"
               >
                 <div
                   @click="
                     ($refs.user.status = 'user_edit'), $refs.user.open(item)
                   "
-                  class="card_content_btn text-bg-success text-uppercase btn"
+                  class="card_content_btn text-bg-warning text-uppercase btn"
                 >
-                  tahrirlash
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    height="25"
+                    width="25"
+                    viewBox="0 0 512 512"
+                  >
+                    <path
+                      d="M410.3 231l11.3-11.3-33.9-33.9-62.1-62.1L291.7 89.8l-11.3 11.3-22.6 22.6L58.6 322.9c-10.4 10.4-18 23.3-22.2 37.4L1 480.7c-2.5 8.4-.2 17.5 6.1 23.7s15.3 8.5 23.7 6.1l120.3-35.4c14.1-4.2 27-11.8 37.4-22.2L387.7 253.7 410.3 231zM160 399.4l-9.1 22.7c-4 3.1-8.5 5.4-13.3 6.9L59.4 452l23-78.1c1.4-4.9 3.8-9.4 6.9-13.3l22.7-9.1v32c0 8.8 7.2 16 16 16h32zM362.7 18.7L348.3 33.2 325.7 55.8 314.3 67.1l33.9 33.9 62.1 62.1 33.9 33.9 11.3-11.3 22.6-22.6 14.5-14.5c25-25 25-65.5 0-90.5L453.3 18.7c-25-25-65.5-25-90.5 0zm-47.4 168l-144 144c-6.2 6.2-16.4 6.2-22.6 0s-6.2-16.4 0-22.6l144-144c6.2-6.2 16.4-6.2 22.6 0s6.2 16.4 0 22.6z"
+                    />
+                  </svg>
                 </div>
                 <div
                   class="card_content_btn btn text-bg-danger"
-                  @click="$refs.warningModal.toggleModal()"
+                  @click="$refs.delete.open()"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -213,7 +126,7 @@
 
 <script>
 import api from "../../server/api";
-import ModalVue from "../../components/Modal/Modal.vue";
+import Delete from "../../components/Modal/Delete.vue";
 import addUserModalVue from "../../components/Modal/addUserModal.vue";
 import paginationVue from "../../components/Pagination/pagination.vue";
 export default {
@@ -231,7 +144,7 @@ export default {
     };
   },
   components: {
-    ModalVue,
+    Delete,
     addUserModalVue,
     paginationVue,
   },
@@ -256,6 +169,9 @@ export default {
         })
         .catch((err) => {});
     },
+    end(){
+      console.log("delete");
+    }
   },
   created() {
     this.get();

@@ -16,10 +16,25 @@ export default {
         return server(`user?id=${p.id}&page=${p.page}&status=${p.status}&limit=${p.limit}&${search}`, "get")
 
     },
-    user_add(data){
-        return server(`user/add`,"post",data)
+    user_add(data) {
+        return server(`user/add`, "post", data)
     },
-    user_update(data){
-        return server(`user/update`,"put",data)
+    user_update(data) {
+        return server(`user/update`, "put", data)
+    },
+    // project api
+    project_add(data) {
+        return server(`project/create`, "post", data)
+    },
+    project_all(p = query) {
+        const search = p.search ? `search=${p.search}` : ``;
+        return server(`project/all`, "get")
+    },
+    project_update(data) {
+        return server(`project/update`, "put", data)
+    },
+    project_one(p = query){
+        return server(`project/one_project?id=${p.id}`)
     }
+
 };

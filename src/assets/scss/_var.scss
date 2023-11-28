@@ -54,11 +54,12 @@ button {
     font-family: inherit;
     cursor: pointer;
     transition: border-color 0.25s;
-  }
-  button:active {
+}
+
+button:active {
     border-color: var(--red);
-  }
-  .btn:focus {
+}
+
+.btn:focus {
     box-shadow: none !important;
-  }
-  
+}

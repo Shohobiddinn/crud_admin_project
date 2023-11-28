@@ -10,8 +10,23 @@
                 // background: rgb(237, 240, 247, .5);
             }
 
+            .search {
+                gap: 30px;
+                &_form{
+                    background-color: #fff;
+                    padding: 2px 5px;
+                    border-radius: 10px;
+                    input{
+                        &:focus{
+                       outline: none;
+                       box-shadow: none;
+                        }
+                    }
+                }
+            }
+
             &_add {
-                padding: 15px;
+                padding: 10px;
                 border-radius: 10px;
                 cursor: pointer;
 
@@ -76,11 +91,12 @@
 }
 
 
-.warning_title{
-    @include fond(700,25,25);
+.warning_title {
+    @include fond(700, 25, 30);
     margin: 50px auto;
     user-select: none;
 }
-.btns{
-  gap: 20px;  
+
+.btns {
+    gap: 20px;
 }
