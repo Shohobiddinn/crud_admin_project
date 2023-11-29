@@ -123,6 +123,7 @@
         top: 0;
         background: rgb(237, 240, 247, .8);
         padding-top: 20px;
+
         &_top {
             .search_form {
                 background: #fff;
@@ -264,6 +265,7 @@
             &>div {
                 margin-top: 15px;
                 justify-content: center;
+                position: relative;
 
                 input {
                     @include fond(500, 15, 15);
@@ -273,6 +275,8 @@
                     margin-bottom: 20px;
                     border: 2px solid rgb(42, 40, 40);
                     outline: none;
+                    position: relative;
+                    z-index: 0;
 
                     &[type="tel"] {
                         transform: translateY(10px);
@@ -293,6 +297,17 @@
                     border: 2px solid rgb(42, 40, 40);
                     outline: none;
                     width: 100%;
+                }
+
+                .input-group_icon {
+
+                    transform: translateY(-10px);
+                    border: 2px solid rgb(42, 40, 40);
+padding: 4px;
+                    svg {
+                        width: 35px;
+                        height: 35px;
+                    }
                 }
             }
         }
