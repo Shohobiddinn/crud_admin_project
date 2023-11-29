@@ -12,10 +12,10 @@ export default function handleError(error) {
     if (status == 400) {
       if (detail == "Inactive user") {
         store.dispatch("setUser", null);
-        router.push("/sign-in");
+        router.push("/login");
       } else util.toast("warning", detail);
     } else if (status == 401) {
       store.dispatch("setUser", null);
-      router.push("/sign-in");
+      router.push("/login");
     }
 }

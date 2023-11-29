@@ -10,7 +10,7 @@ export default {
 
 <style scoped>
 p {
-  font-size: large;
+  font-size: x-large;
   text-align: center;
 }
 </style>

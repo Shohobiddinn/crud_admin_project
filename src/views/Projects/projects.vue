@@ -4,11 +4,12 @@
     <Delete @end="end()" ref="delete" />
     <div class="hodimlar">
       <div class="hodimlar_content">
+     
+
         <div
           class="hodimlar_content_top d-flex align-items-center justify-content-between"
         >
           <div class="hodimlar_content_top_title text-uppercase">loyihalar</div>
-          <!-- <pre>{{ projects }}</pre> -->
           <div
             class="hodimlar_content_top_add text-bg-success"
             @click="($refs.project.status = 'project_add'), $refs.project.open()"
@@ -95,6 +96,7 @@
             </div>
           </div>
         </div>
+        <DataNotFound v-if="!projects.length" />
       </div>
     </div>
   </div>
@@ -104,16 +106,13 @@
 import api from "../../server/api";
 import Delete from "../../components/Modal/Delete.vue";
 import addProjectModal from "../../components/Modal/addProjectModal.vue";
+import DataNotFound from "../../components/DataNotFound/DataNotFound.vue";
 export default {
   data() {
     return {
       phone: "",
       search: "",
       projects: {
-        current_page: 1,
-        pages: 1,
-        limit: 10,
-        data: [],
       },
       roll: "",
     };
@@ -121,6 +120,7 @@ export default {
   components: {
     Delete,
     addProjectModal,
+    DataNotFound
   },
   methods: {
     tekshiruv() {

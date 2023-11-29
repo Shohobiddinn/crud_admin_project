@@ -94,6 +94,7 @@
             </div>
           </div>
         </div>
+        <DataNotFound v-if="!categors.length" />
       </div>
     </div>
   </div>
@@ -103,6 +104,7 @@
 import api from "../../server/api";
 import Delete from "@/components/Modal/Delete.vue";
 import addCategory from "../../components/Modal/addCategory.vue";
+import DataNotFound from "../../components/DataNotFound/DataNotFound.vue";
 export default {
   data() {
     return {
@@ -115,6 +117,7 @@ export default {
   components: {
     Delete,
     addCategory,
+    DataNotFound
   },
   methods: {
     tekshiruv() {
