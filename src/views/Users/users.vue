@@ -126,7 +126,7 @@
 
 <script>
 import api from "../../server/api";
-import Delete from "../../components/Modal/Delete.vue";
+import Delete from "@/components/Modal/Delete.vue";
 import addUserModalVue from "../../components/Modal/addUserModal.vue";
 import paginationVue from "../../components/Pagination/pagination.vue";
 export default {
