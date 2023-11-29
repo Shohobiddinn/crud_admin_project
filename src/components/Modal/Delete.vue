@@ -20,7 +20,6 @@ export default {
   },
 };
 </script>
-
 <template>
   <Modal ref="deleteModal" size="md">
     <template #header>
