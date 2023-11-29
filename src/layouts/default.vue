@@ -11,91 +11,24 @@
               <img src="../assets/images/Logo2.png" alt="photo" />
             </router-link>
           </div>
-          <div class="item">
-            <RouterLink to="/users" class="item_link d-flex align-items-center">
-              <div class="item_link_icon">
-                <svg
-                  width="20"
-                  xmlns="http://www.w3.org/2000/svg"
-                  height="20"
-                  fill="#998FB3"
-                  viewBox="0 0 640 512"
-                >
-                  <path
-                    d="M72 88a56 56 0 1 1 112 0A56 56 0 1 1 72 88zM64 245.7C54 256.9 48 271.8 48 288s6 31.1 16 42.3V245.7zm144.4-49.3C178.7 222.7 160 261.2 160 304c0 34.3 12 65.8 32 90.5V416c0 17.7-14.3 32-32 32H96c-17.7 0-32-14.3-32-32V389.2C26.2 371.2 0 332.7 0 288c0-61.9 50.1-112 112-112h32c24 0 46.2 7.5 64.4 20.3zM448 416V394.5c20-24.7 32-56.2 32-90.5c0-42.8-18.7-81.3-48.4-107.7C449.8 183.5 472 176 496 176h32c61.9 0 112 50.1 112 112c0 44.7-26.2 83.2-64 101.2V416c0 17.7-14.3 32-32 32H480c-17.7 0-32-14.3-32-32zm8-328a56 56 0 1 1 112 0A56 56 0 1 1 456 88zM576 245.7v84.7c10-11.3 16-26.1 16-42.3s-6-31.1-16-42.3zM320 32a64 64 0 1 1 0 128 64 64 0 1 1 0-128zM240 304c0 16.2 6 31 16 42.3V261.7c-10 11.3-16 26.1-16 42.3zm144-42.3v84.7c10-11.3 16-26.1 16-42.3s-6-31.1-16-42.3zM448 304c0 44.7-26.2 83.2-64 101.2V448c0 17.7-14.3 32-32 32H288c-17.7 0-32-14.3-32-32V405.2c-37.8-18-64-56.5-64-101.2c0-61.9 50.1-112 112-112h32c61.9 0 112 50.1 112 112z"
-                  />
-                </svg>
-              </div>
-              <div class="item_link_title">hodimlar</div>
-            </RouterLink>
-          </div>
+
           <div class="item">
             <RouterLink
-              to="/projects"
               class="item_link d-flex align-items-center"
+              v-for="item in routers"
+              :key="item"
+              :class="{ active: $route.path == item.path }"
+              :to="item.path"
             >
               <div class="item_link_icon">
-                <svg
-                  width="20"
-                  height="20"
-                  fill="#998FB3"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 512 512"
-                >
-                  <path
-                    d="M152.1 38.2c9.9 8.9 10.7 24 1.8 33.9l-72 80c-4.4 4.9-10.6 7.8-17.2 7.9s-12.9-2.4-17.6-7L7 113C-2.3 103.6-2.3 88.4 7 79s24.6-9.4 33.9 0l22.1 22.1 55.1-61.2c8.9-9.9 24-10.7 33.9-1.8zm0 160c9.9 8.9 10.7 24 1.8 33.9l-72 80c-4.4 4.9-10.6 7.8-17.2 7.9s-12.9-2.4-17.6-7L7 273c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l22.1 22.1 55.1-61.2c8.9-9.9 24-10.7 33.9-1.8zM224 96c0-17.7 14.3-32 32-32H480c17.7 0 32 14.3 32 32s-14.3 32-32 32H256c-17.7 0-32-14.3-32-32zm0 160c0-17.7 14.3-32 32-32H480c17.7 0 32 14.3 32 32s-14.3 32-32 32H256c-17.7 0-32-14.3-32-32zM160 416c0-17.7 14.3-32 32-32H480c17.7 0 32 14.3 32 32s-14.3 32-32 32H192c-17.7 0-32-14.3-32-32zM48 368a48 48 0 1 1 0 96 48 48 0 1 1 0-96z"
-                  />
-                </svg>
+                <img :src="getImageUrl(item?.icon)" :alt="item?.icon" />
               </div>
-              <div class="item_link_title">loyihalar</div>
-            </RouterLink>
-          </div>
-          <div class="item">
-            <RouterLink
-              to="/targets"
-              class="item_link d-flex align-items-center"
-            >
-              <div class="item_link_icon">
-                <svg
-                  width="20"
-                  height="20"
-                  fill="#998FB3"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 512 512"
-                >
-                  <path
-                    d="M448 256A192 192 0 1 0 64 256a192 192 0 1 0 384 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zm256 80a80 80 0 1 0 0-160 80 80 0 1 0 0 160zm0-224a144 144 0 1 1 0 288 144 144 0 1 1 0-288zM224 256a32 32 0 1 1 64 0 32 32 0 1 1 -64 0z"
-                  />
-                </svg>
-              </div>
-              <div class="item_link_title">targetlar</div>
-            </RouterLink>
-          </div>
-          <div class="item">
-            <RouterLink
-              to="/setting"
-              class="item_link d-flex align-items-center"
-            >
-              <div class="item_link_icon">
-                <svg
-                  width="20"
-                  height="20"
-                  fill="#998FB3"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 512 512"
-                >
-                  <path
-                    d="M495.9 166.6c3.2 8.7 .5 18.4-6.4 24.6l-43.3 39.4c1.1 8.3 1.7 16.8 1.7 25.4s-.6 17.1-1.7 25.4l43.3 39.4c6.9 6.2 9.6 15.9 6.4 24.6c-4.4 11.9-9.7 23.3-15.8 34.3l-4.7 8.1c-6.6 11-14 21.4-22.1 31.2c-5.9 7.2-15.7 9.6-24.5 6.8l-55.7-17.7c-13.4 10.3-28.2 18.9-44 25.4l-12.5 57.1c-2 9.1-9 16.3-18.2 17.8c-13.8 2.3-28 3.5-42.5 3.5s-28.7-1.2-42.5-3.5c-9.2-1.5-16.2-8.7-18.2-17.8l-12.5-57.1c-15.8-6.5-30.6-15.1-44-25.4L83.1 425.9c-8.8 2.8-18.6 .3-24.5-6.8c-8.1-9.8-15.5-20.2-22.1-31.2l-4.7-8.1c-6.1-11-11.4-22.4-15.8-34.3c-3.2-8.7-.5-18.4 6.4-24.6l43.3-39.4C64.6 273.1 64 264.6 64 256s.6-17.1 1.7-25.4L22.4 191.2c-6.9-6.2-9.6-15.9-6.4-24.6c4.4-11.9 9.7-23.3 15.8-34.3l4.7-8.1c6.6-11 14-21.4 22.1-31.2c5.9-7.2 15.7-9.6 24.5-6.8l55.7 17.7c13.4-10.3 28.2-18.9 44-25.4l12.5-57.1c2-9.1 9-16.3 18.2-17.8C227.3 1.2 241.5 0 256 0s28.7 1.2 42.5 3.5c9.2 1.5 16.2 8.7 18.2 17.8l12.5 57.1c15.8 6.5 30.6 15.1 44 25.4l55.7-17.7c8.8-2.8 18.6-.3 24.5 6.8c8.1 9.8 15.5 20.2 22.1 31.2l4.7 8.1c6.1 11 11.4 22.4 15.8 34.3zM256 336a80 80 0 1 0 0-160 80 80 0 1 0 0 160z"
-                  />
-                </svg>
-              </div>
-              <div class="item_link_title">sozlamalar</div>
+              <div class="item_link_title">{{ item?.name }}</div>
             </RouterLink>
           </div>
         </div>
         <div class="contents col-10">
           <div class="contents_top d-flex justify-content-end p-2">
-          
             <div class="exit d-flex align-items-end">
               <div class="exit_icon" @click="toggleProfil">
                 <svg
@@ -181,10 +114,38 @@ export default {
       localStorage.removeItem("user");
       this.$router.push("/login");
     },
+    getImageUrl(name) {
+      return new URL(`../assets/icons/${name}`, import.meta.url).href;
+    },
   },
-  created() {},
   mounted() {
     if (this.$route.path == "/") this.$router.push("/users");
+  },
+  computed: {
+    routers() {
+      return [
+        {
+          icon: "user.svg",
+          name: "hodimlar",
+          path: "/users",
+        },
+        {
+          icon: "project.svg",
+          name: "loyihalar",
+          path: "/projects",
+        },
+        {
+          icon: "target.svg",
+          name: "targetlar",
+          path: "/targets",
+        },
+        {
+          icon: "category.svg",
+          name: "toifalar",
+          path: "/categorys",
+        },
+      ];
+    },
   },
 };
 </script>

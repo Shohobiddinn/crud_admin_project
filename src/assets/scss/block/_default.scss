@@ -62,8 +62,7 @@
                     }
 
                     .item_link_icon {
-                        svg {
-                            fill: $pr_blue;
+                        img {
                         }
                     }
 
@@ -99,13 +98,14 @@
                 }
 
                 &_icon {
-                    svg {
+                    img {
                         width: 22px;
                         height: 22px;
                         transition: 0.3s;
+                        object-fit: cover;
+                        color: red;
                     }
                 }
-
                 &_title {
                     @include fond(600, 18, 18);
                     color: $pr_black;
