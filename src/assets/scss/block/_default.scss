@@ -246,6 +246,9 @@
     background: rgb(237, 240, 247, .5);
     height: 90vh;
     overflow-y: auto;
+    &::-webkit-scrollbar{
+        display: none;
+    }
 }
 
 .tahrirlash {
@@ -303,7 +306,8 @@
 
                     transform: translateY(-10px);
                     border: 2px solid rgb(42, 40, 40);
-padding: 4px;
+                    padding: 4px;
+
                     svg {
                         width: 35px;
                         height: 35px;

@@ -20,7 +20,7 @@
                 placeholder="Qidiruv"
                 aria-label="Search"
                 v-model="search"
-                @keyup="get()"
+                @input="get()"
               />
               <button class="search_icon btn btn-success">
                 <svg
