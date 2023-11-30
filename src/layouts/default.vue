@@ -5,9 +5,9 @@
     </div>
     <div class="hero">
       <div class="d-flex juctify-content-between col-13">
-        <div class="sidebar col-2">
+        <div class="sidebar col-2" :class="{ active: sidebarModal }">
           <div class="sidebar_logo">
-            <router-link to="/users">
+            <router-link to="/users" @click="sidebarModal = false">
               <img src="../assets/images/Logo2.png" alt="photo" />
             </router-link>
           </div>
@@ -19,6 +19,7 @@
               :key="item"
               :class="{ active: $route.path == item.path }"
               :to="item.path"
+              @click="sidebarModal = false"
             >
               <div class="item_link_icon">
                 <img :src="getImageUrl(item?.icon)" :alt="item?.icon" />
@@ -29,6 +30,9 @@
         </div>
         <div class="contents col-10">
           <div class="contents_top d-flex justify-content-end p-2">
+            <div class="sidebar_icon d-flex flex-column" @click="sidebarModal = !sidebarModal">
+              <span></span><span></span><span></span>
+            </div>
             <div class="exit d-flex align-items-end">
               <div class="exit_icon" @click="toggleProfil">
                 <svg
@@ -98,6 +102,7 @@ export default {
   data() {
     return {
       profil: false,
+      sidebarModal: false,
     };
   },
   components: {

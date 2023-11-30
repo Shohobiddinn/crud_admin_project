@@ -30,6 +30,19 @@
         background: rgb(237, 240, 247, .8);
         padding: 0 20px;
         width: 17%;
+        transition: 0.5s;
+
+        @include media(1000px) {
+            position: absolute;
+            left: -100%;
+
+            &.active {
+                left: 0;
+                z-index: 3;
+                width: 225px;
+
+            }
+        }
 
         &_logo {
             img {
@@ -42,7 +55,6 @@
         .item {
             padding-left: 20px;
             transition: 0.3s;
-
             &_link {
                 margin-bottom: 20px;
                 gap: 10px;
@@ -56,45 +68,10 @@
 
                 &:hover {
                     border-color: $pr_blue;
-
-                    .item_link_title {
-                        color: $pr_blue;
-                    }
-
-                    .item_link_icon {
-                        img {
-                        }
-                    }
-
-                }
-
-                &::after {
-                    content: '';
-                    position: absolute;
-                    top: 0;
-                    left: 0;
-                    width: 3px;
-                    height: 100%;
-                    background-color: $pr_blue;
-                    display: none;
                 }
 
                 &.router-link-active {
-                    border-color: transparent;
-
-                    &::after {
-                        display: block;
-                    }
-
-                    .item_link_title {
-                        color: $pr_blue;
-                    }
-
-                    .item_link_icon {
-                        svg {
-                            fill: $pr_blue;
-                        }
-                    }
+                    border-color: $pr_blue;
                 }
 
                 &_icon {
@@ -106,6 +83,7 @@
                         color: red;
                     }
                 }
+
                 &_title {
                     @include fond(600, 18, 18);
                     color: $pr_black;
@@ -124,7 +102,34 @@
         background: rgb(237, 240, 247, .8);
         padding-top: 20px;
 
+        @include media(1000px) {
+            width: 100%;
+        }
+
         &_top {
+
+            @include media(1000px) {
+                justify-content: space-between !important;
+                align-items: center;
+            }
+
+            .sidebar_icon {
+                gap: 5px;
+                display: none !important;
+
+                @include media(1000px) {
+                    display: flex !important;
+                }
+
+                span {
+                    width: 35px;
+                    height: 4px;
+                    display: inline-block;
+                    background-color: #998FB3;
+                    border-radius: 4px;
+                }
+            }
+
             .search_form {
                 background: #fff;
                 border-radius: 10px;
@@ -142,7 +147,6 @@
                     input:focus {
                         box-shadow: none;
                         border-color: #ced4da;
-                        /* O'zgartirish kerak bo'lsa */
                     }
                 }
             }
@@ -246,7 +250,8 @@
     background: rgb(237, 240, 247, .5);
     height: 90vh;
     overflow-y: auto;
-    &::-webkit-scrollbar{
+
+    &::-webkit-scrollbar {
         display: none;
     }
 }
