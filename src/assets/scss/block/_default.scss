@@ -306,6 +306,12 @@
                     outline: none;
                     width: 100%;
                 }
+                select{
+                    width: 100%;
+                    padding: 10px 20px;
+                    border-radius: 5px;
+                    margin-bottom: 20px;
+                }
 
                 .input-group_icon {
 
@@ -320,6 +326,7 @@
                 }
             }
         }
+
 
 
     }

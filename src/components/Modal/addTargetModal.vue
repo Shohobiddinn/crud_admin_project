@@ -10,9 +10,11 @@ export default {
       status: "target_add",
       target: {
         target_id: 0,
-        name: "",
+        status: true,
         comment: "",
+        project_id: 0,
       },
+      projects: {},
     };
   },
   computed: {},
@@ -21,15 +23,17 @@ export default {
       if (this.status == "target_edit") {
         this.target = {
           target_id: target.id,
-          name: target.name,
+          status: target.status,
           comment: target.comment,
+          project_id: target.project_id,
         };
         this.$refs.addTargetModal.openModal();
       } else {
         this.target = {
           target_id: 0,
-          name: "",
+          status: true,
           comment: "",
+          project_id: 0,
         };
         this.$refs.addTargetModal.openModal();
       }
@@ -51,6 +55,18 @@ export default {
         });
       }
     },
+    get_products() {
+      api.project_all();
+      api
+        .project_all()
+        .then((res) => {
+          this.projects = res?.data;
+        })
+        .catch((err) => {});
+    },
+  },
+  created() {
+    this.get_products();
   },
 };
 </script>
@@ -68,26 +84,23 @@ export default {
           class="form_submit d-flex flex-column"
         >
           <label class="col-12">
-            nomi
+            loyiha
             <div class="input-group d-flex align-items-center">
-              <input
-                type="text"
-                class="form-control"
-                required
-                autocomplete="on"
-                v-model="target.name"
-              />
+              <select v-model="target.project_id" required>
+                <option
+                  v-for="project in projects"
+                  :key="project.id"
+                  :value="project?.id"
+                >
+                  {{ project?.name }}
+                </option>
+              </select>
             </div>
           </label>
-
           <label class="col-12">
             toifa haqida
             <div class="input-group d-flex align-items-center">
-              <textarea
-                cols="30"
-                rows="10"
-                v-model="target.comment"
-              ></textarea>
+              <textarea cols="30" rows="10" v-model="target.comment"></textarea>
             </div>
           </label>
         </form>

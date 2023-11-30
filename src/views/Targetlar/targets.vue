@@ -35,17 +35,6 @@
           >
             <div class="card-body">
               <h5
-                class="content_item item_2 card-title text-capitalize d-flex justify-content-between align-items-center"
-              >
-                {{ item?.name }}
-              </h5>
-              <h5
-                class="content_item card-title text-capitalize d-flex justify-content-between align-items-center"
-              >
-                <span>toifa: </span>{{ item?.name }}
-              </h5>
-
-              <h5
                 class="content_item card-title text-capitalize d-flex justify-content-between align-items-center"
               >
                 {{ item?.comment }}
