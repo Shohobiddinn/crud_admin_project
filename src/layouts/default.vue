@@ -30,7 +30,10 @@
         </div>
         <div class="contents col-10">
           <div class="contents_top d-flex justify-content-end p-2">
-            <div class="sidebar_icon d-flex flex-column" @click="sidebarModal = !sidebarModal">
+            <div
+              class="sidebar_icon d-flex flex-column"
+              @click="sidebarModal = !sidebarModal"
+            >
               <span></span><span></span><span></span>
             </div>
             <div class="exit d-flex align-items-end">

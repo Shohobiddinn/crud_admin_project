@@ -24,46 +24,56 @@ const router = createRouter({
       name: 'default',
       beforeEnter: auth,
       component: () => import('../layouts/default.vue'),
-   
       children: [
         {
           path: '/users',
-          name:'users',
+          name: 'users',
           beforeEnter: auth,
-          component: ()=>import('../views/Users/users.vue'),
+          component: () => import('../views/Users/users.vue'),
         },
         {
           path: '/projects',
-          name:'projects',
+          name: 'projects',
           beforeEnter: auth,
-          component: ()=>import('../views/Projects/projects.vue'),
+          component: () => import('../views/Projects/projects.vue'),
+          children: [
+            {
+              path: '/project_item',
+              name: "project_item",
+              beforeEnter: auth,
+              component: () => import('../views/Projects/project_item.vue')
+
+            },
+
+          ]
+        },
+
+        {
+          path: '/targets',
+          name: 'targets',
+          beforeEnter: auth,
+          component: () => import('../views/Targetlar/targets.vue')
         },
         {
-          path:'/targets',
-          name:'targets',
+          path: '/setting',
+          name: 'setting',
           beforeEnter: auth,
-          component:()=> import('../views/Targetlar/targets.vue')
+          component: () => import('../views/Setting/setting.vue')
         },
         {
-          path:'/setting',
-          name:'setting',
+          path: '/categorys',
+          name: 'categorys',
           beforeEnter: auth,
-          component:()=>import('../views/Setting/setting.vue')
-        },
-        {
-          path:'/categorys',
-          name:'categorys',
-          beforeEnter: auth,
-          component:()=>import('../views/Categorys/categorys.vue')
+          component: () => import('../views/Categorys/categorys.vue')
         }
       ],
     },
     {
-      path:'/login',
-      name:'login', 
-      component : ()=>import('../components/Login/login.vue')
+      path: '/login',
+      name: 'login',
+      component: () => import('../components/Login/login.vue')
     }
-  
+
 
   ]
 })

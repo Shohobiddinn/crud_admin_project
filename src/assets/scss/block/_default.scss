@@ -171,8 +171,9 @@
                     right: 0;
                     width: 200px;
                     padding: 5px 0px 10px 0px;
-                    background-color: white;
-                    border: 1px solid $pr_black;
+                    background-color:#fff;
+                    // border: 1px solid $pr_black;
+                    min-height: 300px;
                     border-radius: 20px;
                     overflow: hidden;
                     transition: 0.3s;

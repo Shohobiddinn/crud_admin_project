@@ -1,18 +1,23 @@
 <template>
-  <div>
+  <div v-if="$route.path == '/project_item' ">
+    <router-view >
+
+    </router-view>
+  </div>
+  <div v-if="$route.path == '/projects' ">
     <addProjectModal @end="get()" ref="project" />
     <Delete @end="end()" ref="delete" />
     <div class="hodimlar">
       <div class="hodimlar_content">
-     
-
         <div
           class="hodimlar_content_top d-flex align-items-center justify-content-between"
         >
           <div class="hodimlar_content_top_title text-uppercase">loyihalar</div>
           <div
             class="hodimlar_content_top_add text-bg-success"
-            @click="($refs.project.status = 'project_add'), $refs.project.open()"
+            @click="
+              ($refs.project.status = 'project_add'), $refs.project.open()
+            "
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -36,12 +41,18 @@
               <h5
                 class="content_item item_2 card-title text-capitalize d-flex justify-content-between align-items-center"
               >
-                {{ item?.name }}
+                {{ item?.user?.name }}
               </h5>
               <h5
                 class="content_item card-title text-capitalize d-flex justify-content-between align-items-center"
               >
-                <span>URL manzil: </span><a :href="item?.url">{{ item?.url }}</a>
+                <span>tel: </span>+998 {{ item?.user?.number }}
+              </h5>
+              <h5
+                class="content_item card-title text-capitalize d-flex justify-content-between align-items-center"
+              >
+                <span>URL manzil: </span
+                ><a :href="item?.url">{{ item?.url }}</a>
               </h5>
 
               <h5
@@ -50,18 +61,35 @@
                 <span>loyiha nomi: </span>{{ item?.name }}
               </h5>
 
-              <h5
-                class="content_item card-title text-capitalize "
-              >
+              <h5 class="content_item card-title text-capitalize">
                 {{ item?.comment }}
               </h5>
 
               <div
                 class="btns d-flex align-items-center justify-content-end col-10"
               >
+              <RouterLink to="/project_item">
+                <div
+                  class="card_content_btn text-bg-primary text-uppercase btn"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    height="25"
+                    width="25"
+                    viewBox="0 0 576 512"
+                    fill="#fff"
+                  >
+                    <path
+                      d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM144 256a144 144 0 1 1 288 0 144 144 0 1 1 -288 0zm144-64c0 35.3-28.7 64-64 64c-7.1 0-13.9-1.2-20.3-3.3c-5.5-1.8-11.9 1.6-11.7 7.4c.3 6.9 1.3 13.8 3.2 20.7c13.7 51.2 66.4 81.6 117.6 67.9s81.6-66.4 67.9-117.6c-11.1-41.5-47.8-69.4-88.6-71.1c-5.8-.2-9.2 6.1-7.4 11.7c2.1 6.4 3.3 13.2 3.3 20.3z"
+                    />
+                  </svg>
+                </div>
+
+              </RouterLink>
                 <div
                   @click="
-                    ($refs.project.status = 'project_edit'), $refs.project.open(item)
+                    ($refs.project.status = 'project_edit'),
+                      $refs.project.open(item)
                   "
                   class="card_content_btn text-bg-warning text-uppercase btn"
                 >
@@ -112,15 +140,14 @@ export default {
     return {
       phone: "",
       search: "",
-      projects: {
-      },
+      projects: {},
       roll: "",
     };
   },
   components: {
     Delete,
     addProjectModal,
-    DataNotFound
+    DataNotFound,
   },
   methods: {
     tekshiruv() {
@@ -143,9 +170,9 @@ export default {
         })
         .catch((err) => {});
     },
-    end(){
+    end() {
       console.log("delete");
-    }
+    },
   },
   created() {
     this.get();
