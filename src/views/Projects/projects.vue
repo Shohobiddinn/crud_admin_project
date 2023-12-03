@@ -124,7 +124,7 @@
       </div>
     </div>
   </div>
-  <div v-else style="height: 100vh;">
+  <div v-else>
     <router-view >
 
     </router-view>
