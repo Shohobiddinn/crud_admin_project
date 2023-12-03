@@ -7,7 +7,7 @@
           <div
             class="hodimlar_content_top d-flex align-items-center justify-content-between"
           >
-            <div class="hodimlar_content_top_title text-uppercase">toifalar</div>
+            <div class="hodimlar_content_top_title text-uppercase">toifa</div>
   
             <div class="search d-flex align-items-center">
               <div
@@ -32,8 +32,6 @@
           <div class="items">
             <div
               class="hodim_content card"
-              v-for="item in categors"
-              :key="item?.id"
             >
               <div class="card-body">
                 <h5

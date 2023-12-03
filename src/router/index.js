@@ -64,7 +64,15 @@ const router = createRouter({
           path: '/categorys',
           name: 'categorys',
           beforeEnter: auth,
-          component: () => import('../views/Categorys/categorys.vue')
+          component: () => import('../views/Categorys/categorys.vue'),
+          children:[
+            {
+              path:"/category_item/:id",
+              name:"category_item",
+              beforeEnter:auth,
+              component: ()=> import("../views/Categorys/category_item.vue")
+            }
+          ]
         }
       ],
     },
