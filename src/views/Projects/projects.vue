@@ -1,9 +1,5 @@
 <template>
-  <div v-if="$route.path == '/project_item' ">
-    <router-view >
 
-    </router-view>
-  </div>
   <div v-if="$route.path == '/projects' ">
     <addProjectModal @end="get()" ref="project" />
     <Delete @end="end()" ref="delete" />
@@ -68,7 +64,7 @@
               <div
                 class="btns d-flex align-items-center justify-content-end col-10"
               >
-              <RouterLink to="/project_item">
+              <RouterLink :to="`/project_item/${item.id}`">
                 <div
                   class="card_content_btn text-bg-primary text-uppercase btn"
                 >
@@ -127,6 +123,11 @@
         <DataNotFound v-if="!projects.length" />
       </div>
     </div>
+  </div>
+  <div v-else style="height: 100vh;">
+    <router-view >
+
+    </router-view>
   </div>
 </template>
 

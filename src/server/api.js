@@ -34,7 +34,7 @@ export default {
         return server(`project/update`, "put", data)
     },
     project_one(p = query) {
-        return server(`project/one_project?id=${p.id}`)
+        return server(`project/one_project/?project_id=${p.id}`,"get")
     },
     // category api
     category_add(data) {

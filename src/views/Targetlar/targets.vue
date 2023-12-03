@@ -8,7 +8,6 @@
           class="hodimlar_content_top d-flex align-items-center justify-content-between"
         >
           <div class="hodimlar_content_top_title text-uppercase">targetlar</div>
-
           <div class="search d-flex align-items-center">
             <div
               class="hodimlar_content_top_add text-bg-success"
