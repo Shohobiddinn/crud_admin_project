@@ -8,7 +8,7 @@
           class="hodimlar_content_top d-flex align-items-center justify-content-between"
         >
           <div class="hodimlar_content_top_title text-uppercase">hodimlar</div>
-          <div class="search d-flex align-items-center col-4 ">
+          <div class="search d-flex align-items-center col-4">
             <form
               class="search_form d-flex col-10 align-items-center"
               role="search"
@@ -20,7 +20,7 @@
                 placeholder="Qidiruv"
                 aria-label="Search"
                 v-model="search"
-                @input="get()"
+                @input="getSearch()"
               />
               <button class="search_icon btn btn-success">
                 <svg
@@ -51,7 +51,6 @@
                 />
               </svg>
             </div>
-
           </div>
         </div>
         <div class="items">
@@ -169,9 +168,14 @@ export default {
         })
         .catch((err) => {});
     },
-    end(){
+    getSearch() {
+      setTimeout(() => {
+        this.get()
+      }, 1000);
+    },
+    end() {
       console.log("delete");
-    }
+    },
   },
   created() {
     this.get();
