@@ -65,8 +65,8 @@
                       >
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
-                          height="25"
-                          width="25"
+                          height="18"
+                          width="18"
                           viewBox="0 0 576 512"
                           fill="#fff"
                         >
@@ -85,8 +85,8 @@
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        height="25"
-                        width="25"
+                        height="18"
+                        width="18"
                         viewBox="0 0 512 512"
                       >
                         <path
@@ -100,8 +100,8 @@
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        height="25"
-                        width="25"
+                        height="18"
+                        width="18"
                         viewBox="0 0 448 512"
                         fill="#fff"
                       >
