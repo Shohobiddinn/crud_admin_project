@@ -73,8 +73,9 @@
 
               <h5
                 class="content_item card-title text-capitalize d-flex justify-content-between align-items-center"
-              >
-                <span>tel: </span>{{ item?.number }}
+             style="letter-spacing: 2px;"
+                >
+                <span>tel: </span>+998{{ item?.number }}
               </h5>
 
               <div

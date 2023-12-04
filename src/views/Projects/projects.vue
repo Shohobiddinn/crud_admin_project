@@ -9,22 +9,22 @@
           class="hodimlar_content_top d-flex align-items-center justify-content-between"
         >
           <div class="hodimlar_content_top_title text-uppercase">loyihalar</div>
-          <div
-            class="hodimlar_content_top_add text-bg-success"
-            @click="
-              ($refs.project.status = 'project_add'), $refs.project.open()
-            "
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              height="25"
-              width="25"
-              viewBox="0 0 448 512"
+          <div class="search d-flex align-items-center">
+            <div
+              class="hodimlar_content_top_add text-bg-success"
+              @click="($refs.project.status = 'project_add'), $refs.project.open()"
             >
-              <path
-                d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z"
-              />
-            </svg>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                height="25"
+                width="25"
+                viewBox="0 0 448 512"
+              >
+                <path
+                  d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z"
+                />
+              </svg>
+            </div>
           </div>
         </div>
         <div class="items">
@@ -41,14 +41,15 @@
               </h5>
               <h5
                 class="content_item card-title text-capitalize d-flex justify-content-between align-items-center"
-              >
-                <span>tel: </span>+998 {{ item?.user?.number }}
+             style="  letter-spacing: 2px;"
+                >
+                <span>tel: </span>+998{{ item?.user?.number }}
               </h5>
               <h5
                 class="content_item card-title text-capitalize d-flex justify-content-between align-items-center"
               >
                 <span>URL manzil: </span
-                ><a :href="item?.url">{{ item?.url }}</a>
+                ><a :href="item?.url" style="text-transform: none;">{{ item?.url }}</a>
               </h5>
 
               <h5
