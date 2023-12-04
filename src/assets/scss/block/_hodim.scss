@@ -69,12 +69,25 @@
             }
         }
 
+        .tables {
+            @include media(650px){
+                display: none;
+            }
+            &_table {
+                border: 2px solid red;
+            }
+        }
+
         .items {
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
             gap: 30px;
             display: none;
+
+            @include media(650px) {
+                display: flex;
+            }
 
             .hodim_content {
                 overflow: hidden;

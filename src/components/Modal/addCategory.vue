@@ -60,7 +60,7 @@ export default {
     <template #header>
       <div class="tahrirlash">
         <div class="title text-uppercase text-success">
-          {{ status == "user_edit" ? "tahrirlash" : "toifa qo'shish" }}
+          {{ status == "category_edit" ? "tahrirlash" : "toifa qo'shish" }}
         </div>
         <form
           id="submit"

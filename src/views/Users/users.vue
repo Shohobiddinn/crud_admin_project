@@ -54,7 +54,7 @@
           </div>
         </div>
         <div class="tables">
-          <table v-if="users?.data.length" class="table border tables_table" style="border-radius: 20px !important;">
+          <table v-if="users?.data.length" class="table border table-light tables_table" style="border-radius: 20px !important;">
             <thead class="border">
               <tr>
                 <th scope="col" class="border col-1">№</th>
@@ -80,8 +80,8 @@
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        height="25"
-                        width="25"
+                        height="18"
+                        width="18"
                         viewBox="0 0 512 512"
                       >
                         <path
@@ -95,8 +95,8 @@
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        height="25"
-                        width="25"
+                        height="18"
+                        width="18"
                         viewBox="0 0 448 512"
                         fill="#fff"
                       >
