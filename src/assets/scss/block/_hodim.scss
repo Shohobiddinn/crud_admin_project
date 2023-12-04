@@ -68,11 +68,13 @@
                 }
             }
         }
+
         .items {
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
             gap: 30px;
+            display: none;
 
             .hodim_content {
                 overflow: hidden;
