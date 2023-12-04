@@ -17,6 +17,7 @@
                 color: #990000;
                 margin: 20px 0 50px 30px;
                 z-index: 2;
+
                 @include media(860px) {
                     width: 35% !important;
                 }
@@ -25,7 +26,8 @@
                     width: 100% !important;
                     margin: 20px 0 30px 30px;
                 }
-                @include media(500px){
+
+                @include media(500px) {
                     font-size: 35px;
                 }
             }
@@ -36,6 +38,7 @@
                 @include media(860px) {
                     width: 50% !important;
                 }
+
                 @include media(660px) {
                     width: 90% !important;
                     margin-bottom: 30px;
@@ -59,12 +62,12 @@
                 padding: 10px;
                 border-radius: 10px;
                 cursor: pointer;
+
                 svg {
                     fill: white
                 }
             }
         }
-
         .items {
             display: flex;
             justify-content: center;

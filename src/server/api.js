@@ -53,7 +53,7 @@ export default {
         return server(`category/update_item`, "put", data);
     },
     category_one(p = query) {
-        return server(`category/one_category?id=${p.id}`)
+        return server(`category/one_category?category_id=${p.id}`)
     },
     category_item_one(p = query) {
         return server(`category/one_category_item?id=${p.id}`)

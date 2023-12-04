@@ -8,7 +8,7 @@
             class="hodimlar_content_top d-flex align-items-center justify-content-between"
           >
             <div class="hodimlar_content_top_title text-uppercase">toifa</div>
-  
+  <pre>{{ $route.params.id }}</pre>
             <div class="search d-flex align-items-center">
               <div
                 class="hodimlar_content_top_add text-bg-success"
@@ -92,7 +92,7 @@
               </div>
             </div>
           </div>
-          <DataNotFound v-if="!categors.length" />
+          <DataNotFound v-if="!category.length" />
         </div>
       </div>
     </div>
@@ -106,10 +106,11 @@
   export default {
     data() {
       return {
-        phone: "",
-        search: "",
-        categors: {},
-        roll: "",
+        category:{},
+        params: {
+          id:this.$route.params.id,
+        },
+
       };
     },
     components: {
@@ -124,9 +125,9 @@
       },
       get() {
         api
-          .category_all()
+          .category_one(this.params)
           .then((res) => {
-            this.categors = res?.data;
+            this.category = res?.data;
           })
           .catch((err) => {});
       },
