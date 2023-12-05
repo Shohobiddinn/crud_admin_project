@@ -1,3 +1,13 @@
 @import './default';
 @import './login';
 @import './hodim';
+@import './project_item';
+input {
+    @include fond(500, 18, 18);
+    color: #fff;
+    background: none;
+    text-transform: capitalize;
+    outline: none;
+    border: none;
+    border-bottom: 2px solid blue;
+}

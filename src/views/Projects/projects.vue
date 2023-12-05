@@ -59,7 +59,7 @@
                   <div
                     class="btns d-flex align-items-center justify-content-end col-10"
                   >
-                    <RouterLink :to="`/project_item/${item.id}`">
+                    <RouterLink to="/project_item">
                       <div
                         class="card_content_btn text-bg-primary text-uppercase btn"
                       >
@@ -156,7 +156,7 @@
               <div
                 class="btns d-flex align-items-center justify-content-end col-10"
               >
-                <RouterLink :to="`/project_item/${item.id}`">
+                <RouterLink to="/project_item">
                   <div
                     class="card_content_btn text-bg-primary text-uppercase btn"
                   >
@@ -216,7 +216,10 @@
     </div>
   </div>
   <div v-else>
-    <router-view> </router-view>
+    <div style="position: relative;">
+      <router-view> </router-view>
+
+    </div>
   </div>
 </template>
 

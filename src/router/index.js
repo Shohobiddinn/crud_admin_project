@@ -38,7 +38,7 @@ const router = createRouter({
           component: () => import('../views/Projects/projects.vue'),
           children: [
             {
-              path: '/project_item/:id',
+              path: '/project_item',
               name: "project_item",
               beforeEnter: auth,
               component: () => import('../views/Projects/project_item.vue')
