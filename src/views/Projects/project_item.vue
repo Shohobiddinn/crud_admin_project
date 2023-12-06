@@ -10,17 +10,38 @@
         <div class="item_image">
           <input id="img" type="file" @change="imgFunc($event)" />
           <label class="imglabel" for="img">
-            <img
-              id="uploadedImage"
-              src="../../assets/images/Logo.png"
-              alt=""
-            />
+            <img id="uploadedImage" src="../../assets/images/Logo.png" alt="" />
           </label>
         </div>
         <input type="text" value="FAQ" /><input
           type="text"
           value="Video qo'llanma"
         />
+      </div>
+      <div class="title">
+        <input
+          type="text"
+          value="
+        Biznesingizga oson yechim topamiz Biznesingizga oson
+        "
+        />
+      </div>
+      <div class="category col-10">
+        <div
+          class="category_top d-flex align-items-center justify-content-between"
+        >
+          <div class="content_top_title">
+            <input type="text" value="bizning dasturlarimiz:" />
+          </div>
+          <div class="content_top_title">
+            <input
+              type="text"
+              value="
+            bOSHQA DASTURLARIMIZ
+haqiida batafsil"
+            />
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -40,7 +61,7 @@ export default {
           document
             .getElementById("uploadedImage")
             .setAttribute("src", event.target.result);
-            console.log(event.target.result);
+          console.log(event.target.result);
         });
       }
     },
