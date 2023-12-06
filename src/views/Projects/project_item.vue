@@ -21,11 +21,19 @@
       <div class="title">
         <input
           type="text"
-          value="
-        Biznesingizga oson yechim topamiz Biznesingizga oson
-        "
+          value="Biznesingizga oson yechim topamiz Biznesingizga oson"
         />
       </div>
+      <router-link to="/users">
+          <div class="btn btn-success" @dblclick="tekshiruv" v-if="!inputType">
+          Lorem ipsum dolor sit amet consectetur 
+
+        </div>
+        </router-link>
+        <div v-if="inputType">
+
+          <input  type="text" value="Lorem ipsum dolor sit amet consectetur">
+        </div>
       <div class="category col-10">
         <div
           class="category_top d-flex align-items-center justify-content-between"
@@ -36,9 +44,7 @@
           <div class="content_top_title d-flex">
             <input
               type="text"
-              value="
-            bOSHQA DASTURLARIMIZ
-haqida batafsil"
+              value="bOSHQA DASTURLARIMIZ haqida batafsil"
             />
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -100,9 +106,7 @@ haqida batafsil"
             </div>
             <input
               type="text"
-              value="Savdo hozmaglar
-uchun
-"
+              value="Savdo hozmaglar uchun"
             />
           </div>
           <div class="item d-flex flex-column align-items-start">
@@ -247,12 +251,12 @@ uchun
             </div>
             <input
               type="text"
-              value="Qurilish mahsulotlarini
-ishlab chiqarish"
+              value="Qurilish mahsulotlarini ishlab chiqarish"
             />
           </div>
         </div>
       </div>
+    
     </div>
   </div>
 </template>
@@ -260,7 +264,9 @@ ishlab chiqarish"
 <script>
 export default {
   data() {
-    return {};
+    return {
+      inputType:false
+    };
   },
   methods: {
     imgFunc(e) {
@@ -275,6 +281,9 @@ export default {
         });
       }
     },
+    tekshiruv(){
+      this.inputType = true
+    }
   },
 };
 </script>
