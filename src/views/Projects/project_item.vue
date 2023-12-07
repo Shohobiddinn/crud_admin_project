@@ -24,16 +24,6 @@
           value="Biznesingizga oson yechim topamiz Biznesingizga oson"
         />
       </div>
-      <router-link to="/users">
-          <div class="btn btn-success" @dblclick="tekshiruv" v-if="!inputType">
-          Lorem ipsum dolor sit amet consectetur 
-
-        </div>
-        </router-link>
-        <div v-if="inputType">
-
-          <input  type="text" value="Lorem ipsum dolor sit amet consectetur">
-        </div>
       <div class="category col-10">
         <div
           class="category_top d-flex align-items-center justify-content-between"
@@ -42,10 +32,7 @@
             <input type="text" value="bizning dasturlarimiz:" />
           </div>
           <div class="content_top_title d-flex">
-            <input
-              type="text"
-              value="bOSHQA DASTURLARIMIZ haqida batafsil"
-            />
+            <input type="text" value="bOSHQA DASTURLARIMIZ haqida batafsil" />
             <svg
               xmlns="http://www.w3.org/2000/svg"
               height="40"
@@ -104,10 +91,7 @@
                 </defs>
               </svg>
             </div>
-            <input
-              type="text"
-              value="Savdo hozmaglar uchun"
-            />
+            <input type="text" value="Savdo hozmaglar uchun" />
           </div>
           <div class="item d-flex flex-column align-items-start">
             <div class="item_icon">
@@ -256,7 +240,6 @@
           </div>
         </div>
       </div>
-    
     </div>
   </div>
 </template>
@@ -265,7 +248,7 @@
 export default {
   data() {
     return {
-      inputType:false
+      inputType: false,
     };
   },
   methods: {
@@ -281,9 +264,14 @@ export default {
         });
       }
     },
-    tekshiruv(){
-      this.inputType = true
-    }
+    tekshiruv() {
+      setTimeout(() => {
+        this.inputType = true;
+      }, 1500);
+    },
+    rout() {
+      this.$router.push("/users");
+    },
   },
 };
 </script>
