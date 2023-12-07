@@ -44,7 +44,18 @@ const router = createRouter({
               component: () => import('../views/Projects/project_item.vue')
 
             },
-
+            {
+              path: '/tek',
+              name: 'tek',
+              beforeEnter: auth,
+              component: () => import('../views/Projects/tek.vue')
+            },
+            {
+              path:'/home',
+              name:'home',
+              beforeEnter:auth,
+              component:() => import('../views/Projects/home.vue')
+            }
           ]
         },
 
@@ -65,12 +76,12 @@ const router = createRouter({
           name: 'categorys',
           beforeEnter: auth,
           component: () => import('../views/Categorys/categorys.vue'),
-          children:[
+          children: [
             {
-              path:"/category_item/:id",
-              name:"category_item",
-              beforeEnter:auth,
-              component: ()=> import("../views/Categorys/category_item.vue")
+              path: "/category_item/:id",
+              name: "category_item",
+              beforeEnter: auth,
+              component: () => import("../views/Categorys/category_item.vue")
             }
           ]
         }

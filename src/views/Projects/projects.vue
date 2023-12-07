@@ -216,9 +216,8 @@
     </div>
   </div>
   <div v-else>
-    <div style="position: relative;">
+    <div style="position: relative;" class="content">
       <router-view> </router-view>
-
     </div>
   </div>
 </template>
@@ -274,4 +273,5 @@ export default {
 </script>
   
   <style lang="scss" scopd>
+
 </style>

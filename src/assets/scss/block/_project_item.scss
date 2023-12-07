@@ -7,7 +7,13 @@
     z-index: -0;
     width: 100%;
 }
-
+.background{
+    background: url('@/assets/images//back-img.png');
+    position: center;
+    object-fit: cover;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
 .nav {
     position: relative;
     z-index: 1;
