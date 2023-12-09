@@ -372,10 +372,11 @@
         <contactBox />
       </div>
     </div>
+    <contactBox/>
   </template>
   <script>
   import { Swiper, SwiperSlide } from "swiper/vue";
-//   import contactBox from "../../components/contactBox.vue";
+  import contactBox from "../../components/contactBox.vue";
   import "swiper/css";
   import "swiper/css/autoplay";
   import { Autoplay } from "swiper/modules";
@@ -406,7 +407,7 @@
           controls: true,
           sources: [
             {
-              src: "/src/assets/images/video.mp4",
+              src: "https://youtu.be/dzRhU9P1a-c?si=SCaiJYthztQChIva",
               type: "video/mp4",
             },
           ],
@@ -417,6 +418,7 @@
       Swiper,
       SwiperSlide,
       VideoPlayer,
+      contactBox
     },
     methods: {
       showTitle() {
