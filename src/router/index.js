@@ -45,12 +45,6 @@ const router = createRouter({
 
             },
             {
-              path: '/tek',
-              name: 'tek',
-              beforeEnter: auth,
-              component: () => import('../views/Projects/tek.vue')
-            },
-            {
               path:'/home',
               name:'home',
               beforeEnter:auth,
@@ -61,7 +55,25 @@ const router = createRouter({
               name:'about',
               beforeEnter:auth,
               component:() => import('../views/Projects/about.vue')
-            }
+            },
+            {
+              path:'/videos',
+              name:'videos',
+              beforeEnter:auth,
+              component:() => import('../views/Projects/videos.vue')
+            },
+            {
+              path:'/faq',
+              name:'faq',
+              beforeEnter:auth,
+              component:() => import('../views/Projects/faq.vue')
+            },
+            {
+              path:'/connection',
+              name:'connection',
+              beforeEnter:auth,
+              component:() => import('../views/Projects/connection.vue')
+            },
           ]
         },
 
