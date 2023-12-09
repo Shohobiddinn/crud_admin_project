@@ -6,7 +6,6 @@ import baseurl from "./server/baseurl";
 import  Modal  from '../src/components/Modal/Modal.vue';
 import router from './router/index';
 import Aos from 'aos';
-
 const app = createApp(App);
 app.config.globalProperties.$util = util;
 app.config.globalProperties.$baseurl = baseurl; 
