@@ -1,5 +1,5 @@
 <template>
-  <div class="background">
+  <div class="background ">
     <nav class="navigate">
       <ul class="navigate_list">
         <li class="navigate_item">
@@ -34,18 +34,13 @@
         </li>
       </ul>
     </nav>
-    <nav class="navigation">
+    <nav class="navigation col-10">
       <RouterLink @click="activeFunc()" class="d-inline-block" to="/">
         <img class="navigate_img" src="/src/assets/images/Crud.svg" alt="" />
       </RouterLink>
-
+      <div class="navbar_btn"><span></span><span></span><span></span></div>
       <div class="navbar-box">
-        <div class="container-btn" @click="toggleBtn()">
-          <div class="bar1"></div>
-          <div class="bar2"></div>
-          <div class="bar3"></div>
-        </div>
-        <ul class="navigate_list">
+        <ul class="navigate_list ms-0 ps-0">
           <li class="navigate_item">
             <a href="#dastur" @click="activeFunc()" class="navigate_link"
               >dastur haqida</a

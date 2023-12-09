@@ -42,153 +42,61 @@
 }
 
 .navigation {
-  display: none;
-}
+  @include flex(center, space-between);
+  position: relative;
+  margin: 0 auto;
 
-.home-sidebar_navbar {
-  display: none;
-}
+  .navbar_btn {
+    @include flex(center, center);
+    flex-direction: column;
+    gap: 5px;
 
-
-@media screen and (max-width:992px) {
-
-  .home-sidebar_navbar {
-    display: block;
-    transition: all 0.4s ease-in-out;
+    span {
+      display: inline-block;
+      width: 30px;
+      height: 3px;
+      border-radius: 3px;
+      background-color: #fff;
+    }
   }
 
-  .sidebar-btn {
+  .navbar-box {
     position: absolute;
-    right: 5%;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background-color: #900;
-    border: none;
-    transition: all 0.4s ease-in-out;
+    top: calc(100% + 20px);
+    right: 10px;
+    background: linear-gradient(180deg, rgba(0, 46, 65, 0.29) 0%, rgba(0, 46, 65, 0.00) 149.76%);
+    backdrop-filter: blur(20px);
+    border-radius: 10px;
   }
 
-  .side-nav .home-sidebar__nav {
-    transform: translateX(100%);
-
-    & .sidebar-btn {
-      top: 25px;
-      left: -18px;
-    }
+  & .navigate_item {
+    padding: 10px 20px;
   }
 
-  .open-sidebar {
-    .home-sidebar__nav {
-      z-index: 4;
-      transition: all 0.4s ease-in-out;
-      transform: translateX(0);
-    }
-
-    i {
-      transform: rotate(180deg);
-    }
+  .show .navigate_list {
+    transform: translateX(0);
   }
 
-  .navigate {
-    display: none;
-  }
+  & .navigate_link {
 
-  .navigation {
-    display: block;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 24px 0;
-    overflow-x: hidden;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 22px;
+    text-transform: uppercase;
+    color: #fff;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    cursor: pointer;
 
-    & .navigate_list {
-      position: fixed;
-      margin: 0;
-      padding: 12px;
-      z-index: 10 !important;
-      background-color: #000000b3;
-      transform: translateX(200px);
-      transition: transform 0.5s ease;
-      top: 60px;
-      right: 12px;
-
-    }
-
-    & .navigate_item {
-      padding: 6px 0;
-    }
-
-    .show .navigate_list {
-      transform: translateX(0);
-    }
-
-    & .navigate_link {
-      font-size: 14px;
-      font-weight: 500;
-      line-height: 22px;
-      text-transform: uppercase;
-      color: #fff;
-      transition: all 0.3s ease;
-      text-decoration: none;
-      cursor: pointer;
-
-      &:hover {
-        color: #900;
-      }
-    }
-
-    & .active {
+    &:hover {
       color: #900;
     }
   }
 
-  .navigate_img {
-    height: 24px;
+  & .active {
+    color: #900;
   }
 
-  .container-btn {
-    display: inline-block;
-    cursor: pointer;
-  }
-
-}
-
-@media screen and (max-width:380px) {
-  .container-c {
-    padding: 0;
-  }
-
-  .open-sidebar {
-    .home-sidebar__nav {
-      z-index: 4;
-      transition: all 0.4s ease-in-out;
-      transform: translateX(2%);
-    }
-
-    & .sidebar-btn {
-      left: 10px;
-      transition: all 0.4s ease-in-out;
-    }
-
-    & i {
-      transform: rotate(180deg);
-    }
-  }
-}
-
-@media screen and (max-width:576px) {
-  .home-sidebar_navbar .home-sidebar__img {
-    width: 180px;
-    height: 30px;
-  }
-}
-
-@media screen and (min-width:576px) and (max-width:992px) {
-  .home-sidebar_navbar .home-sidebar__img {
-    width: 250px;
-    height: 35px;
-  }
 }
 
 .hero {
@@ -285,7 +193,7 @@
     gap: 35px;
     align-items: center;
 
-    @include media(980px) {
+    @include media(1356px) {
       flex-direction: column;
       height: none;
     }
@@ -298,7 +206,7 @@
       flex-direction: column;
       gap: 30px;
 
-      @include media(980px) {
+      @include media(1356px) {
         flex-direction: row;
         width: 100%;
         justify-content: space-between;
@@ -314,12 +222,12 @@
         object-fit: cover;
         border-radius: 30px;
 
-        @include media(1170px) {
+        @include media(1590px) {
           width: 250px;
           height: 200px;
         }
 
-        @include media(980px) {
+        @include media(1356px) {
           width: calc(50% - 15px);
           height: 350px;
         }
@@ -337,7 +245,7 @@
       &.item1 {
         width: 50%;
 
-        @include media(980px) {
+        @include media(1356px) {
           width: 100%;
         }
 
@@ -347,12 +255,12 @@
           border-radius: 30px;
           object-fit: cover;
 
-          @include media(1170px) {
+          @include media(1590px) {
             width: 500px;
             height: 450px;
           }
 
-          @include media(980px) {
+          @include media(1356px) {
             width: 100%;
             height: 600px;
           }
@@ -402,7 +310,7 @@
       display: flex;
       gap: 57px;
 
-      @include media(1440px) {
+      @include media(1590px) {
         flex-direction: column;
       }
 
@@ -410,7 +318,7 @@
         width: 50%;
         background: none;
 
-        @include media(1440px) {
+        @include media(1590px) {
           width: 100%;
           margin-bottom: 60px;
         }
@@ -457,6 +365,9 @@
             height: 1px;
             background-color: #fff;
 
+            @include media(1590px) {
+              display: none;
+            }
           }
 
           &::after {
@@ -469,7 +380,7 @@
             right: -70px;
           }
 
-          @include media(1440px) {
+          @include media(1590px) {
             border-radius: 30px;
             border: 1px solid #FFF;
             justify-content: space-between;
@@ -527,7 +438,7 @@
         position: relative;
         width: 50%;
 
-        @include media(1440px) {
+        @include media(1590px) {
           width: 100%;
         }
 
@@ -542,6 +453,7 @@
 
         .images {
           position: relative;
+          @include flex(center, center);
 
           img {
             width: 600px;
@@ -550,7 +462,7 @@
             object-fit: cover;
             border-radius: 30px;
 
-            @include media(1440px) {
+            @include media(1590px) {
               width: 90%;
               height: 500px;
               margin: 0 auto;
@@ -640,6 +552,7 @@
       align-items: end;
       margin-bottom: 52px;
       gap: 20px;
+
       &_title {
         color: #FFF;
         font-family: 'Roboto' sans-serif;
@@ -669,6 +582,7 @@
 
       .content {
         width: 50%;
+
         @include media(1000px) {
           width: 100%;
           margin-bottom: 50px;
