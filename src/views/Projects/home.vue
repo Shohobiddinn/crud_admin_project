@@ -1,6 +1,6 @@
 <template>
     <div class="background"> 
-      <nav class="navigate">
+   <nav class="navigate">
         <ul class="navigate_list">
           <li class="navigate_item">
             <a href="#dastur" class="navigate_link">dastur haqida</a>
@@ -367,12 +367,11 @@
             />
           </div>
         </div>
-      </div>
+      </div> 
       <div class="container-c">
         <contactBox />
       </div>
     </div>
-    <contactBox/>
   </template>
   <script>
   import { Swiper, SwiperSlide } from "swiper/vue";

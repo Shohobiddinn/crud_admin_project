@@ -20,11 +20,11 @@
 }
 
 .contact_box{
-  display: flex !important;
-  justify-content: space-between;
   border: 1px solid #ffffffbe;
   border-radius: 30px;
   backdrop-filter: blur(10.690309524536133px);
+  padding: 20px;
+  gap: 50px;
 }
 
 .social{
@@ -85,6 +85,7 @@
   width: 100%;
   height: 100%;
   border-left: 1px solid #ffffffbe;
+  padding-left: 50px;
 }
 
 .contact_form{
@@ -127,136 +128,136 @@
   cursor: pointer;
 }
 
-@media screen and (max-width:767px)  {
-  .contact{
-    padding-bottom: 24px ;
-  }
-  .title-box{
-    margin-bottom: 10px;
-    img {
-      height: 35px;
-    }
-  }
-  .contact_box{
-    width: 100%;
-    margin: 0 auto;
-    flex-direction: column;
-  }
+// @media screen and (max-width:767px)  {
+//   .contact{
+//     padding-bottom: 24px ;
+//   }
+//   .title-box{
+//     margin-bottom: 10px;
+//     img {
+//       height: 35px;
+//     }
+//   }
+//   .contact_box{
+//     width: 100%;
+//     margin: 0 auto;
+//     flex-direction: column;
+//   }
 
-  .contact_title{
-    font-size: 18px;
-  }
+//   .contact_title{
+//     font-size: 18px;
+//   }
 
-  .social{
-    margin: 0 auto;
-    padding-top: 20px;
-  }
+//   .social{
+//     margin: 0 auto;
+//     padding-top: 20px;
+//   }
 
-  .social_box{
-    margin-bottom: 16px;
-    &:last-child{
-      margin-bottom: 0;
-    }
-  }
+//   .social_box{
+//     margin-bottom: 16px;
+//     &:last-child{
+//       margin-bottom: 0;
+//     }
+//   }
 
-  .social_title{
-    margin-bottom: 0;
-    font-size: 16px;
-    line-height: 20px;
-  }
+//   .social_title{
+//     margin-bottom: 0;
+//     font-size: 16px;
+//     line-height: 20px;
+//   }
 
-  .social_phone{
-    font-size: 16px;
-    line-height: 20px;
-  }
+//   .social_phone{
+//     font-size: 16px;
+//     line-height: 20px;
+//   }
 
-  .contact_location{
-    padding-top: 20px;
-    padding-bottom: 0;
-    & iframe{
-      width: 100%;
-      border-radius: 20px;
-    }
+//   .contact_location{
+//     padding-top: 20px;
+//     padding-bottom: 0;
+//     & iframe{
+//       width: 100%;
+//       border-radius: 20px;
+//     }
 
-    .social_title{
-      margin-bottom: 10px;
-    }
+//     .social_title{
+//       margin-bottom: 10px;
+//     }
 
-  }
-  .contact_wrap{
-    border-left: none !important;
-  }
+//   }
+//   .contact_wrap{
+//     border-left: none !important;
+//   }
 
-  .contact_form{
-    padding: 20px 0;
-    input{
-      width: 100%;
-      padding: 12px;
-      margin-bottom: 16px;
-    }
+//   .contact_form{
+//     padding: 20px 0;
+//     input{
+//       width: 100%;
+//       padding: 12px;
+//       margin-bottom: 16px;
+//     }
 
-    .form_btn{
-      margin: 0 auto;
-      padding: 14px;
-      font-size: 16px;
-    }
-  }
-}
+//     .form_btn{
+//       margin: 0 auto;
+//       padding: 14px;
+//       font-size: 16px;
+//     }
+//   }
+// }
 
-@media screen and (min-width:768px) and (max-width:1200px)  {
-  .contact{
-    padding: 24px 0;
-  }
+// @media screen and (min-width:768px) and (max-width:1200px)  {
+//   .contact{
+//     padding: 24px 0;
+//   }
 
-  .social{
-    margin: 0;
-    padding-top: 30px;
-  }
+//   .social{
+//     margin: 0;
+//     padding-top: 30px;
+//   }
 
-  .social_box{
-    margin-bottom: 16px;
-  }
+//   .social_box{
+//     margin-bottom: 16px;
+//   }
 
-  .social_title{
-    margin-bottom: 0;
-    font-size: 18px;
-    line-height: 24px;
-  }
+//   .social_title{
+//     margin-bottom: 0;
+//     font-size: 18px;
+//     line-height: 24px;
+//   }
 
-  .social_phone{
-    font-size: 18px;
-    line-height: 24px;
-  }
+//   .social_phone{
+//     font-size: 18px;
+//     line-height: 24px;
+//   }
 
-  .contact_location{
-    padding: 20px;
-    & iframe{
-      width: 100%;
-      border-radius: 20px;
-    }
+//   .contact_location{
+//     padding: 20px;
+//     & iframe{
+//       width: 100%;
+//       border-radius: 20px;
+//     }
 
-    .social_title{
-      margin-bottom: 10px;
-    }
+//     .social_title{
+//       margin-bottom: 10px;
+//     }
 
-  }
-  .contact_wrap{
-    height: auto;
-    border-left: none !important;
-  }
+//   }
+//   .contact_wrap{
+//     height: auto;
+//     border-left: none !important;
+//   }
 
-  .contact_form{
-    padding: 30px 0 20px 0;
-    input{
-      width: 100%;
-      padding: 14px;
-      margin-bottom: 18px;
-    }
+//   .contact_form{
+//     padding: 30px 0 20px 0;
+//     input{
+//       width: 100%;
+//       padding: 14px;
+//       margin-bottom: 18px;
+//     }
 
-    .form_btn{
-      margin: 0 auto;
-      padding: 16px;
-      font-size: 17px;
-    }
-  }
-}
+//     .form_btn{
+//       margin: 0 auto;
+//       padding: 16px;
+//       font-size: 17px;
+//     }
+//   }
+// }
