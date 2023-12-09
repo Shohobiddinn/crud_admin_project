@@ -1,0 +1,45 @@
+.videos{
+  width: 100%;
+  max-width: 1320px;
+  margin: 0 auto;
+  padding-bottom: 50px;
+
+}
+
+.videos_box{
+  width: 100%;
+  height: 500px;
+  border-radius: 30px;
+  margin-bottom: 100px ;
+}
+
+
+.video-js .vjs-big-play-button {
+  top: calc(50% - 1.6rem ) !important;
+  left:  calc(50% - 3rem) !important ;
+}
+
+
+.carousel__slide {
+  height: auto;
+  margin-bottom: 24px;
+  .video-js{
+    margin-right: 16px;
+  }
+}
+
+@media screen and (max-width:600px) {
+  .videos_box{
+    height: 300px;
+    margin-bottom: 40px;
+    .video-js{
+      width: 100%;
+      height: 300px;
+    }
+  }
+
+  .carousel__slide{
+    width: 100%;
+    height: 250px;
+  }
+}

@@ -241,21 +241,22 @@
                 }
             }
         }
+        .content_view {
+            padding: 1rem;
+            border-radius: 20px;
+            background: rgb(237, 240, 247, .5);
+            height: 90vh;
+            overflow-y: auto;
+        
+            &::-webkit-scrollbar {
+                display: none;
+            }
+        }
 
     }
 }
 
-.content {
-    padding: 1rem;
-    border-radius: 20px;
-    background: rgb(237, 240, 247, .5);
-    height: 90vh;
-    overflow-y: auto;
 
-    &::-webkit-scrollbar {
-        display: none;
-    }
-}
 
 .tahrirlash {
 

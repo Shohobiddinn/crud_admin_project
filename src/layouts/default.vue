@@ -89,7 +89,7 @@
               </div>
             </div>
           </div>
-          <div class="content">
+          <div class="content_view">
             <router-view> </router-view>
           </div>
           <div class="contents_bottom col-10"></div>
