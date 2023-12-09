@@ -1,5 +1,5 @@
 <template>
-  <div class="background ">
+  <div class="background">
     <nav class="navigate">
       <ul class="navigate_list">
         <li class="navigate_item">
@@ -38,8 +38,10 @@
       <RouterLink @click="activeFunc()" class="d-inline-block" to="/">
         <img class="navigate_img" src="/src/assets/images/Crud.svg" alt="" />
       </RouterLink>
-      <div class="navbar_btn"><span></span><span></span><span></span></div>
-      <div class="navbar-box">
+      <div class="navbar_btn" @click="showTitle">
+        <span></span><span></span><span></span>
+      </div>
+      <div class="navbar-box" :class="{ active: show }">
         <ul class="navigate_list ms-0 ps-0">
           <li class="navigate_item">
             <a href="#dastur" @click="activeFunc()" class="navigate_link"
@@ -426,9 +428,7 @@ export default {
   },
   methods: {
     showTitle() {
-      setInterval(() => {
-        this.show = !this.show;
-      }, 2000);
+      this.show = !this.show;
     },
     activeFunc() {
       document.querySelector(".navbar-box").classList.toggle("show");

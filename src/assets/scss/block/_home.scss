@@ -5,6 +5,10 @@
   padding: 40px 0;
   z-index: 2;
 
+  @include media(1135px) {
+    display: none;
+  }
+
   & .navigate_list {
     display: flex;
     align-items: center;
@@ -45,6 +49,12 @@
   @include flex(center, space-between);
   position: relative;
   margin: 0 auto;
+  padding-top: 40px;
+  display: none;
+
+  @include media(1135px) {
+    display: flex;
+  }
 
   .navbar_btn {
     @include flex(center, center);
@@ -67,14 +77,20 @@
     background: linear-gradient(180deg, rgba(0, 46, 65, 0.29) 0%, rgba(0, 46, 65, 0.00) 149.76%);
     backdrop-filter: blur(20px);
     border-radius: 10px;
+    transform: translateX(100px);
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.3s;
+
+    &.active {
+      transform: translateX(0);
+      opacity: 1;
+      visibility: visible;
+    }
   }
 
   & .navigate_item {
     padding: 10px 20px;
-  }
-
-  .show .navigate_list {
-    transform: translateX(0);
   }
 
   & .navigate_link {
