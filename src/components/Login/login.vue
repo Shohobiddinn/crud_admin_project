@@ -35,6 +35,7 @@
               placeholder="username"
               v-model="data.username"
               required
+              style="text-transform: lowercase;"
             />
           </div>
           <div class="form_login_input d-flex align-items-center">
@@ -60,6 +61,7 @@
               v-model="data.password"
               ref="inputPassword"
               required
+              style="text-transform: lowercase;"
             />
           </div>
           <button type="submit" class="login_btn text-uppercase">kirish</button>

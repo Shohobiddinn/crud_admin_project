@@ -65,47 +65,19 @@
   .home-sidebar__nav {
     border: 2px solid #40545A;
     height: 87vh;
-    position: absolute;
+    position: fixed;
     right: 0;
-    top: 30px;
+    top: 120px;
     z-index: 10;
     border-right: none;
     border-top-left-radius: 70px;
     border-bottom-left-radius: 70px;
     background: rgba(1, 18, 25, 0.36);
     backdrop-filter: blur(27px);
-    padding-top: 100px;
-    transform: translateX(130px);
+    padding-top: 50px;
+    transform: translateX(-30px);
     width: 50px;
     transition: 0.3s;
-
-    @include media (1135px) {
-      transform: translateX(90px);
-    }
-
-    @include media (1087px) {
-      transform: translateX(80px);
-    }
-
-    @include media (900px) {
-      transform: translateX(80px);
-    }
-
-    @include media (787px) {
-      transform: translateX(70px);
-    }
-
-    @include media (666px) {
-      transform: translateX(60px);
-    }
-
-    @include media (547px) {
-      transform: translateX(50px);
-    }
-
-    @include media (426px) {
-      transform: translateX(40px);
-    }
 
     .sidebar-btn {
       border-radius: 50%;
