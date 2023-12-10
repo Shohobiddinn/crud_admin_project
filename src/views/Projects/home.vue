@@ -34,41 +34,78 @@
         </li>
       </ul>
     </nav>
-    <nav class="navBar col-10">
-      <RouterLink @click="showTitle()" class="d-inline-block" to="/">
-        <img class="navigate_img" src="/src/assets/images/Crud.svg" alt="" />
-      </RouterLink>
-      <div class="navbar_btn" @click="showTitle">
-        <span></span><span></span><span></span>
+    <div class="home-sidebar_navbar col-10 m-auto">
+      <div class="d-flex justify-content-between py-4">
+        <RouterLink @click="activeFunc()" to="/">
+          <img
+            class="home-sidebar__img"
+            src="/src/assets/images/Crud.svg"
+            alt="logo"
+          />
+        </RouterLink>
+        <nav class="home-sidebar__nav" :class="{ active: isNavbarOpen }">
+          <div
+            class="sidebar-btn d-flex align-items-center justify-content-center"
+            @click="openRight()"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              height="16"
+              width="14"
+              fill="#fff"
+              viewBox="0 0 448 512"
+            >
+              <path
+                d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"
+              />
+            </svg>
+          </div>
+          <ul class="home-sidebar__list">
+            <li class="home-sidebar__item" style="margin-bottom: 50px">
+              <RouterLink @click="activeFunc()" to="/">
+                <img
+                  class="home-sidebar__img"
+                  src="/src/assets/images/Crud.svg"
+                  alt=""
+                />
+              </RouterLink>
+            </li>
+            <li class="home-sidebar__item">
+              <a href="#dastur"
+                @click="activeFunc()"
+                class="home-sidebar__link"
+                >Biz haqimizda</a
+              >
+            </li>
+
+            <li class="home-sidebar__item">
+              <a
+              href="#dastur"
+                @click="activeFunc()"
+                class="home-sidebar__link"
+                >Foydali jihat</a
+              >
+            </li>
+
+            <li class="home-sidebar__item">
+              <a href="#yonalish"
+                @click="activeFunc()"
+                class="home-sidebar__link"
+                >yo'nalishlar</a
+              >
+            </li>
+
+            <li class="home-sidebar__item">
+              <a href="#video"
+                @click="activeFunc()"
+                class="home-sidebar__link"
+                >Video qo'llanmalar</a
+              >
+            </li>
+          </ul>
+        </nav>
       </div>
-      <div class="navbar-box" :class="{ active: show }">
-        <ul class="navigate_list ms-0 ps-0">
-          <li class="navigate_item">
-            <a href="#dastur" @click="showTitle()" class="navigate_link"
-              >dastur haqida</a
-            >
-          </li>
-
-          <li class="navigate_item">
-            <a href="#dastur" @click="showTitle()" class="navigate_link"
-              >foydali jihat</a
-            >
-          </li>
-
-          <li class="navigate_item">
-            <a href="#yonalish" @click="showTitle()" class="navigate_link"
-              >yo'nalishlari</a
-            >
-          </li>
-
-          <li class="navigate_item">
-            <a href="#video" @click="showTitle()" class="navigate_link">
-              Video qo'llanmalar
-            </a>
-          </li>
-        </ul>
-      </div>
-    </nav>
+    </div>
 
     <div class="xozmag-box">
       <h3 class="xozmag-title">
@@ -398,6 +435,7 @@ export default {
   data() {
     return {
       show: true,
+      isNavbarOpen: false,
       text: [
         {
           title: "Biznesingizga <span>oson</span> yechim topamiz",
@@ -429,6 +467,12 @@ export default {
   methods: {
     showTitle() {
       this.show = !this.show;
+    },
+    activeFunc() {
+      this.isNavbarOpen = false;
+    },
+    openRight() {
+      this.isNavbarOpen = !this.isNavbarOpen;
     },
   },
   created() {
