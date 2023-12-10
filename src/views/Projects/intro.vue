@@ -2,7 +2,7 @@
   <div class="background">
     <div class="home-pc">
       <sidebar />
-      <div class="hero">
+      <div class="heros" style="margin-bottom: 300px;">
         <div class="container">
           <div class="hero__box" v-if="show">
             <h3
