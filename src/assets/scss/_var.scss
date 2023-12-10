@@ -13,7 +13,9 @@ $pr_blue: #0148D4;
     list-style: none;
     text-decoration: none;
 }
-
+html {
+    scroll-behavior: smooth;
+}
 a {
     text-decoration: none;
 }

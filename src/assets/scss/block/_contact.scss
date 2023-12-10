@@ -25,6 +25,10 @@
   backdrop-filter: blur(10.690309524536133px);
   padding: 20px;
   gap: 50px;
+  @include media(1200px){
+    flex-wrap: wrap;
+    justify-content: center;
+  }
 }
 
 .social{
@@ -86,6 +90,10 @@
   height: 100%;
   border-left: 1px solid #ffffffbe;
   padding-left: 50px;
+  @include media(1200px){
+    padding-left: 0;
+     border: none;
+  }
 }
 
 .contact_form{
@@ -126,6 +134,17 @@
   border-radius: 15px;
   border: none;
   cursor: pointer;
+  @include media(1200px){
+    width: 25%;
+    align-self: flex-end;
+  }
+  @include media(650px){
+    width: 50%;
+    padding: 15px 30px;
+  }
+  @include media(400px){
+    width: 100%;
+  }
 }
 
 // @media screen and (max-width:767px)  {

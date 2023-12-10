@@ -8,7 +8,7 @@
         <li class="navigate_item"><b>.</b></li>
 
         <li class="navigate_item">
-          <a href="#dastur" @click="activeFunc()" class="navigate_link"
+          <a href="#dastur" @click="showTitle()" class="navigate_link"
             >Foydali jihat</a
           >
         </li>
@@ -35,7 +35,7 @@
       </ul>
     </nav>
     <nav class="navigation col-10">
-      <RouterLink @click="activeFunc()" class="d-inline-block" to="/">
+      <RouterLink @click="showTitle()" class="d-inline-block" to="/">
         <img class="navigate_img" src="/src/assets/images/Crud.svg" alt="" />
       </RouterLink>
       <div class="navbar_btn" @click="showTitle">
@@ -44,25 +44,25 @@
       <div class="navbar-box" :class="{ active: show }">
         <ul class="navigate_list ms-0 ps-0">
           <li class="navigate_item">
-            <a href="#dastur" @click="activeFunc()" class="navigate_link"
+            <a href="#dastur" @click="showTitle()" class="navigate_link"
               >dastur haqida</a
             >
           </li>
 
           <li class="navigate_item">
-            <a href="#dastur" @click="activeFunc()" class="navigate_link"
+            <a href="#dastur" @click="showTitle()" class="navigate_link"
               >foydali jihat</a
             >
           </li>
 
           <li class="navigate_item">
-            <a href="#yonalish" @click="activeFunc()" class="navigate_link"
+            <a href="#yonalish" @click="showTitle()" class="navigate_link"
               >yo'nalishlari</a
             >
           </li>
 
           <li class="navigate_item">
-            <a href="#video" @click="activeFunc()" class="navigate_link">
+            <a href="#video" @click="showTitle()" class="navigate_link">
               Video qo'llanmalar
             </a>
           </li>
@@ -318,7 +318,7 @@
             '200': {
               slidesPerView: 1,
             },
-            '400': {
+            '500': {
               slidesPerView: 2,
             },
             '600': {
@@ -429,12 +429,6 @@ export default {
   methods: {
     showTitle() {
       this.show = !this.show;
-    },
-    activeFunc() {
-      document.querySelector(".navbar-box").classList.toggle("show");
-    },
-    toggleBtn() {
-      document.querySelector(".navbar-box").classList.toggle("show");
     },
   },
   created() {

@@ -56,6 +56,12 @@
     display: flex;
   }
 
+  img {
+    @include media(890px) {
+      width: 70%;
+    }
+  }
+
   .navbar_btn {
     @include flex(center, center);
     flex-direction: column;
@@ -73,17 +79,17 @@
   .navbar-box {
     position: absolute;
     top: calc(100% + 20px);
-    right: 10px;
+    right: 0;
     background: linear-gradient(180deg, rgba(0, 46, 65, 0.29) 0%, rgba(0, 46, 65, 0.00) 149.76%);
     backdrop-filter: blur(20px);
     border-radius: 10px;
-    transform: translateX(100px);
+    transform: translateY(100px);
     opacity: 0;
     visibility: hidden;
     transition: 0.3s;
 
     &.active {
-      transform: translateX(0);
+      transform: translateY(0);
       opacity: 1;
       visibility: visible;
     }
