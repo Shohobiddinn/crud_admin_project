@@ -39,7 +39,7 @@
 </template>
 <script>
 import sidebar from "/src/components/sidebar.vue";
-import contactBox from "../../components/contactBox.vue";
+import contactBox from "@/components/contactBox.vue";
 import { VideoPlayer } from "@videojs-player/vue";
 import "video.js/dist/video-js.css";
 import "vue3-carousel/dist/carousel.css";

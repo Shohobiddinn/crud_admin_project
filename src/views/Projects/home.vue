@@ -34,7 +34,7 @@
         </li>
       </ul>
     </nav>
-    <nav class="navigation col-10">
+    <nav class="navBar col-10">
       <RouterLink @click="showTitle()" class="d-inline-block" to="/">
         <img class="navigate_img" src="/src/assets/images/Crud.svg" alt="" />
       </RouterLink>
@@ -383,7 +383,7 @@
 </template>
   <script>
 import { Swiper, SwiperSlide } from "swiper/vue";
-import contactBox from "../../components/contactBox.vue";
+import contactBox from "@/components/contactBox.vue";
 import "swiper/css";
 import "swiper/css/autoplay";
 import { Autoplay } from "swiper/modules";

@@ -45,7 +45,9 @@
   }
 }
 
-.navigation {
+
+
+.navBar {
   @include flex(center, space-between);
   position: relative;
   margin: 0 auto;
