@@ -12,10 +12,14 @@ export default {
       data: {
         source_id: 5,
       },
+      url: baseurl,
       navBar: [],
       navBarFile: [],
       path: ["/about", "/connection", "/faq", "/videos"],
     };
+  },
+  components: {
+    baseurl,
   },
   methods: {
     activeFunc() {
@@ -48,7 +52,7 @@ export default {
 
 <template>
   <div class="side-nav">
-    <pre style="color: #fff;">{{ navBarFile }}</pre>
+    <pre style="color: #fff">{{ navBarFile }}</pre>
     <nav class="navigate">
       <ul class="navigate_list">
         <li class="navigate_item">
@@ -69,9 +73,14 @@ export default {
         <li class="navigate_item"><b>.</b></li>
 
         <li class="navigate_item">
-          <RouterLink @click="activeFunc()" to="/">
-            <img class="navigate_img" :src="baseurl +  navBarFile[0]?.file" alt="" />
-          </RouterLink>
+          <label for="imgLogo">
+            <img
+              class="navigate_img"
+              :src="url + navBarFile[0]?.file"
+              alt="logo"
+            />
+            <input type="file" />
+          </label>
         </li>
 
         <li class="navigate_item">
