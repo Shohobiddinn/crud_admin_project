@@ -97,6 +97,7 @@ export default {
                 required
                 autocomplete="on"
                 v-model="project.url"
+                style="text-transform: lowercase;"
               />
             </div>
           </label>

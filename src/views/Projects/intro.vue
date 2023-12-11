@@ -2,7 +2,7 @@
   <div class="background">
     <div class="home-pc">
       <sidebar />
-      <div class="heros" style="margin-bottom: 300px;">
+      <div class="heros" style="margin-bottom: 300px">
         <div class="container">
           <div class="hero__box" v-if="show">
             <h3
@@ -37,6 +37,69 @@
             </h3>
           </div>
         </div>
+      </div>
+      <div class="intro_left" :class="{ active: showLeft }">
+        <div
+          class="sidebar-btn d-flex align-items-center justify-content-center"
+          @click="showTitleLeft()"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            height="16"
+            width="14"
+            fill="#fff"
+            viewBox="0 0 448 512"
+          >
+            <path
+              d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"
+            />
+          </svg>
+        </div>
+        <div class="intro_left_title">bizning dasturlarimiz:</div>
+        <div class="content" v-for="item in forServise" :key="item">
+          <router-link :to="item.path" class="content_link">
+            <div class="content_icon">
+              <svg
+                width="36"
+                height="36"
+                viewBox="0 0 36 36"
+                :fill="item?.color"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M36 18C36 27.9411 27.9411 36 18 36C8.05887 36 0 27.9411 0 18C0 8.05887 8.05887 0 18 0C27.9411 0 36 8.05887 36 18ZM7.63158 18C7.63158 23.7263 12.2737 28.3684 18 28.3684C23.7263 28.3684 28.3684 23.7263 28.3684 18C28.3684 12.2737 23.7263 7.63158 18 7.63158C12.2737 7.63158 7.63158 12.2737 7.63158 18Z"
+                  :fill="item?.color"
+                />
+              </svg>
+            </div>
+            <div class="content_title">{{ item?.title }}</div>
+            <div
+              class="content_show"
+              :style="` background:linear-gradient(180deg, ${item?.color} 0%, ${item?.color} 100%);     box-shadow: 0 0  30px ${item?.color};`"
+            ></div>
+          </router-link>
+        </div>
+        <router-link to="/home">
+          <div class="intro_top_content">
+            <div class="intro_top_content_title">
+              boshqa dasturlarimiz haqida batafsil
+            </div>
+            <div class="intro_top_content_icon">
+              <svg
+                width="25"
+                height="44"
+                viewBox="0 0 25 44"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M0 0H3.87931L25 22L3.87931 44H0L21.1207 22L0 0Z"
+                  fill="white"
+                />
+              </svg>
+            </div>
+          </div>
+        </router-link>
       </div>
       <div class="intro">
         <div class="container">
@@ -124,179 +187,6 @@
         </div>
       </div>
     </div>
-    <div class="hero-mb">
-      <div class="home-left">
-        <div class="hero-ft">
-          <button class="hero-ft__btn d-flex align-items-center justify-content-center" type="button" @click="openLeft()">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              height="16"
-              width="14"
-              fill="#fff"
-              viewBox="0 0 448 512"
-            >
-              <path
-                d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"
-              />
-            </svg>
-          </button>
-          <div class="hero-ft__box">
-            <h3 class="hero-ft__title">
-              <b
-                >Bizning <br />
-                dasturlarimiz:</b
-              >
-            </h3>
-            <div
-              class="content d-flex flex-column"
-              v-for="item in forServise"
-              :key="item"
-            >
-              <router-link :to="item.path" class="content_link">
-                <span>
-                  <i
-                    class="fa-solid fa-circle-dot fa-xl"
-                    :style="` color:${item.color} ;box-shadow: 0px 0px 25px ${item.color};`"
-                  ></i>
-                </span>
-                <h4 class="content_title">{{ item?.title }}</h4>
-                <div
-                  class="content_show"
-                  :style="` background:linear-gradient(180deg, ${item?.color} 0%, ${item?.color} 100%);     box-shadow: 0 0  30px ${item?.color};`"
-                ></div>
-              </router-link>
-            </div>
-            <router-link to="/">
-              <div class="d-flex align-items-center">
-                <div class="hero-ft__bottom">
-                  boshqa <br />
-                  dasturlarimiz <br />
-                  haqida batafsil
-                </div>
-                <div class="intro_top_content_icon">
-                  <svg
-                    width="25"
-                    height="44"
-                    viewBox="0 0 25 44"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M0 0H3.87931L25 22L3.87931 44H0L21.1207 22L0 0Z"
-                      fill="white"
-                    />
-                  </svg>
-                </div>
-              </div>
-            </router-link>
-          </div>
-        </div>
-      </div>
-      <img
-        class="crud-logo"
-        src="../../assets/images/Crud.svg"
-        width="169"
-        height="20"
-        alt=""
-      />
-      <div class="">
-        <div class="hero-mb__box" v-if="show">
-          <h3
-            class="hero-mb__title title1"
-            data-aos="fade-down"
-            data-aos-duration="500"
-          >
-            Biznesingizga <span>oson</span>
-          </h3>
-          <h3
-            class="hero-mb__title title1 hero-mb__title--bottom"
-            data-aos="fade-up"
-            data-aos-duration="500"
-          >
-            yechim topamiz
-          </h3>
-        </div>
-        <div class="hero-mb__box" v-else>
-          <h3
-            class="hero-mb__title title2"
-            data-aos="fade-down"
-            data-aos-duration="500"
-          >
-            Ishingizni
-          </h3>
-          <h3
-            class="hero-mb__title title2 hero-mb__title--bottom"
-            data-aos="fade-up"
-            data-aos-duration="500"
-          >
-            osonlashtiramiz
-          </h3>
-        </div>
-      </div>
-      <div class="home-sidebar">
-        <nav class="home-sidebar__nav">
-          <button class="home-sidebar__btn d-flex align-items-center justify-content-center" type="button" @click="openRight()">
-			<svg
-              xmlns="http://www.w3.org/2000/svg"
-              height="16"
-              width="14"
-              fill="#fff"
-              viewBox="0 0 448 512"
-            >
-              <path
-                d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"
-              />
-            </svg>
-          </button>
-          <ul class="home-sidebar__list">
-            <li class="home-sidebar__item">
-              <RouterLink @click="activeFunc()" to="/">
-                <img
-                  class="home-sidebar__img"
-                  src="../../assets/images/Crud.svg"
-                  alt=""
-                />
-              </RouterLink>
-            </li>
-            <li class="home-sidebar__item">
-              <RouterLink
-                @click="activeFunc()"
-                class="home-sidebar__link"
-                to="/about"
-                >Biz haqimizda</RouterLink
-              >
-            </li>
-
-            <li class="home-sidebar__item">
-              <RouterLink
-                @click="activeFunc()"
-                class="home-sidebar__link"
-                to="/connection"
-                >Aloqa uchun</RouterLink
-              >
-            </li>
-
-            <li class="home-sidebar__item">
-              <RouterLink
-                @click="activeFunc()"
-                class="home-sidebar__link"
-                to="/faq"
-                >FAQ</RouterLink
-              >
-            </li>
-
-            <li class="home-sidebar__item">
-              <RouterLink
-                @click="activeFunc()"
-                class="home-sidebar__link"
-                to="/videos"
-                >Video qo'llanmalar</RouterLink
-              >
-            </li>
-          </ul>
-        </nav>
-      </div>
-    </div>
   </div>
 </template>
 
@@ -307,6 +197,7 @@ export default {
   data() {
     return {
       show: true,
+      showLeft: false,
       text: [
         {
           title: "Biznesingizga <span>oson</span> yechim topamiz",
@@ -369,11 +260,8 @@ export default {
         this.show = !this.show;
       }, 2000);
     },
-    openRight() {
-      document.querySelector(".home-sidebar").classList.toggle("open_sidebar");
-    },
-    openLeft() {
-      document.querySelector(".home-left").classList.toggle("open-menu");
+    showTitleLeft() {
+      this.showLeft = !this.showLeft;
     },
   },
   created() {

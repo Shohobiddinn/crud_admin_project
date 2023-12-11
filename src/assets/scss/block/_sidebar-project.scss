@@ -68,7 +68,7 @@
     position: fixed;
     right: 0;
     top: 120px;
-    z-index: 10;
+    z-index: 5;
     border-right: none;
     border-top-left-radius: 70px;
     border-bottom-left-radius: 70px;
@@ -78,6 +78,10 @@
     transform: translateX(-30px);
     width: 50px;
     transition: 0.3s;
+
+    @include media(400px) {
+      width: 15%;
+    }
 
     .sidebar-btn {
       border-radius: 50%;
@@ -111,9 +115,10 @@
 
     &.active {
       width: 300px;
+      z-index: 10;
 
       @include media (400px) {
-        width: 250px;
+        width: 85%;
       }
 
       .home-sidebar__list {

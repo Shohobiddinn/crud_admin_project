@@ -8,6 +8,7 @@
   @include media(1135px) {
     display: none;
   }
+
   & .active {
     color: #900;
   }
@@ -34,7 +35,6 @@
   align-items: center;
   flex-direction: column;
   text-align: center;
-
 }
 
 .hero__title {
@@ -49,6 +49,10 @@
   opacity: 1;
   transition: transform 0.4s ease;
   color: #fff;
+
+  @include media(500px) {
+    font-size: 25px;
+  }
 
   & span {
     color: #900;
