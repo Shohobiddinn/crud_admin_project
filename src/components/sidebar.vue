@@ -1,11 +1,60 @@
+<script>
+import api from "../server/api";
+import baseurl from "../server/baseurl";
+export default {
+  name: "sidebar",
+  data() {
+    return {
+      isNavbarOpen: false,
+      params: {
+        id: 5,
+      },
+      data: {
+        source_id: 5,
+      },
+      navBar: [],
+      navBarFile: [],
+      path: ["/about", "/connection", "/faq", "/videos"],
+    };
+  },
+  methods: {
+    activeFunc() {
+      this.isNavbarOpen = false;
+    },
+    openRight() {
+      this.isNavbarOpen = !this.isNavbarOpen;
+    },
+    getNavber() {
+      api
+        .category_one(this.params)
+        .then((res) => {
+          this.navBar = res.data.category_items;
+        })
+        .catch((err) => {});
+    },
+    getNavbarFile() {
+      api.file_files_source(this.data).then((res) => {
+        this.navBarFile = res.data;
+        console.log(res.data);
+      });
+    },
+  },
+  created() {
+    this.getNavber();
+    this.getNavbarFile();
+  },
+};
+</script>
+
 <template>
   <div class="side-nav">
+    <pre style="color: #fff;">{{ navBarFile }}</pre>
     <nav class="navigate">
       <ul class="navigate_list">
         <li class="navigate_item">
-          <RouterLink @click="activeFunc()" class="navigate_link" to="/about"
-            >Biz haqimizda</RouterLink
-          >
+          <RouterLink @click="activeFunc()" class="navigate_link" to="/about">{{
+            navBar[0]?.text
+          }}</RouterLink>
         </li>
         <li class="navigate_item"><b>.</b></li>
 
@@ -14,27 +63,30 @@
             @click="activeFunc()"
             class="navigate_link"
             to="/connection"
-            >Aloqa uchun</RouterLink
+            >{{ navBar[1]?.text }}</RouterLink
           >
         </li>
         <li class="navigate_item"><b>.</b></li>
 
         <li class="navigate_item">
           <RouterLink @click="activeFunc()" to="/">
-            <img class="navigate_img" src="../assets/images/Logo.png" alt="" />
+            <img class="navigate_img" :src="baseurl +  navBarFile[0]?.file" alt="" />
           </RouterLink>
         </li>
 
         <li class="navigate_item">
-          <RouterLink @click="activeFunc()" class="navigate_link" to="/faq"
-            >FAQ</RouterLink
-          >
+          <RouterLink @click="activeFunc()" class="navigate_link" to="/faq">{{
+            navBar[2]?.text
+          }}</RouterLink>
         </li>
         <li class="navigate_item"><b>.</b></li>
 
         <li class="navigate_item">
-          <RouterLink @click="activeFunc()" class="navigate_link" to="/videos"
-            >Video qo'llanmalar</RouterLink
+          <RouterLink
+            @click="activeFunc()"
+            class="navigate_link"
+            to="/videos"
+            >{{ navBar[3]?.text }}</RouterLink
           >
         </li>
       </ul>
@@ -116,22 +168,5 @@
     </div>
   </div>
 </template>
-<script>
-export default {
-  name: "sidebar",
-  data() {
-    return {
-      isNavbarOpen: false,
-    };
-  },
-  methods: {
-    activeFunc() {
-      this.isNavbarOpen = false;
-    },
-    openRight() {
-      this.isNavbarOpen = !this.isNavbarOpen;
-    },
-  },
-};
-</script>
+
 <style></style>

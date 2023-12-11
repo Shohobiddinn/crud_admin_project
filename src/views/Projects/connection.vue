@@ -8,7 +8,7 @@
 	</div>
 </template>
 <script>
-import sidebar from '/src/components/sidebar.vue';
+import sidebar from '@/components/sidebar.vue';
 import contactBox from '@/components/contactBox.vue';
 export default {
 	components: { sidebar, contactBox },
