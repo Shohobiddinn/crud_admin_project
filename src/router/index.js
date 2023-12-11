@@ -84,10 +84,10 @@ const router = createRouter({
           component: () => import('../views/Targetlar/targets.vue')
         },
         {
-          path: '/setting',
-          name: 'setting',
+          path: '/files',
+          name: 'file',
           beforeEnter: auth,
-          component: () => import('../views/Setting/setting.vue')
+          component: () => import('../views/File/files.vue')
         },
         {
           path: '/categorys',

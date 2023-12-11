@@ -37,7 +37,7 @@
           >
             <thead class="border">
               <tr>
-                <th scope="col" class="border col-1">№</th>
+                <th scope="col" class="border col-1">ID</th>
                 <th scope="col" class="border">Nomi</th>
                 <th scope="col" class="border">Haqida</th>
                 <th scope="col" class="border" style="width: 250px">
@@ -46,8 +46,8 @@
               </tr>
             </thead>
             <tbody>
-              <tr v-for="(item, index) in categors" :key="item?.id">
-                <th class="border" scope="row">{{ index + 1 }}</th>
+              <tr v-for="item in categors" :key="item?.id">
+                <th class="border" scope="row">{{ item?.id }}</th>
                 <td class="border">{{ item?.name }}</td>
 
                 <td class="border">{{ item?.comment }}</td>

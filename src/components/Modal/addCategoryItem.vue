@@ -8,13 +8,11 @@ export default {
   data() {
     return {
       status: "category_item_add",
-
-      item: [
-        {
-          category_id: 0,
-          text: "",
-        },
-      ],
+      category_id: 0,
+      item: [{
+        category_item_id:0,
+        text: "",
+      }],
     };
   },
   computed: {},
@@ -22,13 +20,13 @@ export default {
     open(item) {
       if (this.status == "category_item_edit") {
         this.item = {
-          category_id: item.id,
+          category_item_id: item.id,
           text: item.text,
         };
         this.$refs.addCategoryItemModal.openModal();
       } else {
         this.item[0] = {
-          category_id: 4,
+          category_id: this.category_id,
           text: "",
         };
         this.$refs.addCategoryItemModal.openModal();
@@ -70,7 +68,7 @@ export default {
           <label class="col-12">
             toifa haqida
             <div class="input-group d-flex align-items-center">
-              <textarea cols="30" rows="10" v-model="item.text"></textarea>
+              <textarea cols="30" rows="10" v-model="item[0].text"></textarea>
             </div>
           </label>
         </form>
