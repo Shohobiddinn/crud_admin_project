@@ -21,6 +21,11 @@ export default {
   components: {
     baseurl,
   },
+  computed: {
+    logo() {
+      return this.url + this.navBarFile[0]?.file;
+    },
+  },
   methods: {
     activeFunc() {
       this.isNavbarOpen = false;
@@ -50,6 +55,7 @@ export default {
           document
             .getElementById("uploadedImage")
             .setAttribute("src", event.target.result);
+          this.logo = event.target.result;
         });
       }
     },
@@ -83,15 +89,15 @@ export default {
         <li class="navigate_item"><b>.</b></li>
 
         <li class="navigate_item">
-          <input class="d-none" id="img" type="file" @change="imgFunc($event)" />
-              <label class="imglabel" for="img">
-                <img
-                  id="uploadedImage"
-                  class="imgLogo"
-                  src="../assets/images/Crud.svg"
-                  alt=""
-                />
-              </label>
+          <input
+            class="d-none"
+            id="img"
+            type="file"
+            @change="imgFunc($event)"
+          />
+          <label class="imglabel" for="img">
+            <img id="uploadedImage" class="imgLogo" :src="logo" alt="" />
+          </label>
         </li>
 
         <li class="navigate_item">
