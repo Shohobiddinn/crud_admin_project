@@ -21,10 +21,15 @@ export default {
         category_item_id: 0,
         text: "",
       },
+      navBarInput: {
+        bir: false,
+        ikki: false,
+        uch: false,
+        tort: false,
+      },
       url: baseurl,
       navBar: [],
       navBarFile: [],
-      path: ["/about", "/connection", "/faq", "/videos"],
     };
   },
   components: {
@@ -53,7 +58,6 @@ export default {
     getNavbarFile() {
       api.file_files_source(this.data).then((res) => {
         this.navBarFile = res.data;
-        console.log(res.data);
       });
     },
     imgFunc(e) {
@@ -71,9 +75,8 @@ export default {
         api
           .file_update_id(this.fileData)
           .then((res) => {
-            console.log(res);
             this.$util.toastError("success", "Amaliyot bajarildi");
-            getNavbarFile();
+            this.getNavbarFile();
           })
           .catch((err) => {
             this.$util.toastError("error", "Ma'lumotni yuklab bo'lmadi");
@@ -81,7 +84,6 @@ export default {
       }
     },
     navBarItemEdit(event, item) {
-      console.log(event.target.value, item.id);
       (this.item_data.category_item_id = item.id),
         (this.item_data.text = event.target.value);
       api
@@ -89,10 +91,60 @@ export default {
         .then((res) => {
           this.$util.toastError("success", "Amaliyot bajarildi");
           this.getNavber();
+          this.navBarInput.bir = false;
+          this.navBarInput.ikki = false;
+          this.navBarInput.uch = false;
+          this.navBarInput.tort = false;
         })
         .catch((err) => {
           this.$util.toastError("error", err.message);
         });
+    },
+    // input open close
+    navBarInputBir() {
+      setTimeout(() => {
+        this.navBarInput.bir = true;
+        this.navBarInput.ikki = false;
+        this.navBarInput.uch = false;
+        this.navBarInput.tort = false;
+      }, 1000);
+    },
+    navBarInputIkki() {
+      setTimeout(() => {
+        this.navBarInput.bir = false;
+        this.navBarInput.ikki = true;
+        this.navBarInput.uch = false;
+        this.navBarInput.tort = false;
+      }, 1000);
+    },
+    navBarInputUch() {
+      setTimeout(() => {
+        this.navBarInput.bir = false;
+        this.navBarInput.ikki = false;
+        this.navBarInput.uch = true;
+        this.navBarInput.tort = false;
+      }, 1000);
+    },
+    navBarInputTort() {
+      setTimeout(() => {
+        this.navBarInput.bir = false;
+        this.navBarInput.ikki = false;
+        this.navBarInput.uch = false;
+        this.navBarInput.tort = true;
+      }, 1000);
+    },
+    // router link
+    routerBir() {
+      this.$router.push("/about");
+    },
+    routerIkki() {
+      this.$router.push("/connection");
+    },
+    routerUch() {
+      this.$router.push("/faq");
+    },
+    routerTort() {
+      this.$router.push("/videos");
     },
   },
   created() {
@@ -107,25 +159,39 @@ export default {
     <nav class="navigate">
       <ul class="navigate_list">
         <li class="navigate_item">
-          <div @click="activeFunc()" class="navigate_link">
+          <div
+            v-if="!navBarInput.bir"
+            @click="navBarInputBir()"
+            @dblclick="routerBir()"
+            class="navigate_link"
+          >
             {{ navBar[0]?.text }}
           </div>
           <input
+            v-if="navBarInput.bir"
             type="text"
             :value="navBar[0]?.text"
             @change="navBarItemEdit($event, navBar[0])"
+            ref="navbarInput"
           />
         </li>
         <li class="navigate_item"><b>.</b></li>
 
         <li class="navigate_item">
-          <div @click="activeFunc()" class="navigate_link">
+          <div
+            v-if="!navBarInput.ikki"
+            @click="navBarInputIkki()"
+            @dblclick="routerIkki()"
+            class="navigate_link"
+          >
             {{ navBar[1]?.text }}
           </div>
           <input
+            v-if="navBarInput.ikki"
             type="text"
             :value="navBar[1]?.text"
             @change="navBarItemEdit($event, navBar[1])"
+            ref="navbarInput"
           />
         </li>
         <li class="navigate_item"><b>.</b></li>
@@ -144,38 +210,63 @@ export default {
         </li>
 
         <li class="navigate_item">
-          <div @click="activeFunc()" class="navigate_link">
+          <div
+            v-if="!navBarInput.uch"
+            @click="navBarInputUch()"
+            @dblclick="routerUch()"
+            class="navigate_link"
+          >
             {{ navBar[2]?.text }}
           </div>
           <input
+            v-if="navBarInput.uch"
             type="text"
             :value="navBar[2]?.text"
             @change="navBarItemEdit($event, navBar[2])"
+            ref="navbarInput"
           />
         </li>
         <li class="navigate_item"><b>.</b></li>
 
         <li class="navigate_item">
-          <div @click="activeFunc()" class="navigate_link">
+          <div
+            v-if="!navBarInput.tort"
+            @click="navBarInputTort()"
+            @dblclick="routerTort()"
+            class="navigate_link"
+          >
             {{ navBar[3]?.text }}
           </div>
           <input
+            v-if="navBarInput.tort"
             type="text"
             :value="navBar[3]?.text"
             @change="navBarItemEdit($event, navBar[3])"
+            ref="navbarInput"
           />
         </li>
       </ul>
     </nav>
     <div class="home-sidebar_navbar col-10 m-auto">
       <div class="d-flex justify-content-between py-4">
-        <RouterLink @click="activeFunc()" to="/">
-          <img
-            class="home-sidebar__img"
-            src="/src/assets/images/Crud.svg"
-            alt="logo"
+        <div @click="activeFunc()">
+          <input
+            class="d-none"
+            ref="logoRef"
+            id="img"
+            type="file"
+            @change="imgFunc($event)"
           />
-        </RouterLink>
+          <label class="imglabel" for="img">
+            <img
+              id="uploadedImage"
+              class="imgLogo"
+              :src="logo"
+              alt=""
+              style="width: 300px; height: 50px; object-fit: contain"
+            />
+          </label>
+        </div>
         <nav class="home-sidebar__nav" :class="{ active: isNavbarOpen }">
           <div
             class="sidebar-btn d-flex align-items-center justify-content-center"
@@ -195,48 +286,95 @@ export default {
           </div>
           <ul class="home-sidebar__list">
             <li class="home-sidebar__item" style="margin-bottom: 50px">
-              <RouterLink @click="activeFunc()" to="/">
-                <img
-                  class="home-sidebar__img"
-                  src="/src/assets/images/Crud.svg"
-                  alt=""
+              <div @click="activeFunc()">
+                <input
+                  class="d-none"
+                  ref="logoRef"
+                  id="img"
+                  type="file"
+                  @change="imgFunc($event)"
                 />
-              </RouterLink>
+                <label class="imglabel" for="img">
+                  <img
+                    id="uploadedImage"
+                    class="imgLogo"
+                    :src="logo"
+                    alt=""
+                    style="width: 200px; height: 50px; object-fit: contain"
+                  />
+                </label>
+              </div>
             </li>
             <li class="home-sidebar__item">
-              <RouterLink
-                @click="activeFunc()"
+              <div
+                v-if="!navBarInput.bir"
+                @click="navBarInputBir()"
+                @dblclick="routerBir()"
                 class="home-sidebar__link"
-                to="/about"
-                >Biz haqimizda</RouterLink
               >
+                {{ navBar[0]?.text }}
+              </div>
+              <input
+                v-if="navBarInput.bir"
+                type="text"
+                :value="navBar[0]?.text"
+                @change="navBarItemEdit($event, navBar[0])"
+                ref="navbarInput"
+              />
             </li>
 
             <li class="home-sidebar__item">
-              <RouterLink
-                @click="activeFunc()"
+              <div
+                v-if="!navBarInput.ikki"
+                @click="navBarInputIkki()"
+                @dblclick="routerIkki()"
                 class="home-sidebar__link"
-                to="/connection"
-                >Aloqa uchun</RouterLink
               >
+                {{ navBar[1]?.text }}
+              </div>
+              <input
+                v-if="navBarInput.ikki"
+                type="text"
+                :value="navBar[1]?.text"
+                @change="navBarItemEdit($event, navBar[1])"
+                ref="navbarInput"
+              />
             </li>
 
             <li class="home-sidebar__item">
-              <RouterLink
-                @click="activeFunc()"
+              <div
+                v-if="!navBarInput.uch"
+                @click="navBarInputUch()"
+                @dblclick="routerUch()"
                 class="home-sidebar__link"
-                to="/faq"
-                >FAQ</RouterLink
               >
+                {{ navBar[2]?.text }}
+              </div>
+              <input
+                v-if="navBarInput.uch"
+                type="text"
+                :value="navBar[2]?.text"
+                @change="navBarItemEdit($event, navBar[2])"
+                ref="navbarInput"
+              />
             </li>
 
             <li class="home-sidebar__item">
-              <RouterLink
-                @click="activeFunc()"
+              <div
+                v-if="!navBarInput.tort"
+                @click="navBarInputTort()"
+                @dblclick="routerTort()"
                 class="home-sidebar__link"
-                to="/videos"
-                >Video qo'llanmalar</RouterLink
               >
+                {{ navBar[3]?.text }}
+              </div>
+              <input
+                v-if="navBarInput.tort"
+                type="text"
+                :value="navBar[3]?.text"
+                @change="navBarItemEdit($event, navBar[3])"
+                ref="navbarInput"
+              />
             </li>
           </ul>
         </nav>
