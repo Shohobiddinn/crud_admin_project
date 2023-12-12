@@ -19,7 +19,7 @@ input {
     border-bottom: 2px solid blue;
 }
 .text{
-    @include fond(500, 18, 18);
+    @include fond(500, 12, 12);
     color: #fff;
     text-transform: capitalize;
 }

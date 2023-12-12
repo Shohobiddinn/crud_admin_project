@@ -6,11 +6,20 @@ export default {
   data() {
     return {
       isNavbarOpen: false,
+      navBarItem: null,
       params: {
         id: 5,
       },
       data: {
         source_id: 5,
+      },
+      fileData: {
+        file_id: 1,
+        file: 2,
+      },
+      item_data: {
+        category_item_id: 0,
+        text: "",
       },
       url: baseurl,
       navBar: [],
@@ -57,7 +66,33 @@ export default {
             .setAttribute("src", event.target.result);
           this.logo = event.target.result;
         });
+        this.fileData.file = e.target.files[0];
+        this.fileData.file_id = 1;
+        api
+          .file_update_id(this.fileData)
+          .then((res) => {
+            console.log(res);
+            this.$util.toastError("success", "Amaliyot bajarildi");
+            getNavbarFile();
+          })
+          .catch((err) => {
+            this.$util.toastError("error", "Ma'lumotni yuklab bo'lmadi");
+          });
       }
+    },
+    navBarItemEdit(event, item) {
+      console.log(event.target.value, item.id);
+      (this.item_data.category_item_id = item.id),
+        (this.item_data.text = event.target.value);
+      api
+        .category_item_update(this.item_data)
+        .then((res) => {
+          this.$util.toastError("success", "Amaliyot bajarildi");
+          this.getNavber();
+        })
+        .catch((err) => {
+          this.$util.toastError("error", err.message);
+        });
     },
   },
   created() {
@@ -72,25 +107,33 @@ export default {
     <nav class="navigate">
       <ul class="navigate_list">
         <li class="navigate_item">
-          <RouterLink @click="activeFunc()" class="navigate_link" to="/about">{{
-            navBar[0]?.text
-          }}</RouterLink>
+          <div @click="activeFunc()" class="navigate_link">
+            {{ navBar[0]?.text }}
+          </div>
+          <input
+            type="text"
+            :value="navBar[0]?.text"
+            @change="navBarItemEdit($event, navBar[0])"
+          />
         </li>
         <li class="navigate_item"><b>.</b></li>
 
         <li class="navigate_item">
-          <RouterLink
-            @click="activeFunc()"
-            class="navigate_link"
-            to="/connection"
-            >{{ navBar[1]?.text }}</RouterLink
-          >
+          <div @click="activeFunc()" class="navigate_link">
+            {{ navBar[1]?.text }}
+          </div>
+          <input
+            type="text"
+            :value="navBar[1]?.text"
+            @change="navBarItemEdit($event, navBar[1])"
+          />
         </li>
         <li class="navigate_item"><b>.</b></li>
 
         <li class="navigate_item">
           <input
             class="d-none"
+            ref="logoRef"
             id="img"
             type="file"
             @change="imgFunc($event)"
@@ -101,19 +144,26 @@ export default {
         </li>
 
         <li class="navigate_item">
-          <RouterLink @click="activeFunc()" class="navigate_link" to="/faq">{{
-            navBar[2]?.text
-          }}</RouterLink>
+          <div @click="activeFunc()" class="navigate_link">
+            {{ navBar[2]?.text }}
+          </div>
+          <input
+            type="text"
+            :value="navBar[2]?.text"
+            @change="navBarItemEdit($event, navBar[2])"
+          />
         </li>
         <li class="navigate_item"><b>.</b></li>
 
         <li class="navigate_item">
-          <RouterLink
-            @click="activeFunc()"
-            class="navigate_link"
-            to="/videos"
-            >{{ navBar[3]?.text }}</RouterLink
-          >
+          <div @click="activeFunc()" class="navigate_link">
+            {{ navBar[3]?.text }}
+          </div>
+          <input
+            type="text"
+            :value="navBar[3]?.text"
+            @change="navBarItemEdit($event, navBar[3])"
+          />
         </li>
       </ul>
     </nav>

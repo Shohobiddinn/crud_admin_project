@@ -263,6 +263,7 @@ export default {
     showTitleLeft() {
       this.showLeft = !this.showLeft;
     },
+    
   },
   created() {
     this.showTitle();
