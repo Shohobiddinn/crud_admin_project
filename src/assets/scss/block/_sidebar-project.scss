@@ -9,6 +9,15 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+
+    .navigate_item {
+      label {
+        .imgLogo {
+          width: 250px;
+          object-fit: cover;
+        }
+      }
+    }
   }
 
   & b {

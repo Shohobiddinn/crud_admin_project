@@ -42,6 +42,17 @@ export default {
         console.log(res.data);
       });
     },
+    imgFunc(e) {
+      if (e.target.files[0]) {
+        var picture = new FileReader();
+        picture.readAsDataURL(e.target.files[0]);
+        picture.addEventListener("load", function (event) {
+          document
+            .getElementById("uploadedImage")
+            .setAttribute("src", event.target.result);
+        });
+      }
+    },
   },
   created() {
     this.getNavber();
@@ -52,7 +63,6 @@ export default {
 
 <template>
   <div class="side-nav">
-    <pre style="color: #fff">{{ navBarFile }}</pre>
     <nav class="navigate">
       <ul class="navigate_list">
         <li class="navigate_item">
@@ -73,14 +83,15 @@ export default {
         <li class="navigate_item"><b>.</b></li>
 
         <li class="navigate_item">
-          <label for="imgLogo">
-            <img
-              class="navigate_img"
-              :src="url + navBarFile[0]?.file"
-              alt="logo"
-            />
-            <input type="file" />
-          </label>
+          <input class="d-none" id="img" type="file" @change="imgFunc($event)" />
+              <label class="imglabel" for="img">
+                <img
+                  id="uploadedImage"
+                  class="imgLogo"
+                  src="../assets/images/Crud.svg"
+                  alt=""
+                />
+              </label>
         </li>
 
         <li class="navigate_item">
