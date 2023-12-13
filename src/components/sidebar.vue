@@ -97,7 +97,7 @@ export default {
           this.navBarInput.tort = false;
         })
         .catch((err) => {
-          this.$util.toastError("error", err.message);
+          this.$util.toastError("error", "Ma'lumotni yuklab bo'lmadi");
         });
     },
     // input open close

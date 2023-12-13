@@ -3,46 +3,93 @@
     <nav class="navigate">
       <ul class="navigate_list">
         <li class="navigate_item">
-          <a href="#dastur" class="navigate_link">dastur haqida</a>
+          <div v-if="!navBar.bir" class="navigate_link" @click="navBar1()">
+            {{ homeNavbar[4]?.text }}
+          </div>
+          <input
+            type="text"
+            v-else
+            :value="homeNavbar[4]?.text"
+            @change="updateHomeNavbar($event, homeNavbar[4])"
+          />
         </li>
         <li class="navigate_item"><b>.</b></li>
 
         <li class="navigate_item">
-          <a href="#dastur" @click="showTitle()" class="navigate_link"
-            >Foydali jihat</a
+          <div v-if="!navBar.ikki" @click="navBar2()" class="navigate_link">
+            {{ homeNavbar[3]?.text }}
+          </div>
+          <input
+            type="text"
+            v-else
+            :value="homeNavbar[3]?.text"
+            @change="updateHomeNavbar($event, homeNavbar[3])"
+          />
+        </li>
+        <li class="navigate_item"><b>.</b></li>
+
+        <li class="navigate_item">
+          <input
+            class="d-none"
+            ref="logoRef"
+            id="img"
+            type="file"
+            @change="imgFunc($event)"
+          />
+          <label class="imglabel" for="img">
+            <img id="uploadedImage" class="imgLogo" :src="logo" alt="" />
+          </label>
+        </li>
+
+        <li class="navigate_item">
+          <div v-if="!navBar.uch" @click="navBar3()" class="navigate_link">
+            {{ homeNavbar[2]?.text }}
+          </div>
+          <input
+            type="text"
+            v-else
+            :value="homeNavbar[2]?.text"
+            @change="updateHomeNavbar($event, homeNavbar[2])"
+          />
+        </li>
+        <li class="navigate_item"><b>.</b></li>
+
+        <li class="navigate_item">
+          <div
+            @click="navBar4()"
+            v-if="!navBar.tort"
+            href="#video"
+            class="navigate_link"
           >
-        </li>
-        <li class="navigate_item"><b>.</b></li>
-
-        <li class="navigate_item">
-          <router-link @click="activeFunc()" to="/">
-            <img
-              class="navigate_img"
-              src="../../assets/images/Logo.png"
-              alt=""
-            />
-          </router-link>
-        </li>
-
-        <li class="navigate_item">
-          <a href="#yonalish" class="navigate_link">yo'nalishlari</a>
-        </li>
-        <li class="navigate_item"><b>.</b></li>
-
-        <li class="navigate_item">
-          <a href="#video" class="navigate_link">Video qo'llanmalar</a>
+            {{ homeNavbar[1]?.text }}
+          </div>
+          <input
+            type="text"
+            v-else
+            :value="homeNavbar[1]?.text"
+            @change="updateHomeNavbar($event, homeNavbar[1])"
+          />
         </li>
       </ul>
     </nav>
     <div class="home-sidebar_navbar col-10 m-auto">
       <div class="d-flex justify-content-between py-4">
-        <RouterLink @click="activeFunc()" to="/">
+        <input
+          class="d-none"
+          ref="logoRef"
+          id="img"
+          type="file"
+          @change="imgFunc($event)"
+        />
+        <label class="imglabel" for="img">
           <img
-            class="home-sidebar__img"
-            src="/src/assets/images/Crud.svg"
-            alt="logo"
+            id="uploadedImage"
+            class="imgLogo"
+            :src="logo"
+            alt=""
+            style="width: 250px; height: 50px"
           />
-        </RouterLink>
+        </label>
         <nav class="home-sidebar__nav" :class="{ active: isNavbarOpen }">
           <div
             class="sidebar-btn d-flex align-items-center justify-content-center"
@@ -62,44 +109,56 @@
           </div>
           <ul class="home-sidebar__list">
             <li class="home-sidebar__item" style="margin-bottom: 50px">
-              <RouterLink @click="activeFunc()" to="/">
+              <input
+                class="d-none"
+                ref="logoRef"
+                id="img"
+                type="file"
+                @change="imgFunc($event)"
+              />
+              <label class="imglabel" for="img">
                 <img
-                  class="home-sidebar__img"
-                  src="/src/assets/images/Crud.svg"
+                  id="uploadedImage"
+                  class="imgLogo"
+                  :src="logo"
                   alt=""
+                  style="width: 250px; height: 50px"
                 />
-              </RouterLink>
+              </label>
             </li>
             <li class="home-sidebar__item">
-              <a href="#dastur"
+              <a
+                href="#dastur"
                 @click="activeFunc()"
                 class="home-sidebar__link"
-                >Biz haqimizda</a
+                >{{ homeNavbar[3]?.text }}</a
               >
             </li>
 
             <li class="home-sidebar__item">
               <a
-              href="#dastur"
+                href="#dastur"
                 @click="activeFunc()"
                 class="home-sidebar__link"
-                >Foydali jihat</a
+                >{{ homeNavbar[2]?.text }}</a
               >
             </li>
 
             <li class="home-sidebar__item">
-              <a href="#yonalish"
+              <a
+                href="#yonalish"
                 @click="activeFunc()"
                 class="home-sidebar__link"
-                >yo'nalishlar</a
+                >{{ homeNavbar[1]?.text }}</a
               >
             </li>
 
             <li class="home-sidebar__item">
-              <a href="#video"
+              <a
+                href="#video"
                 @click="activeFunc()"
                 class="home-sidebar__link"
-                >Video qo'llanmalar</a
+                >{{ homeNavbar[0]?.text }}</a
               >
             </li>
           </ul>
@@ -108,9 +167,10 @@
     </div>
 
     <div class="xozmag-box">
-      <h3 class="xozmag-title">
-        <span>Qurilish davlat obyektlari</span> uchun dastur
+      <h3 v-if="!navBar.besh" class="xozmag-title"  @click="navBar5()">
+        {{ homeNavbar[0]?.text }}
       </h3>
+      <input v-else class="w-75" type="text" :value="homeNavbar[0]?.text" @change="updateHomeNavbar($event,homeNavbar[0])" />
     </div>
 
     <div class="banner">
@@ -426,6 +486,8 @@ import "swiper/css/autoplay";
 import { Autoplay } from "swiper/modules";
 import { VideoPlayer } from "@videojs-player/vue";
 import "video.js/dist/video-js.css";
+import baseurl from "../../server/baseurl";
+import api from "../../server/api";
 export default {
   setup() {
     return {
@@ -436,6 +498,19 @@ export default {
     return {
       show: true,
       isNavbarOpen: false,
+      url: baseurl,
+      navBarFile: [],
+      item_data: {
+        category_item_id: 0,
+        text: "",
+      },
+      data: {
+        source_id: 5,
+      },
+      fileData: {
+        file_id: 1,
+        file: 2,
+      },
       text: [
         {
           title: "Biznesingizga <span>oson</span> yechim topamiz",
@@ -456,6 +531,17 @@ export default {
           },
         ],
       },
+      params: {
+        id: 8,
+      },
+      homeNavbar: [],
+      navBar: {
+        bir: false,
+        ikki: false,
+        uch: false,
+        tort: false,
+        besh: false,
+      },
     };
   },
   components: {
@@ -463,6 +549,11 @@ export default {
     SwiperSlide,
     VideoPlayer,
     contactBox,
+  },
+  computed: {
+    logo() {
+      return this.url + this.navBarFile[0]?.file;
+    },
   },
   methods: {
     showTitle() {
@@ -474,9 +565,114 @@ export default {
     openRight() {
       this.isNavbarOpen = !this.isNavbarOpen;
     },
+    imgFunc(e) {
+      if (e.target.files[0]) {
+        var picture = new FileReader();
+        picture.readAsDataURL(e.target.files[0]);
+        picture.addEventListener("load", function (event) {
+          document
+            .getElementById("uploadedImage")
+            .setAttribute("src", event.target.result);
+          this.logo = event.target.result;
+        });
+        this.fileData.file = e.target.files[0];
+        this.fileData.file_id = 1;
+        api
+          .file_update_id(this.fileData)
+          .then((res) => {
+            this.$util.toastError("success", "Amaliyot bajarildi");
+            this.getNavbarFile();
+          })
+          .catch((err) => {
+            this.$util.toastError("error", "Ma'lumotni yuklab bo'lmadi");
+          });
+      }
+    },
+    // get zapros
+    getNavbarFile() {
+      api.file_files_source(this.data).then((res) => {
+        this.navBarFile = res.data;
+      });
+    },
+    getNavbar() {
+      api
+        .category_one(this.params)
+        .then((res) => {
+          this.homeNavbar = res.data?.category_items;
+          console.log(res.data);
+        })
+        .catch((err) => {});
+    },
+    // input open close
+    navBar1() {
+      setTimeout(() => {
+        this.navBar.bir = true;
+        this.navBar.ikki = false;
+        this.navBar.uch = false;
+        this.navBar.tort = false;
+        this.navBar.besh = false;
+      }, 1000);
+    },
+    navBar2() {
+      setTimeout(() => {
+        this.navBar.bir = false;
+        this.navBar.ikki = true;
+        this.navBar.uch = false;
+        this.navBar.tort = false;
+        this.navBar.besh = false;
+      }, 1000);
+    },
+    navBar3() {
+      setTimeout(() => {
+        this.navBar.bir = false;
+        this.navBar.ikki = false;
+        this.navBar.uch = true;
+        this.navBar.tort = false;
+        this.navBar.besh = false;
+      }, 1000);
+    },
+    navBar4() {
+      setTimeout(() => {
+        this.navBar.bir = false;
+        this.navBar.ikki = false;
+        this.navBar.uch = false;
+        this.navBar.tort = true;
+        this.navBar.besh = false;
+      }, 1000);
+    },
+    navBar5() {
+      setTimeout(() => {
+        this.navBar.bir = false;
+        this.navBar.ikki = false;
+        this.navBar.uch = false;
+        this.navBar.tort = false;
+        this.navBar.besh = true;
+      }, 1000);
+    },
+    // update put api
+    updateHomeNavbar(event, item) {
+      (this.item_data.category_item_id = item.id),
+        (this.item_data.text = event.target.value);
+      api
+        .category_item_update(this.item_data)
+        .then((res) => {
+          this.$util.toastError("success", "Amaliyot bajarildi");
+          this.getNavbar();
+          this.navBar.bir = false;
+          this.navBar.ikki = false;
+          this.navBar.uch = false;
+          this.navBar.tort = false;
+          this.navBar.besh = false;
+        })
+        .catch((err) => {
+          this.$util.toastError("error", "Ma'lumotni yuklab bo'lmadi");
+        });
+    },
   },
   created() {
     this.showTitle();
+    this.getNavbarFile();
+    this.getNavbar();
   },
 };
 </script>
