@@ -131,7 +131,7 @@
                 href="#dastur"
                 @click="activeFunc()"
                 class="home-sidebar__link"
-                >{{ homeNavbar[3]?.text }}</a
+                >{{ homeNavbar[4]?.text }}</a
               >
             </li>
 
@@ -140,7 +140,7 @@
                 href="#dastur"
                 @click="activeFunc()"
                 class="home-sidebar__link"
-                >{{ homeNavbar[2]?.text }}</a
+                >{{ homeNavbar[3]?.text }}</a
               >
             </li>
 
@@ -149,7 +149,7 @@
                 href="#yonalish"
                 @click="activeFunc()"
                 class="home-sidebar__link"
-                >{{ homeNavbar[1]?.text }}</a
+                >{{ homeNavbar[2]?.text }}</a
               >
             </li>
 
@@ -158,7 +158,7 @@
                 href="#video"
                 @click="activeFunc()"
                 class="home-sidebar__link"
-                >{{ homeNavbar[0]?.text }}</a
+                >{{ homeNavbar[1]?.text }}</a
               >
             </li>
           </ul>
@@ -167,10 +167,16 @@
     </div>
 
     <div class="xozmag-box">
-      <h3 v-if="!navBar.besh" class="xozmag-title"  @click="navBar5()">
+      <h3 v-if="!navBar.besh" class="xozmag-title" @click="navBar5()">
         {{ homeNavbar[0]?.text }}
       </h3>
-      <input v-else class="w-75" type="text" :value="homeNavbar[0]?.text" @change="updateHomeNavbar($event,homeNavbar[0])" />
+      <input
+        v-else
+        class="w-75"
+        type="text"
+        :value="homeNavbar[0]?.text"
+        @change="updateHomeNavbar($event, homeNavbar[0])"
+      />
     </div>
 
     <div class="banner">
@@ -500,6 +506,7 @@ export default {
       isNavbarOpen: false,
       url: baseurl,
       navBarFile: [],
+      homeBannerFile: [],
       item_data: {
         category_item_id: 0,
         text: "",
@@ -533,6 +540,9 @@ export default {
       },
       params: {
         id: 8,
+      },
+      file_data: {
+        source_id: 1,
       },
       homeNavbar: [],
       navBar: {
@@ -602,6 +612,12 @@ export default {
           console.log(res.data);
         })
         .catch((err) => {});
+    },
+    getHomeBannerFile() {
+      api.file_files_source(this.file_data).then((res) => {
+        this.homeBannerFile = res?.data;
+        console.log(this.homeBannerFile);
+      });
     },
     // input open close
     navBar1() {
@@ -673,6 +689,7 @@ export default {
     this.showTitle();
     this.getNavbarFile();
     this.getNavbar();
+    this.getHomeBannerFile();
   },
 };
 </script>
