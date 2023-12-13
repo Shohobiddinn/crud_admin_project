@@ -9,7 +9,7 @@
 @import './videos';
 @import './sidebar-project';
 @import './intro';
-input {
+input, textarea {
     @include fond(500, 18, 18);
     color: #fff;
     text-transform: capitalize;
@@ -18,8 +18,15 @@ input {
     border: none;
     border-bottom: 2px solid blue;
 }
+textarea{
+    background-color: #fff;
+    color: black;
+    padding: 20px;
+}
+
 .text{
     @include fond(500, 12, 12);
     color: #fff;
     text-transform: capitalize;
+
 }

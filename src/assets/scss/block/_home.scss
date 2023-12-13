@@ -23,11 +23,11 @@
 .heros {
   position: relative;
   display: block;
+  margin-bottom: 180px;
 }
 
 .hero__box {
-  width: 100%;
-  height: 72px;
+  width: 90%;
   overflow: hidden;
   margin: 0 auto;
   display: flex;
@@ -38,10 +38,6 @@
 }
 
 .hero__title {
-  position: absolute;
-  margin: 0;
-  top: 0;
-  bottom: 0;
   font-size: 51.534px;
   font-weight: 500;
   line-height: 70.859px;

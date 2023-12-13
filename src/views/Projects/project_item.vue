@@ -2,39 +2,25 @@
   <div class="background">
     <div class="home-pc">
       <sidebar />
-      <div class="heros" style="margin-bottom: 300px">
+      <div class="heros">
         <div class="container">
-          <div class="hero__box" v-if="show">
+          <div class="hero__box">
             <h3
               class="hero__title title1"
-              data-aos="fade-down"
-              data-aos-duration="500"
+              v-if="!bannerTitle.bir"
+              @click="bannerBir()"
             >
-              Biznesingizga <span>oson</span>
+              {{ introFooter[7]?.text }}
             </h3>
-            <h3
-              class="hero__title title1 hero__title--bottom"
-              data-aos="fade-up"
-              data-aos-duration="500"
-            >
-              yechim topamiz
-            </h3>
-          </div>
-          <div class="hero__box" v-else>
-            <h3
-              class="hero__title title2"
-              data-aos="fade-down"
-              data-aos-duration="500"
-            >
-              Ishingizni
-            </h3>
-            <h3
-              class="hero__title title2 hero__title--bottom"
-              data-aos="fade-up"
-              data-aos-duration="500"
-            >
-              osonlashtiramiz
-            </h3>
+            <input
+              v-else
+              type="text"
+              cols="30"
+              rows="4"
+              :value="introFooter[7]?.text"
+              @change="updateBanner($event, introFooter[7])"
+              style="width: 90%"
+            />
           </div>
         </div>
       </div>
@@ -55,7 +41,8 @@
             />
           </svg>
         </div>
-        <div class="intro_left_title">bizning dasturlarimiz:</div>
+        <div class="intro_left_title">{{ introFooter[5]?.text }} :</div>
+        <input type="text" :value="introFooter[5]?.text" />
         <div class="content" v-for="item in forServise" :key="item">
           <router-link :to="item.path" class="content_link">
             <div class="content_icon">
@@ -104,11 +91,34 @@
       <div class="intro">
         <div class="container">
           <div class="intro_top">
-            <div class="intro_top_title">bizning dasturlarimiz:</div>
-            <router-link to="/home">
-              <div class="intro_top_content">
-                <div class="intro_top_content_title">
-                  boshqa dasturlarimiz haqida batafsil
+            <div class="intro_top_title">
+              <div
+                class="intro_top_title"
+                v-if="!bannerTitle.ikki"
+                @click="bannerIkki"
+              >
+                {{ introFooter[5]?.text }}
+              </div>
+              <input
+                v-else
+                style="width: 250px"
+                type="text"
+                :value="introFooter[5]?.text"
+                @change="updateBanner($event, introFooter[5])"
+              />
+            </div>
+            <div>
+              <div
+                class="intro_top_content"
+                v-if="!bannerTitle.uch"
+                style="cursor: pointer; user-select: none"
+              >
+                <div
+                  class="intro_top_content_title"
+                  @click="bannerUch"
+                  @dblclick="routerBir"
+                >
+                  {{ introFooter[4]?.text }}
                 </div>
                 <div class="intro_top_content_icon">
                   <svg
@@ -125,11 +135,18 @@
                   </svg>
                 </div>
               </div>
-            </router-link>
+              <input
+                v-else
+                type="text"
+                :value="introFooter[4]?.text"
+                style="width: 250px; font-size: 14px"
+                @change="updateBanner($event, introFooter[4])"
+              />
+            </div>
           </div>
           <div class="intro_bottom">
-            <div class="content" v-for="item in forServise" :key="item">
-              <router-link :to="item.path" class="content_link">
+            <div class="content">
+              <div class="content_link" @dblclick="routerBir()">
                 <div class="content_icon">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -141,12 +158,12 @@
                     <g filter="url(#filter0_f_6_159)">
                       <path
                         d="M67.0706 52.0353C67.0706 60.3391 60.3391 67.0706 52.0353 67.0706C43.7315 67.0706 37 60.3391 37 52.0353C37 43.7315 43.7315 37 52.0353 37C60.3391 37 67.0706 43.7315 67.0706 52.0353ZM43.3746 52.0353C43.3746 56.8185 47.2521 60.696 52.0353 60.696C56.8185 60.696 60.696 56.8185 60.696 52.0353C60.696 47.2521 56.8185 43.3746 52.0353 43.3746C47.2521 43.3746 43.3746 47.2521 43.3746 52.0353Z"
-                        :fill="item?.color"
+                        fill="#0085FF"
                       />
                     </g>
                     <path
                       d="M67.0706 52.0353C67.0706 60.3391 60.3391 67.0706 52.0353 67.0706C43.7315 67.0706 37 60.3391 37 52.0353C37 43.7315 43.7315 37 52.0353 37C60.3391 37 67.0706 43.7315 67.0706 52.0353ZM43.3746 52.0353C43.3746 56.8185 47.2521 60.696 52.0353 60.696C56.8185 60.696 60.696 56.8185 60.696 52.0353C60.696 47.2521 56.8185 43.3746 52.0353 43.3746C47.2521 43.3746 43.3746 47.2521 43.3746 52.0353Z"
-                      :fill="item?.color"
+                      fill="#0085FF"
                     />
                     <defs>
                       <filter
@@ -176,12 +193,212 @@
                     </defs>
                   </svg>
                 </div>
-                <div class="content_title">{{ item?.title }}</div>
+                <div class="content_title" v-if="!bannerTitle.tort" @click="bannerTort()" >{{ introFooter[3]?.text }}</div>
+                <input v-else type="text" :value="introFooter[3]?.text" @change="updateBanner($event,introFooter[3])"/>
                 <div
                   class="content_show"
-                  :style="` background:linear-gradient(180deg, ${item?.color} 0%, ${item?.color} 100%);     box-shadow: 0 0  30px ${item?.color};`"
+                  style="
+                    background: linear-gradient(
+                      180deg,
+                      #0085ff 0%,
+                      #0085ff 100%
+                    );
+                    box-shadow: 0 0 30px #0085ff;
+                  "
                 ></div>
-              </router-link>
+              </div>
+            </div>
+            <div class="content">
+              <div class="content_link" @dblclick="routerBir()">
+                <div class="content_icon">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="104"
+                    height="104"
+                    viewBox="0 0 104 104"
+                    fill="none"
+                  >
+                    <g filter="url(#filter0_f_6_159)">
+                      <path
+                        d="M67.0706 52.0353C67.0706 60.3391 60.3391 67.0706 52.0353 67.0706C43.7315 67.0706 37 60.3391 37 52.0353C37 43.7315 43.7315 37 52.0353 37C60.3391 37 67.0706 43.7315 67.0706 52.0353ZM43.3746 52.0353C43.3746 56.8185 47.2521 60.696 52.0353 60.696C56.8185 60.696 60.696 56.8185 60.696 52.0353C60.696 47.2521 56.8185 43.3746 52.0353 43.3746C47.2521 43.3746 43.3746 47.2521 43.3746 52.0353Z"
+                        fill="#FFB800"
+                      />
+                    </g>
+                    <path
+                      d="M67.0706 52.0353C67.0706 60.3391 60.3391 67.0706 52.0353 67.0706C43.7315 67.0706 37 60.3391 37 52.0353C37 43.7315 43.7315 37 52.0353 37C60.3391 37 67.0706 43.7315 67.0706 52.0353ZM43.3746 52.0353C43.3746 56.8185 47.2521 60.696 52.0353 60.696C56.8185 60.696 60.696 56.8185 60.696 52.0353C60.696 47.2521 56.8185 43.3746 52.0353 43.3746C47.2521 43.3746 43.3746 47.2521 43.3746 52.0353Z"
+                      fill="#FFB800"
+                    />
+                    <defs>
+                      <filter
+                        id="filter0_f_6_159"
+                        x="0.247059"
+                        y="0.247059"
+                        width="103.576"
+                        height="103.576"
+                        filterUnits="userSpaceOnUse"
+                        color-interpolation-filters="sRGB"
+                      >
+                        <feFlood
+                          flood-opacity="0"
+                          result="BackgroundImageFix"
+                        />
+                        <feBlend
+                          mode="normal"
+                          in="SourceGraphic"
+                          in2="BackgroundImageFix"
+                          result="shape"
+                        />
+                        <feGaussianBlur
+                          stdDeviation="18.3765"
+                          result="effect1_foregroundBlur_6_159"
+                        />
+                      </filter>
+                    </defs>
+                  </svg>
+                </div>
+                <div class="content_title" @click="bannerBesh()" v-if="!bannerTitle.besh">{{ introFooter[2]?.text }}</div>
+                <input v-else type="text" :value="introFooter[2]?.text" @change="updateBanner($event,introFooter[2])"/>
+
+                <div
+                  class="content_show"
+                  style="
+                    background: linear-gradient(
+                      180deg,
+                      #ffb800 0%,
+                      #ffb800 100%
+                    );
+                    box-shadow: 0 0 30px #ffb800;
+                  "
+                ></div>
+              </div>
+            </div>
+            <div class="content">
+              <div class="content_link" @dblclick="routerBir()">
+                <div class="content_icon">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="104"
+                    height="104"
+                    viewBox="0 0 104 104"
+                    fill="none"
+                  >
+                    <g filter="url(#filter0_f_6_159)">
+                      <path
+                        d="M67.0706 52.0353C67.0706 60.3391 60.3391 67.0706 52.0353 67.0706C43.7315 67.0706 37 60.3391 37 52.0353C37 43.7315 43.7315 37 52.0353 37C60.3391 37 67.0706 43.7315 67.0706 52.0353ZM43.3746 52.0353C43.3746 56.8185 47.2521 60.696 52.0353 60.696C56.8185 60.696 60.696 56.8185 60.696 52.0353C60.696 47.2521 56.8185 43.3746 52.0353 43.3746C47.2521 43.3746 43.3746 47.2521 43.3746 52.0353Z"
+                        fill="#00FF47"
+                      />
+                    </g>
+                    <path
+                      d="M67.0706 52.0353C67.0706 60.3391 60.3391 67.0706 52.0353 67.0706C43.7315 67.0706 37 60.3391 37 52.0353C37 43.7315 43.7315 37 52.0353 37C60.3391 37 67.0706 43.7315 67.0706 52.0353ZM43.3746 52.0353C43.3746 56.8185 47.2521 60.696 52.0353 60.696C56.8185 60.696 60.696 56.8185 60.696 52.0353C60.696 47.2521 56.8185 43.3746 52.0353 43.3746C47.2521 43.3746 43.3746 47.2521 43.3746 52.0353Z"
+                      fill="#00FF47"
+                    />
+                    <defs>
+                      <filter
+                        id="filter0_f_6_159"
+                        x="0.247059"
+                        y="0.247059"
+                        width="103.576"
+                        height="103.576"
+                        filterUnits="userSpaceOnUse"
+                        color-interpolation-filters="sRGB"
+                      >
+                        <feFlood
+                          flood-opacity="0"
+                          result="BackgroundImageFix"
+                        />
+                        <feBlend
+                          mode="normal"
+                          in="SourceGraphic"
+                          in2="BackgroundImageFix"
+                          result="shape"
+                        />
+                        <feGaussianBlur
+                          stdDeviation="18.3765"
+                          result="effect1_foregroundBlur_6_159"
+                        />
+                      </filter>
+                    </defs>
+                  </svg>
+                </div>
+                <div class="content_title" @click="bannerOlti()" v-if="!bannerTitle.olti">{{ introFooter[1]?.text }}</div>
+                <input v-else type="text" :value="introFooter[1]?.text" @change="updateBanner($event,introFooter[1])"/>
+
+                <div
+                  class="content_show"
+                  style="
+                    background: linear-gradient(
+                      180deg,
+                      #00ff47 0%,
+                      #00ff47 100%
+                    );
+                    box-shadow: 0 0 30px #00ff47;
+                  "
+                ></div>
+              </div>
+            </div>
+            <div class="content">
+              <div class="content_link" @dblclick="routerBir()">
+                <div class="content_icon">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="104"
+                    height="104"
+                    viewBox="0 0 104 104"
+                    fill="none"
+                  >
+                    <g filter="url(#filter0_f_6_159)">
+                      <path
+                        d="M67.0706 52.0353C67.0706 60.3391 60.3391 67.0706 52.0353 67.0706C43.7315 67.0706 37 60.3391 37 52.0353C37 43.7315 43.7315 37 52.0353 37C60.3391 37 67.0706 43.7315 67.0706 52.0353ZM43.3746 52.0353C43.3746 56.8185 47.2521 60.696 52.0353 60.696C56.8185 60.696 60.696 56.8185 60.696 52.0353C60.696 47.2521 56.8185 43.3746 52.0353 43.3746C47.2521 43.3746 43.3746 47.2521 43.3746 52.0353Z"
+                        fill="#AD00FF"
+                      />
+                    </g>
+                    <path
+                      d="M67.0706 52.0353C67.0706 60.3391 60.3391 67.0706 52.0353 67.0706C43.7315 67.0706 37 60.3391 37 52.0353C37 43.7315 43.7315 37 52.0353 37C60.3391 37 67.0706 43.7315 67.0706 52.0353ZM43.3746 52.0353C43.3746 56.8185 47.2521 60.696 52.0353 60.696C56.8185 60.696 60.696 56.8185 60.696 52.0353C60.696 47.2521 56.8185 43.3746 52.0353 43.3746C47.2521 43.3746 43.3746 47.2521 43.3746 52.0353Z"
+                      fill="#AD00FF"
+                    />
+                    <defs>
+                      <filter
+                        id="filter0_f_6_159"
+                        x="0.247059"
+                        y="0.247059"
+                        width="103.576"
+                        height="103.576"
+                        filterUnits="userSpaceOnUse"
+                        color-interpolation-filters="sRGB"
+                      >
+                        <feFlood
+                          flood-opacity="0"
+                          result="BackgroundImageFix"
+                        />
+                        <feBlend
+                          mode="normal"
+                          in="SourceGraphic"
+                          in2="BackgroundImageFix"
+                          result="shape"
+                        />
+                        <feGaussianBlur
+                          stdDeviation="18.3765"
+                          result="effect1_foregroundBlur_6_159"
+                        />
+                      </filter>
+                    </defs>
+                  </svg>
+                </div>
+                <div class="content_title" v-if="!bannerTitle.yetti" @click="bannerYetti()">{{ introFooter[0]?.text }}</div>
+                <input v-else type="text" :value="introFooter[0]?.text" @change="updateBanner($event,introFooter[0])"/>
+
+                <div
+                  class="content_show"
+                  style="
+                    background: linear-gradient(
+                      180deg,
+                      #ad00ff 0%,
+                      #ad00ff 100%
+                    );
+                    box-shadow: 0 0 30px #ad00ff;
+                  "
+                ></div>
+              </div>
             </div>
           </div>
         </div>
@@ -192,20 +409,12 @@
 
 <script>
 import sidebar from "../../components/sidebar.vue";
+import api from "../../server/api";
 export default {
   name: "Intro",
   data() {
     return {
-      show: true,
       showLeft: false,
-      text: [
-        {
-          title: "Biznesingizga <span>oson</span> yechim topamiz",
-        },
-        {
-          title: "Ishingizni osonlashtiramiz",
-        },
-      ],
       breakPoints: {
         320: {
           itemsToShow: 1,
@@ -251,22 +460,147 @@ export default {
           path: "/output",
         },
       ],
+      params: {
+        id: 7,
+      },
+      introFooter: [],
+      bannerTitle: {
+        bir: false,
+        ikki: false,
+        uch: false,
+        tort: false,
+        besh: false,
+        olti: false,
+        yetti: false,
+      },
+      banner_data: {
+        category_item_id: 0,
+        text: "",
+      },
     };
   },
   components: { sidebar },
   methods: {
-    showTitle() {
-      setInterval(() => {
-        this.show = !this.show;
-      }, 2000);
-    },
     showTitleLeft() {
       this.showLeft = !this.showLeft;
     },
-    
+    getIntroBanner() {
+      api
+        .category_one(this.params)
+        .then((res) => {
+          this.introFooter = res.data.category_items;
+          console.log(this.introFooter);
+        })
+        .catch((err) => {
+          this.$util.toastError("error", "Ma'lumotni yuklab bo'lmadi");
+        });
+    },
+    // banner title function
+    bannerBir() {
+      setTimeout(() => {
+        this.bannerTitle.bir = true;
+        this.bannerTitle.ikki = false;
+        this.bannerTitle.uch = false;
+        this.bannerTitle.tort = false;
+        this.bannerTitle.besh = false;
+        this.bannerTitle.olti = false;
+        this.bannerTitle.yetti = false;
+      }, 1000);
+    },
+    bannerIkki() {
+      setTimeout(() => {
+        this.bannerTitle.bir = false;
+        this.bannerTitle.ikki = true;
+        this.bannerTitle.uch = false;
+        this.bannerTitle.tort = false;
+        this.bannerTitle.besh = false;
+        this.bannerTitle.olti = false;
+        this.bannerTitle.yetti = false;
+      }, 1000);
+    },
+    bannerUch() {
+      setTimeout(() => {
+        this.bannerTitle.bir = false;
+        this.bannerTitle.ikki = false;
+        this.bannerTitle.uch = true;
+        this.bannerTitle.tort = false;
+        this.bannerTitle.besh = false;
+        this.bannerTitle.olti = false;
+        this.bannerTitle.yetti = false;
+      }, 1000);
+    },
+    bannerTort() {
+      setTimeout(() => {
+        this.bannerTitle.bir = false;
+        this.bannerTitle.ikki = false;
+        this.bannerTitle.uch = false;
+        this.bannerTitle.tort = true;
+        this.bannerTitle.besh = false;
+        this.bannerTitle.olti = false;
+        this.bannerTitle.yetti = false;
+      }, 1000);
+    },
+    bannerBesh() {
+      setTimeout(() => {
+        this.bannerTitle.bir = false;
+        this.bannerTitle.ikki = false;
+        this.bannerTitle.uch = false;
+        this.bannerTitle.tort = false;
+        this.bannerTitle.besh = true;
+        this.bannerTitle.olti = false;
+        this.bannerTitle.yetti = false;
+      }, 1000);
+    },
+    bannerOlti() {
+      setTimeout(() => {
+        this.bannerTitle.bir = false;
+        this.bannerTitle.ikki = false;
+        this.bannerTitle.uch = false;
+        this.bannerTitle.tort = false;
+        this.bannerTitle.besh = false;
+        this.bannerTitle.olti = true;
+        this.bannerTitle.yetti = false;
+      }, 1000);
+    },
+    bannerYetti() {
+      setTimeout(() => {
+        this.bannerTitle.bir = false;
+        this.bannerTitle.ikki = false;
+        this.bannerTitle.uch = false;
+        this.bannerTitle.tort = false;
+        this.bannerTitle.besh = false;
+        this.bannerTitle.olti = false;
+        this.bannerTitle.yetti = true;
+      }, 1000);
+    },
+    // banner title update put
+    updateBanner(event, item) {
+      (this.banner_data.category_item_id = item.id),
+        (this.banner_data.text = event.target.value);
+      api
+        .category_item_update(this.banner_data)
+        .then((res) => {
+          this.$util.toastError("success", "Amaliyot bajarildi");
+          this.getIntroBanner();
+          this.bannerTitle.bir = false;
+          this.bannerTitle.ikki = false;
+          this.bannerTitle.uch = false;
+          this.bannerTitle.tort = false;
+          this.bannerTitle.besh = false;
+          this.bannerTitle.olti = false;
+          this.bannerTitle.yetti = false;
+        })
+        .catch((err) => {
+          this.$util.toastError("error", err.message);
+        });
+    },
+    // router function
+    routerBir() {
+      this.$router.push("/home");
+    },
   },
   created() {
-    this.showTitle();
+    this.getIntroBanner();
   },
 };
 </script>
