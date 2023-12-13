@@ -180,6 +180,8 @@
     </div>
 
     <div class="banner">
+      <pre class="text-white">{{ homeBannerFile  }}</pre>
+
       <div class="container-c">
         <div class="item">
           <img
@@ -188,6 +190,16 @@
             src="https://picsum.photos/id/35/1920/1080"
             alt="photo"
           />
+          <input
+            class="d-none"
+            ref="logoRef"
+            id="img"
+            type="file"
+            @change="imgFunc($event)"
+          />
+          <label class="imglabel" for="img">
+            <img id="uploadedImage" class="imgLogo" :src="logo" alt="" />
+          </label>
 
           <img
             data-aos="fade-up"
