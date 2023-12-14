@@ -17,16 +17,18 @@
     position: relative;
     width: 50%;
     padding: 0 80px;
-    height: 300px;
+    min-height: 300px;
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
     font-size: 20px;
     font-weight: 500;
     line-height: normal;
     text-transform: uppercase;
     color: #fff;
     transition: 0.7s;
+    margin-bottom: 20px;
 
     &:nth-child(1) {
       border-right: 1px solid #ffffffbe;
@@ -53,29 +55,12 @@
     }
 
     & .faq_question {
-      position: absolute;
-      transform: translateY(0);
+      margin-bottom: 20px;
     }
 
     & .faq_answer {
-      position: absolute;
       color: #ff0;
-      opacity: 0;
-      visibility: hidden;
-    }
-
-    &:hover {
-      .faq_question {
-        opacity: 0;
-        visibility: hidden;
-        transition: 0.5s;
-      }
-
-      .faq_answer {
-        opacity: 1;
-        visibility: visible;
-        transition: 0.5s;
-      }
+      margin-bottom: 20px;
     }
   }
 }

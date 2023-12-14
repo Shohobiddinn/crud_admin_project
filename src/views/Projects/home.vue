@@ -235,7 +235,6 @@
       </div>
     </div>
     <div id="dastur" class="resoult">
-      <!-- <pre class="text-white">{{ homeResoult }}</pre> -->
 
       <div class="container-c">
         <div
