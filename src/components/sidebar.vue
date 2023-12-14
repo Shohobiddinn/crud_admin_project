@@ -56,9 +56,16 @@ export default {
         .catch((err) => {});
     },
     getNavbarFile() {
-      api.file_files_source(this.data).then((res) => {
-        this.navBarFile = res.data;
-      });
+      api
+        .file_files_source(this.data)
+        .then((res) => {
+          this.navBarFile = res.data;
+        })
+        .catch((err) => {
+          if (err.message === "Request failed with status code 404") {
+            console.log(err);
+          }
+        });
     },
     imgFunc(e) {
       if (e.target.files[0]) {

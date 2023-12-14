@@ -267,27 +267,36 @@
             >
               {{ homeResoult[3]?.text }}
             </div>
-            <div class="textarea d-flex "    v-else>
+            <div class="textarea d-flex" v-else>
               <textarea
-           ref="resultTextarea"
-              class="content_title text-black"
-              type="text"
-              rows="10"
-              cols="50"
-              :value="homeResoult[3]?.text"
-            >
-            </textarea>
-            <div class="textarea_icon ">
-              <button class="btn btn-success align-self-end"  
-              @click="textareaUpdate(homeResoult[3])"
-              
+                ref="resultTextarea"
+                class="content_title text-black"
+                type="text"
+                rows="10"
+                cols="50"
+                :value="homeResoult[3]?.text"
               >
-                <svg xmlns="http://www.w3.org/2000/svg" height="16" width="14" fill="#fff" viewBox="0 0 448 512"><path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"/></svg> 
-              </button>
-           
+              </textarea>
+              <div class="textarea_icon">
+                <button
+                  class="btn btn-success align-self-end"
+                  @click="textareaUpdate(homeResoult[3])"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    height="16"
+                    width="14"
+                    fill="#fff"
+                    viewBox="0 0 448 512"
+                  >
+                    <path
+                      d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"
+                    />
+                  </svg>
+                </button>
+              </div>
             </div>
-            </div>
-    
+
             <div
               class="content_resoult"
               data-aos="fade-up"
@@ -426,7 +435,16 @@
               />
             </svg>
           </div>
-          <div class="users_content_title">foydalanuvchilar soni</div>
+          <div @click="user1()" v-if="!user.bir" class="users_content_title">
+            {{ user[1]?.text }}
+          </div>
+          <input
+            v-else
+            type="text"
+            style="width: 250px"
+            :value="user[1]?.text"
+            @change="updateHomeNavbar($event, user[1])"
+          />
         </div>
         <div class="users_bottom">
           <div
@@ -443,17 +461,37 @@
             data-aos-anchor-placement="top-bottom"
             data-aos-duration="700"
           >
-            <div class="content_title">
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsumhas been the industry's standard dummy text
-              ever since the 1500s, when an unknown printer took a galley of
-              type and scrambled it to make a type specimen book. It has
-              survived not only five centuries, but also the leap into
-              electronic typesetting, remaining essentially unchanged. It was
-              popularised in the 1960s with the release of Letraset sheets
-              containing Lorem Ipsum passages, and more recently with desktop
-              publishing software like Aldus PageMaker including versions of
-              Lorem Ipsum.
+            <div @click="user2()" v-if="!user.ikki" class="content_title">
+              {{ user[0]?.text }}
+            </div>
+            <div class="textarea d-flex" v-else>
+              <textarea
+                ref="userTextarea"
+                class="content_title text-black"
+                type="text"
+                rows="10"
+                cols="50"
+                :value="user[0]?.text"
+              >
+              </textarea>
+              <div class="textarea_icon">
+                <button
+                  class="btn btn-success align-self-end"
+                  @click="textareaUpdate1(user[0])"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    height="16"
+                    width="14"
+                    fill="#fff"
+                    viewBox="0 0 448 512"
+                  >
+                    <path
+                      d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"
+                    />
+                  </svg>
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -481,7 +519,20 @@
               />
             </svg>
           </div>
-          <div class="current_users_title">Ayni damdagi foydalanuvchilar</div>
+          <div
+            @click="swiperVideo1()"
+            v-if="!swiperVideo.bir"
+            class="current_users_title"
+          >
+            {{ swiperVideoTitle[1]?.text }}
+          </div>
+          <input
+            v-else
+            type="text"
+            style="width: 250px;"
+            :value="swiperVideoTitle[1]?.text"
+            @change="updateHomeNavbar($event, swiperVideoTitle[1])"
+          />
         </div>
         <swiper
           class="mySwiper"
@@ -547,7 +598,20 @@
                 stroke="white"
               />
             </svg>
-            <h3 class="contact_title">Ko'p beriladigan savollar</h3>
+            <h3
+              @click="swiperVideo2()"
+              v-if="!swiperVideo.ikki"
+              class="contact_title"
+            >
+              {{ swiperVideoTitle[0]?.text }}
+            </h3>
+            <input
+              v-else
+              type="text"
+              style="width: 250px;"
+              :value="swiperVideoTitle[0]?.text"
+              @change="updateHomeNavbar($event, swiperVideoTitle[0])"
+            />
           </div>
         </div>
         <div class="manual_video">
@@ -584,12 +648,7 @@ export default {
       show: true,
       isNavbarOpen: false,
       url: baseurl,
-      navBarFile: [],
-      homeBannerFile: [],
-      item_data: {
-        category_item_id: 0,
-        text: "",
-      },
+      // get uchun params
       params: {
         id: 8,
       },
@@ -599,6 +658,10 @@ export default {
       users_params: {
         id: 10,
       },
+      swiperVideo_params: {
+        id: 11,
+      },
+      // put update uchun data
       file_data: {
         source_id: 1,
       },
@@ -606,13 +669,16 @@ export default {
         file_id: 0,
         file: null,
       },
-  
       data: {
         source_id: 5,
       },
       fileData: {
         file_id: 1,
         file: 2,
+      },
+      item_data: {
+        category_item_id: 0,
+        text: "",
       },
       text: [
         {
@@ -634,9 +700,14 @@ export default {
           },
         ],
       },
-
+      // bo'lim uchun o'zgaruvchi
       homeNavbar: [],
       homeResoult: [],
+      navBarFile: [],
+      homeBannerFile: [],
+      user: [],
+      swiperVideoTitle: [],
+      // text open close
       navBar: {
         bir: false,
         ikki: false,
@@ -651,9 +722,13 @@ export default {
         tort: false,
         besh: false,
       },
-      user:{
-        bir:false,
-        ikki:false
+      user: {
+        bir: false,
+        ikki: false,
+      },
+      swiperVideo: {
+        bir: false,
+        ikki: false,
       },
     };
   },
@@ -705,6 +780,7 @@ export default {
     getNavbarFile() {
       api.file_files_source(this.data).then((res) => {
         this.navBarFile = res.data;
+        console.log(res.data);
       });
     },
     getNavbar() {
@@ -718,7 +794,6 @@ export default {
     getHomeBannerFile() {
       api.file_files_source(this.file_data).then((res) => {
         this.homeBannerFile = res?.data;
-        console.log(this.homeBannerFile);
       });
     },
     getResoult() {
@@ -726,7 +801,23 @@ export default {
         .category_one(this.result_params)
         .then((res) => {
           this.homeResoult = res.data?.category_items;
-          console.log(res.data);
+        })
+        .catch((err) => {});
+    },
+    getUser() {
+      api
+        .category_one(this.users_params)
+        .then((res) => {
+          this.user = res.data?.category_items;
+        })
+        .catch((err) => {});
+    },
+    getSwiperVideo() {
+      api
+        .category_one(this.swiperVideo_params)
+        .then((res) => {
+          this.swiperVideoTitle = res.data?.category_items;
+          console.log(swiperVideoTitle);
         })
         .catch((err) => {});
     },
@@ -811,6 +902,20 @@ export default {
       this.resuolt.tort = false;
       this.resuolt.besh = true;
     },
+    user1() {
+      (this.user.bir = true), (this.user.ikki = false);
+    },
+    user2() {
+      (this.user.bir = false), (this.user.ikki = true);
+    },
+    swiperVideo1() {
+      this.swiperVideo.bir = true;
+      this.swiperVideo.ikki = false;
+    },
+    swiperVideo2() {
+      this.swiperVideo.bir = false;
+      this.swiperVideo.ikki = true;
+    },
     // update put api
     updateHomeNavbar(event, item) {
       (this.item_data.category_item_id = item.id),
@@ -831,6 +936,10 @@ export default {
           this.resuolt.uch = false;
           this.resuolt.tort = false;
           this.resuolt.besh = false;
+          this.user.bir = false;
+          this.user.ikki = false;
+          this.swiperVideo.bir = false;
+          this.swiperVideo.ikki = false;
         })
         .catch((err) => {
           this.$util.toastError("error", "Ma'lumotni yuklab bo'lmadi");
@@ -860,6 +969,33 @@ export default {
           this.$util.toastError("error", "Ma'lumotni yuklab bo'lmadi");
         });
     },
+    textareaUpdate1(item) {
+      (this.item_data.category_item_id = item.id),
+        (this.item_data.text = this.$refs.userTextarea.value);
+      api
+        .category_item_update(this.item_data)
+        .then((res) => {
+          this.$util.toastError("success", "Amaliyot bajarildi");
+          this.getNavbar();
+          this.getResoult();
+          this.getUser();
+          this.navBar.bir = false;
+          this.navBar.ikki = false;
+          this.navBar.uch = false;
+          this.navBar.tort = false;
+          this.navBar.besh = false;
+          this.resuolt.bir = false;
+          this.resuolt.ikki = false;
+          this.resuolt.uch = false;
+          this.resuolt.tort = false;
+          this.resuolt.besh = false;
+          this.user.bir = false;
+          this.user.ikki = false;
+        })
+        .catch((err) => {
+          this.$util.toastError("error", "Ma'lumotni yuklab bo'lmadi");
+        });
+    },
     // file update
     fileUpdate(event, item) {
       this.file_update_data.file = e.target.files[0];
@@ -880,6 +1016,8 @@ export default {
     this.getNavbar();
     this.getHomeBannerFile();
     this.getResoult();
+    this.getUser();
+    this.getSwiperVideo();
   },
 };
 </script>

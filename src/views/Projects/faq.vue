@@ -77,11 +77,39 @@
 <script>
 import sidebar from "/src/components/sidebar.vue";
 import ContactBox from "../../components/contactBox.vue";
+import api from "../../server/api";
 export default {
+  data() {
+    return {
+      // get function uchun params
+      faq_params: {},
+      // o'zgaruvchi uchun 
+      faqData:[],
+      // open close uchun 
+      faq:{
+        bir:false,
+        ikki:false,
+        uch:false,
+        tort:false,
+        besh:false,
+        olti:false,
+        yetti:false,
+        sakkiz:false,
+        toqqiz:false,
+        on:false,
+        onbir:false,
+        onikki:false,
+        onuch:false,
+      }
+    };
+  },
   components: {
     sidebar,
     ContactBox,
   },
+  methods:{
+    
+  }
 };
 </script>
 <style></style>
