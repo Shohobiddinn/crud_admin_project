@@ -180,8 +180,6 @@
     </div>
 
     <div class="banner">
-      <pre class="text-white">{{ homeBannerFile  }}</pre>
-
       <div class="container-c">
         <div class="item">
           <img
@@ -198,9 +196,17 @@
             @change="imgFunc($event)"
           />
           <label class="imglabel" for="img">
-            <img id="uploadedImage" class="imgLogo" :src="logo" alt="" />
+            <img
+              v-if="url + homeBannerFile[0]?.file"
+              id="uploadedImage"
+              class="imgLogo"
+              :src="`https://picsum.photos/id/50/1920/1080 ? ${
+                url + homeBannerFile[0]?.file
+              }`"
+              alt=""
+            />
+            <img v-else src=" https://picsum.photos/id/50/1920/1080" alt="" />
           </label>
-
           <img
             data-aos="fade-up"
             data-aos-duration="700"
@@ -229,33 +235,59 @@
       </div>
     </div>
     <div id="dastur" class="resoult">
+      <!-- <pre class="text-white">{{ homeResoult }}</pre> -->
+
       <div class="container-c">
         <div
           class="resoult_title"
           data-aos="fade-up"
           data-aos-anchor-placement="top-bottom"
           data-aos-duration="700"
+          @click="resoult1()"
+          v-if="!resuolt.bir"
         >
-          Savdo hozmaglar <span>uchun</span>
+          {{ homeResoult[4]?.text }}
         </div>
+        <input
+          v-else
+          type="text"
+          class="w-100 resoult_title"
+          :value="homeResoult[4]?.text"
+          @change="updateHomeNavbar($event, homeResoult[4])"
+        />
         <div class="resoult_bottom">
           <div class="content">
             <div
+              @click="resoult2()"
+              v-if="!resuolt.ikki"
               class="content_title"
               data-aos="fade-up"
               data-aos-anchor-placement="top-bottom"
               data-aos-duration="700"
             >
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
-              ever since the 1500s, when an unknown printer took a galley of
-              type and scrambled it to make a type specimen book. It has
-              survived not only five centuries, but also the leap into
-              electronic typesetting, remaining essentially unchanged. It was
-              popularised in the 1960s with the release of Letraset sheets
-              containing Lorem Ipsum passages, and more recently with desktop
-              publishing software like Aldus PageMaker including versions of
+              {{ homeResoult[3]?.text }}
             </div>
+            <div class="textarea d-flex "    v-else>
+              <textarea
+           ref="resultTextarea"
+              class="content_title text-black"
+              type="text"
+              rows="10"
+              cols="50"
+              :value="homeResoult[3]?.text"
+            >
+            </textarea>
+            <div class="textarea_icon ">
+              <button class="btn btn-success align-self-end"  
+              @click="textareaUpdate(homeResoult[3])"
+              
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" height="16" width="14" fill="#fff" viewBox="0 0 448 512"><path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"/></svg> 
+              </button>
+           
+            </div>
+            </div>
+    
             <div
               class="content_resoult"
               data-aos="fade-up"
@@ -278,7 +310,16 @@
                   </svg>
                   <div class="item_icon_title">81%</div>
                 </div>
-                <div class="item_title">Ishingizni tezlashadi</div>
+                <div @click="resoult3()" v-if="!resuolt.uch" class="item_title">
+                  {{ homeResoult[2]?.text }}
+                </div>
+                <input
+                  v-else
+                  class="item_title"
+                  type="text"
+                  :value="homeResoult[2]?.text"
+                  @change="updateHomeNavbar($event, homeResoult[2])"
+                />
               </div>
               <div class="item">
                 <div class="item_icon">
@@ -296,7 +337,20 @@
                   </svg>
                   <div class="item_icon_title">78%</div>
                 </div>
-                <div class="item_title">Ishingizni tezlashadi</div>
+                <div
+                  @click="resoult4()"
+                  v-if="!resuolt.tort"
+                  class="item_title"
+                >
+                  {{ homeResoult[1]?.text }}
+                </div>
+                <input
+                  v-else
+                  class="item_title"
+                  type="text"
+                  :value="homeResoult[1]?.text"
+                  @change="updateHomeNavbar($event, homeResoult[1])"
+                />
               </div>
               <div class="item">
                 <div class="item_icon">
@@ -314,7 +368,20 @@
                   </svg>
                   <div class="item_icon_title">63%</div>
                 </div>
-                <div class="item_title">Ishingizni tezlashadi</div>
+                <div
+                  @click="resoult5()"
+                  v-if="!resuolt.besh"
+                  class="item_title"
+                >
+                  {{ homeResoult[0]?.text }}
+                </div>
+                <input
+                  v-else
+                  class="item_title"
+                  type="text"
+                  :value="homeResoult[0]?.text"
+                  @change="updateHomeNavbar($event, homeResoult[0])"
+                />
               </div>
             </div>
           </div>
@@ -523,6 +590,23 @@ export default {
         category_item_id: 0,
         text: "",
       },
+      params: {
+        id: 8,
+      },
+      result_params: {
+        id: 9,
+      },
+      users_params: {
+        id: 10,
+      },
+      file_data: {
+        source_id: 1,
+      },
+      file_update_data: {
+        file_id: 0,
+        file: null,
+      },
+  
       data: {
         source_id: 5,
       },
@@ -550,19 +634,26 @@ export default {
           },
         ],
       },
-      params: {
-        id: 8,
-      },
-      file_data: {
-        source_id: 1,
-      },
+
       homeNavbar: [],
+      homeResoult: [],
       navBar: {
         bir: false,
         ikki: false,
         uch: false,
         tort: false,
         besh: false,
+      },
+      resuolt: {
+        bir: false,
+        ikki: false,
+        uch: false,
+        tort: false,
+        besh: false,
+      },
+      user:{
+        bir:false,
+        ikki:false
       },
     };
   },
@@ -621,7 +712,6 @@ export default {
         .category_one(this.params)
         .then((res) => {
           this.homeNavbar = res.data?.category_items;
-          console.log(res.data);
         })
         .catch((err) => {});
     },
@@ -630,6 +720,15 @@ export default {
         this.homeBannerFile = res?.data;
         console.log(this.homeBannerFile);
       });
+    },
+    getResoult() {
+      api
+        .category_one(this.result_params)
+        .then((res) => {
+          this.homeResoult = res.data?.category_items;
+          console.log(res.data);
+        })
+        .catch((err) => {});
     },
     // input open close
     navBar1() {
@@ -677,6 +776,41 @@ export default {
         this.navBar.besh = true;
       }, 1000);
     },
+    resoult1() {
+      this.resuolt.bir = true;
+      this.resuolt.ikki = false;
+      this.resuolt.uch = false;
+      this.resuolt.tort = false;
+      this.resuolt.besh = false;
+    },
+    resoult2() {
+      this.resuolt.bir = false;
+      this.resuolt.ikki = true;
+      this.resuolt.uch = false;
+      this.resuolt.tort = false;
+      this.resuolt.besh = false;
+    },
+    resoult3() {
+      this.resuolt.bir = false;
+      this.resuolt.ikki = false;
+      this.resuolt.uch = true;
+      this.resuolt.tort = false;
+      this.resuolt.besh = false;
+    },
+    resoult4() {
+      this.resuolt.bir = false;
+      this.resuolt.ikki = false;
+      this.resuolt.uch = false;
+      this.resuolt.tort = true;
+      this.resuolt.besh = false;
+    },
+    resoult5() {
+      this.resuolt.bir = false;
+      this.resuolt.ikki = false;
+      this.resuolt.uch = false;
+      this.resuolt.tort = false;
+      this.resuolt.besh = true;
+    },
     // update put api
     updateHomeNavbar(event, item) {
       (this.item_data.category_item_id = item.id),
@@ -686,13 +820,56 @@ export default {
         .then((res) => {
           this.$util.toastError("success", "Amaliyot bajarildi");
           this.getNavbar();
+          this.getResoult();
           this.navBar.bir = false;
           this.navBar.ikki = false;
           this.navBar.uch = false;
           this.navBar.tort = false;
           this.navBar.besh = false;
+          this.resuolt.bir = false;
+          this.resuolt.ikki = false;
+          this.resuolt.uch = false;
+          this.resuolt.tort = false;
+          this.resuolt.besh = false;
         })
         .catch((err) => {
+          this.$util.toastError("error", "Ma'lumotni yuklab bo'lmadi");
+        });
+    },
+    textareaUpdate(item) {
+      (this.item_data.category_item_id = item.id),
+        (this.item_data.text = this.$refs.resultTextarea.value);
+      api
+        .category_item_update(this.item_data)
+        .then((res) => {
+          this.$util.toastError("success", "Amaliyot bajarildi");
+          this.getNavbar();
+          this.getResoult();
+          this.navBar.bir = false;
+          this.navBar.ikki = false;
+          this.navBar.uch = false;
+          this.navBar.tort = false;
+          this.navBar.besh = false;
+          this.resuolt.bir = false;
+          this.resuolt.ikki = false;
+          this.resuolt.uch = false;
+          this.resuolt.tort = false;
+          this.resuolt.besh = false;
+        })
+        .catch((err) => {
+          this.$util.toastError("error", "Ma'lumotni yuklab bo'lmadi");
+        });
+    },
+    // file update
+    fileUpdate(event, item) {
+      this.file_update_data.file = e.target.files[0];
+      this.file_update_data.file_id = 1;
+      api
+        .file_update_id(this.file_update_data)
+        .then((res) => {
+          this.$util.toastError("success", "Amaliyot bajarildi");
+        })
+        .catch((error) => {
           this.$util.toastError("error", "Ma'lumotni yuklab bo'lmadi");
         });
     },
@@ -702,6 +879,7 @@ export default {
     this.getNavbarFile();
     this.getNavbar();
     this.getHomeBannerFile();
+    this.getResoult();
   },
 };
 </script>
