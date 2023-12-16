@@ -5,15 +5,23 @@
         <sidebar />
         <div class="title-box">
           <img src="/src/assets/images/slash.svg" alt="" />
-          <h3 @click="faq1()" v-if="!faq.bir" class="contact_title">{{ faqData[0]?.text }}</h3>
-          <input v-else type="text" style="width: 250px;  " :value="faqData[0]?.text" @change="putCategory($event,faqData[0])">
+          <h3 @click="faq13()" v-if="!faq.onuch" class="contact_title">
+            {{ faqData[0]?.text }}
+          </h3>
+          <input
+            v-else
+            type="text"
+            style="width: 250px"
+            :value="faqData[0]?.text"
+            @change="putCategory($event, faqData[0])"
+          />
         </div>
         <div class="faq_box">
           <div class="faq_item item1">
-            <p class="faq_question">
-              Dastur bitsayu uni qanday ishga tushirman ?
+            <p @click="faq1()" class="faq_question" v-if="!faq.bir">
+              {{ faqData[12]?.text }}
             </p>
-            <div class="textarea d-flex">
+            <div v-else class="textarea d-flex">
               <textarea
                 ref="faqTextarea1"
                 class="content_title text-black"
@@ -21,13 +29,12 @@
                 rows="10"
                 cols="50"
                 :value="faqData[12]?.text"
-                onchange="alert('You just changed the textarea.')"
               >
               </textarea>
               <div class="textarea_icon">
                 <button
                   class="btn btn-success align-self-end"
-                  @click="textareaUpdate(homeResoult[3])"
+                  @click="putTextarea($refs.faqTextarea1, faqData[12])"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -43,24 +50,23 @@
                 </button>
               </div>
             </div>
-            <p class="faq_answer">
-              Dasturni ishga tushirish uchun maxsus hodim biriktiriladi
+            <p @click="faq2()" v-if="!faq.ikki" class="faq_answer">
+              {{ faqData[11]?.text }}
             </p>
-            <div class="textarea d-flex">
+            <div v-else class="textarea d-flex">
               <textarea
-                ref="resultTextarea"
+                ref="resultTextarea2"
                 class="content_title text-black"
                 type="text"
                 rows="10"
                 cols="50"
                 :value="faqData[11]?.text"
-                onchange="alert('You just changed the textarea.')"
               >
               </textarea>
               <div class="textarea_icon">
                 <button
                   class="btn btn-success align-self-end"
-                  @click="textareaUpdate(homeResoult[3])"
+                  @click="putTextarea($refs.resultTextarea2, faqData[11])"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -78,25 +84,23 @@
             </div>
           </div>
           <div class="faq_item item2">
-            <p class="faq_question">
-              Dastur ishga tushdi, qabul qilib oldik malum vaqtdan keyin
-              ishlamay qoldi! Endi nima bo'ladi ?
+            <p @click="faq3()" v-if="!faq.uch" class="faq_question">
+              {{ faqData[10]?.text }}
             </p>
-                  <div class="textarea d-flex">
+            <div v-else class="textarea d-flex">
               <textarea
-                ref="resultTextarea"
+                ref="resultTextarea3"
                 class="content_title text-black"
                 type="text"
                 rows="10"
                 cols="50"
-                :value="faqData[12]?.text"
-                onchange="alert('You just changed the textarea.')"
+                :value="faqData[10]?.text"
               >
               </textarea>
               <div class="textarea_icon">
                 <button
                   class="btn btn-success align-self-end"
-                  @click="textareaUpdate(homeResoult[3])"
+                  @click="putTextarea($refs.resultTextarea3, faqData[10])"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -112,27 +116,23 @@
                 </button>
               </div>
             </div>
-            <p class="faq_answer">
-              Dastur ichida ,,foydalanish video instruksiyasi'' mavjud bo'lib u
-              yerda video qo'llanma orqali boshlang'ich ko'nikmalarni olishi
-              mumkin. Telegramdagi yopiq guruh orqali tushunmagan narsalarini
-              so'rashlari mumkin!
+            <p @click="faq4()" v-if="!faq.tort" class="faq_answer">
+              {{ faqData[9]?.text }}
             </p>
-                  <div class="textarea d-flex">
+            <div v-else class="textarea d-flex">
               <textarea
-                ref="resultTextarea"
+                ref="resultTextarea4"
                 class="content_title text-black"
                 type="text"
                 rows="10"
                 cols="50"
-                :value="faqData[12]?.text"
-                onchange="alert('You just changed the textarea.')"
+                :value="faqData[9]?.text"
               >
               </textarea>
               <div class="textarea_icon">
                 <button
                   class="btn btn-success align-self-end"
-                  @click="textareaUpdate(homeResoult[3])"
+                  @click="putTextarea($refs.resultTextarea4, faqData[9])"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -150,26 +150,23 @@
             </div>
           </div>
           <div class="faq_item item3">
-            <p class="faq_question">
-              Dastur ishga tushdi, xodimlarimda o'zgarish bo'ldi, boshqa
-              bo'limga o'tdi, ishdan ketdi va h.k O'rniga boshqa xodim keldi, u
-              hali dasturdan foydalanishni bilmaydi! Endi nima bo'ladi?
+            <p @click="faq5()" v-if="!faq.besh" class="faq_question">
+              {{ faqData[8]?.text }}
             </p>
-                  <div class="textarea d-flex">
+            <div v-else class="textarea d-flex">
               <textarea
-                ref="resultTextarea"
+                ref="resultTextarea5"
                 class="content_title text-black"
                 type="text"
                 rows="10"
                 cols="50"
-                :value="faqData[12]?.text"
-                onchange="alert('You just changed the textarea.')"
+                :value="faqData[8]?.text"
               >
               </textarea>
               <div class="textarea_icon">
                 <button
                   class="btn btn-success align-self-end"
-                  @click="textareaUpdate(homeResoult[3])"
+                  @click="putTextarea($refs.resultTextarea5, faqData[8])"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -185,27 +182,23 @@
                 </button>
               </div>
             </div>
-            <p class="faq_answer">
-              Dastur ichida ,,foydalanish video instruksiyasi'' mavjud bo'lib u
-              yerda video qo'llanma orqali boshlang'ich ko'nikmalarni olishi
-              mumkin. Telegramdagi yopiq guruh orqali tushunmagan narsalarini
-              so'rashlari mumkin!
+            <p @click="faq6()" v-if="!faq.olti" class="faq_answer">
+              {{ faqData[7]?.text }}
             </p>
-                  <div class="textarea d-flex">
+            <div v-else class="textarea d-flex">
               <textarea
-                ref="resultTextarea"
+                ref="resultTextarea6"
                 class="content_title text-black"
                 type="text"
                 rows="10"
                 cols="50"
-                :value="faqData[12]?.text"
-                onchange="alert('You just changed the textarea.')"
+                :value="faqData[7]?.text"
               >
               </textarea>
               <div class="textarea_icon">
                 <button
                   class="btn btn-success align-self-end"
-                  @click="textareaUpdate(homeResoult[3])"
+                  @click="putTextarea($refs.resultTextarea6, faqData[7])"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -223,24 +216,23 @@
             </div>
           </div>
           <div class="faq_item item4">
-            <p class="faq_question">
-              Agar to'lov qilsam dastur ishlamasa nima bo'ladi?
+            <p @click="faq7()" v-if="!faq.yetti" class="faq_question">
+              {{ faqData[6]?.text }}
             </p>
-                  <div class="textarea d-flex">
+            <div v-else class="textarea d-flex">
               <textarea
-                ref="resultTextarea"
+                ref="resultTextarea7"
                 class="content_title text-black"
                 type="text"
                 rows="10"
                 cols="50"
-                :value="faqData[12]?.text"
-                onchange="alert('You just changed the textarea.')"
+                :value="faqData[6]?.text"
               >
               </textarea>
               <div class="textarea_icon">
                 <button
                   class="btn btn-success align-self-end"
-                  @click="textareaUpdate(homeResoult[3])"
+                  @click="putCategory($refs.resultTextarea7, faqData[6])"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -256,22 +248,23 @@
                 </button>
               </div>
             </div>
-            <p class="faq_answer">Olingan to'lovni 100% qaytarib beramiz</p>
-                  <div class="textarea d-flex">
+            <p @click="faq8()" v-if="!faq.sakkiz" class="faq_answer">
+              {{ faqData[5]?.text }}
+            </p>
+            <div v-else class="textarea d-flex">
               <textarea
-                ref="resultTextarea"
+                ref="resultTextarea8"
                 class="content_title text-black"
                 type="text"
                 rows="10"
                 cols="50"
-                :value="faqData[12]?.text"
-                onchange="alert('You just changed the textarea.')"
+                :value="faqData[5]?.text"
               >
               </textarea>
               <div class="textarea_icon">
                 <button
                   class="btn btn-success align-self-end"
-                  @click="textareaUpdate(homeResoult[3])"
+                  @click="putTextarea($refs.resultTextarea8, faqData[5])"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -289,25 +282,23 @@
             </div>
           </div>
           <div class="faq_item item5">
-            <p class="faq_question">
-              Dastur ishga tushdi, qabul qilib oldik malum vaqtdan keyin
-              ishlamay qoldi! Endi nima bo'ladi ?
+            <p @click="faq9()" v-if="!faq.toqqiz" class="faq_question">
+              {{ faqData[4]?.text }}
             </p>
-                  <div class="textarea d-flex">
+            <div v-else class="textarea d-flex">
               <textarea
-                ref="resultTextarea"
+                ref="resultTextarea9"
                 class="content_title text-black"
                 type="text"
                 rows="10"
                 cols="50"
-                :value="faqData[12]?.text"
-                onchange="alert('You just changed the textarea.')"
+                :value="faqData[4]?.text"
               >
               </textarea>
               <div class="textarea_icon">
                 <button
                   class="btn btn-success align-self-end"
-                  @click="textareaUpdate(homeResoult[3])"
+                  @click="putTextarea($refs.resultTextarea9, faqData[3])"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -323,27 +314,23 @@
                 </button>
               </div>
             </div>
-            <p class="faq_answer">
-              Dastur ichida ,,foydalanish video instruksiyasi'' mavjud bo'lib u
-              yerda video qo'llanma orqali boshlang'ich ko'nikmalarni olishi
-              mumkin. Telegramdagi yopiq guruh orqali tushunmagan narsalarini
-              so'rashlari mumkin!
+            <p @click="faq10()" v-if="!faq.on" class="faq_answer">
+              {{ faqData[3]?.text }}
             </p>
-                  <div class="textarea d-flex">
+            <div v-else class="textarea d-flex">
               <textarea
-                ref="resultTextarea"
+                ref="resultTextarea10"
                 class="content_title text-black"
                 type="text"
                 rows="10"
                 cols="50"
-                :value="faqData[12]?.text"
-                onchange="alert('You just changed the textarea.')"
+                :value="faqData[3]?.text"
               >
               </textarea>
               <div class="textarea_icon">
                 <button
                   class="btn btn-success align-self-end"
-                  @click="textareaUpdate(homeResoult[3])"
+                  @click="textareaUpdate($refs.resultTextarea10, faqData[3])"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -361,24 +348,23 @@
             </div>
           </div>
           <div class="faq_item item6">
-            <p class="faq_question">
-              Bularning barchasini menga kim kafolatlaydi?
+            <p @click="faq11()" v-if="!faq.onbir" class="faq_question">
+            {{faqData[2]?.text}}
             </p>
-                  <div class="textarea d-flex">
+            <div v-else class="textarea d-flex">
               <textarea
-                ref="resultTextarea"
+                ref="resultTextarea11"
                 class="content_title text-black"
                 type="text"
                 rows="10"
                 cols="50"
-                :value="faqData[12]?.text"
-                onchange="alert('You just changed the textarea.')"
+                :value="faqData[2]?.text"
               >
               </textarea>
               <div class="textarea_icon">
                 <button
                   class="btn btn-success align-self-end"
-                  @click="textareaUpdate(homeResoult[3])"
+                  @click="putTextarea($refs.resultTextarea11,faqData[2])"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -394,25 +380,23 @@
                 </button>
               </div>
             </div>
-            <p class="faq_answer">
-              Korxonangiz va bizning ,,CRUD Developer 'MChJ lar tuzgan
-              shartnomaga asosan O'zbekiston Respublikasi qonunchiligi !'
+            <p @click="faq12()" v-if="!faq.onikki" class="faq_answer">
+             {{ faqData[1]?.text}}
             </p>
-                  <div class="textarea d-flex">
+            <div v-else class="textarea d-flex">
               <textarea
-                ref="resultTextarea"
+                ref="resultTextarea12"
                 class="content_title text-black"
                 type="text"
                 rows="10"
                 cols="50"
-                :value="faqData[12]?.text"
-                onchange="alert('You just changed the textarea.')"
+                :value="faqData[1]?.text"
               >
               </textarea>
               <div class="textarea_icon">
                 <button
                   class="btn btn-success align-self-end"
-                  @click="textareaUpdate(homeResoult[3])"
+                  @click="textareaUpdate($refs.resultTextarea12,faqData[3])"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -483,7 +467,6 @@ export default {
         .category_one(this.faq_params)
         .then((res) => {
           this.faqData = res.data.category_items;
-          console.log(res.data);
         })
         .catch((err) => {});
     },
@@ -716,8 +699,47 @@ export default {
       api
         .category_item_update(this.item_data)
         .then((res) => {
+          this.getFaq();
           this.$util.toastError("success", "Amaliyot bajarildi");
-          
+          this.faq.bir = false;
+          this.faq.ikki = false;
+          this.faq.uch = false;
+          this.faq.tort = false;
+          this.faq.besh = false;
+          this.faq.olti = false;
+          this.faq.yetti = false;
+          this.faq.sakkiz = false;
+          this.faq.toqqiz = false;
+          this.faq.on = false;
+          this.faq.onbir = false;
+          this.faq.onikki = false;
+          this.faq.onuch = false;
+        })
+        .catch((err) => {
+          this.$util.toastError("error", "Ma'lumotni yuklab bo'lmadi");
+        });
+    },
+    putTextarea(event, item) {
+      (this.item_data.category_item_id = item.id),
+        (this.item_data.text = event.value);
+      api
+        .category_item_update(this.item_data)
+        .then((res) => {
+          this.getFaq();
+          this.$util.toastError("success", "Amaliyot bajarildi");
+          this.faq.bir = false;
+          this.faq.ikki = false;
+          this.faq.uch = false;
+          this.faq.tort = false;
+          this.faq.besh = false;
+          this.faq.olti = false;
+          this.faq.yetti = false;
+          this.faq.sakkiz = false;
+          this.faq.toqqiz = false;
+          this.faq.on = false;
+          this.faq.onbir = false;
+          this.faq.onikki = false;
+          this.faq.onuch = false;
         })
         .catch((err) => {
           this.$util.toastError("error", "Ma'lumotni yuklab bo'lmadi");
