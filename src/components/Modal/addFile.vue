@@ -9,11 +9,12 @@ export default {
     return {
       status: "file_add",
       fileData: {
-        id: 0,
+        file_id: 0,
         source_id: "",
         comment: "",
         file: null,
       },
+      files: null,
     };
   },
   computed: {},
@@ -21,15 +22,16 @@ export default {
     open(file) {
       if (this.status == "file_edit") {
         this.fileData = {
-          id: file.id,
+          file_id: file.id,
           source_id: file.source_id,
           comment: file.comment,
           file: file.file,
         };
+        this.files = file;
         this.$refs.addFileModal.openModal();
       } else {
         this.fileData = {
-          id: 0,
+          file_id: 0,
           source_id: "",
           comment: "",
           file: null,
@@ -101,7 +103,10 @@ export default {
           <label class="col-12">
             file
             <div class="input-group d-flex align-items-center">
-              <input required type="file" @change="fileData.file = $event.target.files[0]" />
+              <input required
+                type="file"
+                @change="fileData.file = $event.target.files[0]"
+              />
             </div>
           </label>
         </form>

@@ -31,7 +31,6 @@
         <li class="navigate_item">
           <input
             class="d-none"
-            ref="logoRef"
             id="img"
             type="file"
             @change="imgFunc($event)"
@@ -182,60 +181,80 @@
     <div class="banner">
       <div class="container-c">
         <div class="item">
-          <img
-            data-aos="fade-up"
-            data-aos-duration="600"
-            src="https://picsum.photos/id/35/1920/1080"
-            alt="photo"
-          />
           <input
             class="d-none"
-            ref="logoRef"
-            id="img"
+            id="banner1"
             type="file"
-            @change="imgFunc($event)"
+            @change="fileUpdate($event,homeBannerFile[0])"
           />
-          <!-- <label class="imglabel" for="img">
+          <label class="imglabel" for="banner1">
             <img
-              v-if="url + homeBannerFile[0]?.file"
-              id="uploadedImage"
               class="imgLogo"
-              :src="`https://picsum.photos/id/50/1920/1080 ? ${
-                url + homeBannerFile[0]?.file
-              }`"
+              :src="url + homeBannerFile[0]?.file"
               alt=""
             />
-            <img v-else src=" https://picsum.photos/id/50/1920/1080" alt="" />
-          </label> -->
-          <img
-            data-aos="fade-up"
-            data-aos-duration="700"
-            src="https://picsum.photos/id/36/1920/1080"
-            alt="photo"
+          </label>
+          <input
+            class="d-none"
+            id="banner2"
+            type="file"
+            @change="fileUpdate($event,homeBannerFile[1])"
           />
+          <label class="imglabel" for="banner2">
+            <img
+              class="imgLogo"
+              :src="url + homeBannerFile[1]?.file"
+              alt=""
+            />
+          </label>
         </div>
         <div class="item item1" data-aos="fade-down" data-aos-duration="700">
-          <img src="https://picsum.photos/id/37/1920/1080" alt="photo" />
+          <input
+            class="d-none"
+            id="banner3"
+            type="file"
+            @change="fileUpdate($event,homeBannerFile[2])"
+          />
+          <label class="imglabel" for="banner3">
+            <img
+              class="imgLogo"
+              :src="url + homeBannerFile[2]?.file"
+              alt=""
+            />
+          </label>
         </div>
         <div class="item">
-          <img
-            data-aos="fade-up"
-            data-aos-duration="600"
-            src="https://picsum.photos/id/38/1920/1080"
-            alt="photo"
+          <input
+            class="d-none"
+            id="banner4"
+            type="file"
+            @change="fileUpdate($event,homeBannerFile[3])"
           />
+          <label class="imglabel" for="banner4">
+            <img
+              class="imgLogo"
+              :src="url + homeBannerFile[3]?.file"
+              alt=""
+            />
+          </label>
 
-          <img
-            data-aos="fade-up"
-            data-aos-duration="700"
-            src="https://picsum.photos/id/39/1920/1080"
-            alt="photo"
+          <input
+            class="d-none"
+            id="banner5"
+            type="file"
+            @change="fileUpdate($event,homeBannerFile[4])"
           />
+          <label class="imglabel" for="banner5">
+            <img
+              class="imgLogo"
+              :src="url + homeBannerFile[4]?.file"
+              alt=""
+            />
+          </label>
         </div>
       </div>
     </div>
     <div id="dastur" class="resoult">
-
       <div class="container-c">
         <div
           class="resoult_title"
@@ -528,7 +547,7 @@
           <input
             v-else
             type="text"
-            style="width: 250px;"
+            style="width: 250px"
             :value="swiperVideoTitle[1]?.text"
             @change="updateHomeNavbar($event, swiperVideoTitle[1])"
           />
@@ -607,7 +626,7 @@
             <input
               v-else
               type="text"
-              style="width: 250px;"
+              style="width: 250px"
               :value="swiperVideoTitle[0]?.text"
               @change="updateHomeNavbar($event, swiperVideoTitle[0])"
             />
@@ -779,7 +798,6 @@ export default {
     getNavbarFile() {
       api.file_files_source(this.data).then((res) => {
         this.navBarFile = res.data;
-        console.log(res.data);
       });
     },
     getNavbar() {
@@ -816,7 +834,6 @@ export default {
         .category_one(this.swiperVideo_params)
         .then((res) => {
           this.swiperVideoTitle = res.data?.category_items;
-          console.log(swiperVideoTitle);
         })
         .catch((err) => {});
     },
@@ -996,9 +1013,11 @@ export default {
         });
     },
     // file update
-    fileUpdate(event, item) {
-      this.file_update_data.file = e.target.files[0];
-      this.file_update_data.file_id = 1;
+    fileUpdate(event,item) {
+      this.file_update_data = {
+        file_id:item.id,
+        file:event.target.files[0]
+      }
       api
         .file_update_id(this.file_update_data)
         .then((res) => {
@@ -1007,6 +1026,7 @@ export default {
         .catch((error) => {
           this.$util.toastError("error", "Ma'lumotni yuklab bo'lmadi");
         });
+      console.log(this.file_update_data);
     },
   },
   created() {

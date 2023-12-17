@@ -85,6 +85,6 @@ export default {
         return server(`file/files_by_id`, "post", util.formData(data))
     },
     file_update_id(data) {
-        return server(`file/update_file_by_id`, "put",  util.formData(data))
+        return server(`file/update_file_by_id`, "put",util.formData(data))
     },
 };

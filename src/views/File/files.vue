@@ -1,7 +1,7 @@
 <template>
   <!-- <pre > {{ fileData }}</pre> -->
   <div>
-    <addFile @end="get()" ref="file" />
+    <addFile @end="getFile()" ref="file" />
     <Delete @end="end" ref="delete" />
     <div class="hodimlar">
       <div class="hodimlar_content">
