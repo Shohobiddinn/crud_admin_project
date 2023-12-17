@@ -1026,7 +1026,6 @@ export default {
         .catch((error) => {
           this.$util.toastError("error", "Ma'lumotni yuklab bo'lmadi");
         });
-      console.log(this.file_update_data);
     },
   },
   created() {

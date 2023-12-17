@@ -237,7 +237,6 @@ export default {
         .catch((err) => {});
     },
     end() {
-      console.log("delete");
     },
   },
   created() {

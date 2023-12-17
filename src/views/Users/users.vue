@@ -233,7 +233,6 @@ export default {
       }, 1000);
     },
     end() {
-      console.log("delete");
     },
   },
   created() {

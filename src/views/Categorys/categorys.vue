@@ -206,7 +206,7 @@
   <script>
 import api from "../../server/api";
 import Delete from "@/components/Modal/Delete.vue";
-import addCategory from "../../components/Modal/addCategory.vue";
+import addCategory from "@/components/Modal/addCategory.vue";
 import DataNotFound from "../../components/DataNotFound/DataNotFound.vue";
 export default {
   data() {
@@ -236,7 +236,6 @@ export default {
         .catch((err) => {});
     },
     end() {
-      console.log("delete");
     },
   },
   created() {

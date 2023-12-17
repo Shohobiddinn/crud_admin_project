@@ -1,5 +1,4 @@
 <template>
-  <!-- <pre > {{ fileData }}</pre> -->
   <div>
     <addFile @end="getFile()" ref="file" />
     <Delete @end="end" ref="delete" />
@@ -245,7 +244,6 @@ export default {
         .catch((err) => {});
     },
     end() {
-      console.log("delete");
     },
   },
   created() {
