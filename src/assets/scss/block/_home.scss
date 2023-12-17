@@ -35,6 +35,8 @@
   align-items: center;
   flex-direction: column;
   text-align: center;
+  margin-bottom: 150px;
+
 }
 
 .hero__title {
@@ -45,7 +47,6 @@
   opacity: 1;
   transition: transform 0.4s ease;
   color: #fff;
-
   @include media(500px) {
     font-size: 25px;
   }

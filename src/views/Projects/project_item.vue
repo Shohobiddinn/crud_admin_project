@@ -21,6 +21,22 @@
               @change="updateBanner($event, introFooter[7])"
               style="width: 90%"
             />
+            <h3
+              class="hero__title title1 text-warning"
+              v-if="!bannerTitle.sakkiz"
+              @click="bannerSakkiz()"
+            >
+              {{ introFooter[6]?.text }}
+            </h3>
+            <input
+              v-else
+              type="text"
+              cols="30"
+              rows="4"
+              :value="introFooter[6]?.text"
+              @change="updateBanner($event, introFooter[6])"
+              style="width: 90%"
+            />
           </div>
         </div>
       </div>
@@ -349,7 +365,7 @@
               />
             </div>
       </div>
-      <div class="intro">
+      <div class="intro bottom-0">
         <div class="container">
           <div class="intro_top">
             <div class="intro_top_title">
@@ -733,6 +749,7 @@ export default {
         besh: false,
         olti: false,
         yetti: false,
+        sakkiz:false,
       },
       banner_data: {
         category_item_id: 0,
@@ -765,6 +782,9 @@ export default {
         this.bannerTitle.besh = false;
         this.bannerTitle.olti = false;
         this.bannerTitle.yetti = false;
+        this.bannerTitle.sakkiz = false;
+
+        
       }, 1000);
     },
     bannerIkki() {
@@ -776,6 +796,8 @@ export default {
         this.bannerTitle.besh = false;
         this.bannerTitle.olti = false;
         this.bannerTitle.yetti = false;
+        this.bannerTitle.sakkiz = false;
+
       }, 1000);
     },
     bannerUch() {
@@ -787,6 +809,8 @@ export default {
         this.bannerTitle.besh = false;
         this.bannerTitle.olti = false;
         this.bannerTitle.yetti = false;
+        this.bannerTitle.sakkiz = false;
+
       }, 1000);
     },
     bannerTort() {
@@ -798,6 +822,8 @@ export default {
         this.bannerTitle.besh = false;
         this.bannerTitle.olti = false;
         this.bannerTitle.yetti = false;
+        this.bannerTitle.sakkiz = false;
+
       }, 1000);
     },
     bannerBesh() {
@@ -809,6 +835,8 @@ export default {
         this.bannerTitle.besh = true;
         this.bannerTitle.olti = false;
         this.bannerTitle.yetti = false;
+        this.bannerTitle.sakkiz = false;
+
       }, 1000);
     },
     bannerOlti() {
@@ -820,6 +848,8 @@ export default {
         this.bannerTitle.besh = false;
         this.bannerTitle.olti = true;
         this.bannerTitle.yetti = false;
+        this.bannerTitle.sakkiz = false;
+
       }, 1000);
     },
     bannerYetti() {
@@ -831,6 +861,21 @@ export default {
         this.bannerTitle.besh = false;
         this.bannerTitle.olti = false;
         this.bannerTitle.yetti = true;
+        this.bannerTitle.sakkiz = false;
+
+      }, 1000);
+    },
+    bannerSakkiz() {
+      setTimeout(() => {
+        this.bannerTitle.bir = false;
+        this.bannerTitle.ikki = false;
+        this.bannerTitle.uch = false;
+        this.bannerTitle.tort = false;
+        this.bannerTitle.besh = false;
+        this.bannerTitle.olti = false;
+        this.bannerTitle.yetti = false;
+        this.bannerTitle.sakkiz = true;
+
       }, 1000);
     },
     // banner title update put
@@ -849,6 +894,7 @@ export default {
           this.bannerTitle.besh = false;
           this.bannerTitle.olti = false;
           this.bannerTitle.yetti = false;
+          this.bannerTitle.sakkiz = false;
         })
         .catch((err) => {
           this.$util.toastError("error", "Ma'lumotni yuklab bo'lmadi");
