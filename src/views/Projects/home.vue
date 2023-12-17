@@ -195,7 +195,7 @@
             type="file"
             @change="imgFunc($event)"
           />
-          <label class="imglabel" for="img">
+          <!-- <label class="imglabel" for="img">
             <img
               v-if="url + homeBannerFile[0]?.file"
               id="uploadedImage"
@@ -206,7 +206,7 @@
               alt=""
             />
             <img v-else src=" https://picsum.photos/id/50/1920/1080" alt="" />
-          </label>
+          </label> -->
           <img
             data-aos="fade-up"
             data-aos-duration="700"
