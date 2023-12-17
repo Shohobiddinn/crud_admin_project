@@ -76,13 +76,13 @@ export default {
     },
     // files api
     file_add(data) {
-        return server(`file/add`, "post", data)
+        return server(`file/add`, "post", util.formData(data))
     },
     file_files_source(data) {
-        return server(`file/files_by_source_id`, "post", data)
+        return server(`file/files_by_source_id`, "post", (data))
     },
     file_files_id(data) {
-        return server(`file/files_by_id`, "post", data)
+        return server(`file/files_by_id`, "post", util.formData(data))
     },
     file_update_id(data) {
         return server(`file/update_file_by_id`, "put",  util.formData(data))
