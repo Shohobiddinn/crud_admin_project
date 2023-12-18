@@ -66,7 +66,7 @@
                 <th scope="col" class="border col-1">ID</th>
                 <th scope="col" class="border">File</th>
                 <th scope="col" class="border">Haqida</th>
-                <th scope="col" class="border" style="width: 250px">
+                <th scope="col" class="border" style="width: 180px">
                   Boshqaruv
                 </th>
               </tr>
@@ -83,8 +83,7 @@
                   >
                     <div
                       @click="
-                        ($refs.file.status = 'file_edit'),
-                          $refs.file.open(item)
+                        ($refs.file.status = 'file_edit'), $refs.file.open(item)
                       "
                       class="card_content_btn text-bg-warning text-uppercase btn"
                     >
@@ -243,8 +242,7 @@ export default {
         })
         .catch((err) => {});
     },
-    end() {
-    },
+    end() {},
   },
   created() {
     this.getFile();

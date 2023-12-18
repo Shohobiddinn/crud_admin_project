@@ -12,7 +12,8 @@ export default {
         file_id: 0,
         source_id: "",
         comment: "",
-        file: null,
+        source: "",
+        file: [],
       },
       files: null,
     };
@@ -25,6 +26,7 @@ export default {
           file_id: file.id,
           source_id: file.source_id,
           comment: file.comment,
+          source: file.source,
           file: file.file,
         };
         this.files = file;
@@ -33,8 +35,9 @@ export default {
         this.fileData = {
           file_id: 0,
           source_id: "",
+          source: "",
           comment: "",
-          file: null,
+          file: [],
         };
         this.$refs.addFileModal.openModal();
       }
@@ -42,7 +45,6 @@ export default {
 
     inputData(event) {
       this.fileData.file = event.target.files[0];
-      console.log(this.fileData.file);
     },
     postCategory() {
       if (this.status == "file_add") {
@@ -91,6 +93,19 @@ export default {
           </label>
 
           <label class="col-12">
+            source
+            <div class="input-group d-flex align-items-center">
+              <input
+                type="text"
+                class="form-control"
+                required
+                autocomplete="on"
+                v-model="fileData.source"
+              />
+            </div>
+          </label>
+
+          <label class="col-12">
             file haqida
             <div class="input-group d-flex align-items-center">
               <textarea
@@ -103,7 +118,8 @@ export default {
           <label class="col-12">
             file
             <div class="input-group d-flex align-items-center">
-              <input required
+              <input
+                required
                 type="file"
                 @change="fileData.file = $event.target.files[0]"
               />
