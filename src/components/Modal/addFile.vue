@@ -111,11 +111,12 @@ export default {
               <textarea
                 cols="30"
                 rows="10"
+                required
                 v-model="fileData.comment"
               ></textarea>
             </div>
           </label>
-          <label class="col-12">
+          <label class="col-12 ">
             file
             <div class="input-group d-flex align-items-center">
               <input
@@ -129,7 +130,7 @@ export default {
       </div>
     </template>
     <template #footer>
-      <div class="d-flex justify-content-center">
+      <div class="d-flex justify-content-center ">
         <button
           class="btn btn-success text-capitalize tahrirlash_btn"
           form="submit"
