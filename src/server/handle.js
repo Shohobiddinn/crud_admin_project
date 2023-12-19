@@ -17,7 +17,10 @@ export default function handleError(error) {
     } else if (status == 401) {
       store.dispatch("setUser", null);
       router.push("/login");
-    }else if(status == 422){
+    } else if (status == 422) {
       util.toast("error", error.message);
+    } else if (status == 402) {
+      store.dispatch("setUser", null);
+      router.push("/login");
     }
 }

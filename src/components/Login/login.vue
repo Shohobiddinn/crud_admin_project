@@ -34,6 +34,7 @@
               type="text"
               placeholder="username"
               v-model="data.username"
+              autocomplete="off"
               required
               style="text-transform: lowercase;"
             />
@@ -61,6 +62,7 @@
               v-model="data.password"
               ref="inputPassword"
               required
+              autocomplete="off"
               style="text-transform: lowercase;"
             />
           </div>

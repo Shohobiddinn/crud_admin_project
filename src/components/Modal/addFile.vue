@@ -13,7 +13,7 @@ export default {
         source_id: "",
         comment: "",
         source: "",
-        file: [],
+        files: [],
       },
       files: null,
     };
@@ -27,7 +27,7 @@ export default {
           source_id: file.source_id,
           comment: file.comment,
           source: file.source,
-          file: file.file,
+          files: file.file,
         };
         this.files = file;
         this.$refs.addFileModal.openModal();
@@ -37,7 +37,7 @@ export default {
           source_id: "",
           source: "",
           comment: "",
-          file: [],
+          files: [],
         };
         this.$refs.addFileModal.openModal();
       }
@@ -48,14 +48,17 @@ export default {
     },
     postCategory() {
       if (this.status == "file_add") {
+        console.log(this.fileData);
         api.file_add(this.fileData).then(() => {
-          this.$util.toast().then(() => {
-            this.$emit("end");
-          }).catch((err)=>{
-            this.$util.toastError('error',err.message);
-            console.log(err);
-          })
-          ;
+          this.$util
+            .toast()
+            .then(() => {
+              this.$emit("end");
+            })
+            .catch((err) => {
+              this.$util.toastError("error", err.message);
+              console.log(err);
+            });
           this.$refs.addFileModal.closeModal();
         });
       } else {
@@ -88,10 +91,11 @@ export default {
               source_id
               <div class="input-group d-flex align-items-center">
                 <input
-                  type="text"
+                  type="number"
                   class="form-control"
                   required
-                  autocomplete="on"
+                  inputmode="numeric"
+                  pattern="\d*"
                   v-model="fileData.source_id"
                 />
               </div>
@@ -128,7 +132,7 @@ export default {
               <input
                 required
                 type="file"
-                @change="fileData.file = $event.target.files[0]"
+                @change="fileData.files.push($event.target.files[0])"
                 class="col-12"
               />
             </div>
@@ -148,3 +152,12 @@ export default {
     </template>
   </Modal>
 </template>
+<style>
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: unset;
+  margin: 0;
+}
+
+</style>

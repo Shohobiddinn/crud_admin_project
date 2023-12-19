@@ -12,7 +12,6 @@
 input, textarea {
     @include fond(500, 18, 18);
     color: #fff;
-    text-transform: capitalize;
     background: none;
     outline: none;
     border: none;
@@ -28,5 +27,4 @@ textarea{
     @include fond(500, 12, 12);
     color: #fff;
     text-transform: capitalize;
-
 }

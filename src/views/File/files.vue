@@ -63,7 +63,7 @@
           >
             <thead class="border">
               <tr>
-                <th scope="col" class="border col-1">ID</th>
+                <th scope="col" class="border col-1">Source ID</th>
                 <th scope="col" class="border">File</th>
                 <th scope="col" class="border">Haqida</th>
                 <th scope="col" class="border" style="width: 180px">
@@ -235,14 +235,15 @@ export default {
       this.$refs.tahrirlash.toggleModal();
     },
     getFile() {
-      api
-        .file_files_source(this.fileParams)
-        .then((res) => {
-          this.fileData = res?.data;
-        })
-        .catch((err) => {});
+      if (this.fileParams.source_id) {
+        api
+          .file_files_source(this.fileParams)
+          .then((res) => {
+            this.fileData = res?.data;
+          })
+          .catch((err) => {});
+      }
     },
-    end() {},
   },
   created() {
     this.getFile();
