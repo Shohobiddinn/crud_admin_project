@@ -242,6 +242,8 @@ export default {
             this.fileData = res?.data;
           })
           .catch((err) => {});
+      }else{
+        this.fileData = ""
       }
     },
   },

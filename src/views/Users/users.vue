@@ -230,7 +230,7 @@ export default {
     getSearch() {
       setTimeout(() => {
         this.get();
-      }, 1000);
+      }, 300);
     },
     end() {
     },
