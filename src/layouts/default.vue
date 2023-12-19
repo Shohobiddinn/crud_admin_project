@@ -33,6 +33,7 @@
             <div
               class="sidebar_icon d-flex flex-column"
               @click="sidebarModal = !sidebarModal"
+              style="cursor: pointer"
             >
               <span></span><span></span><span></span>
             </div>
@@ -71,7 +72,7 @@
                   </div>
                   <div class="profil_modal_content_title">chiqish</div>
                 </div>
-                <div class="profil_modal_content">
+                <!-- <div class="profil_modal_content">
                   <div class="profil_modal_content_icon">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -85,7 +86,7 @@
                     </svg>
                   </div>
                   <div class="profil_modal_content_title">profil</div>
-                </div>
+                </div> -->
               </div>
             </div>
           </div>
@@ -159,6 +160,17 @@ export default {
         },
       ];
     },
+  },
+  created() {
+    window.onclick = (event) => {
+      if (
+        !event.target.closest(".sidebar") &
+        !event.target.closest(".sidebar_icon")
+      )
+        this.sidebarModal = false;
+      if (!event.target.closest(".exit_icon") & !event.target.closest(".profil_modal"))
+        this.profil = false;
+    };
   },
 };
 </script>

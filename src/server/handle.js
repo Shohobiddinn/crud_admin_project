@@ -10,12 +10,14 @@ export default function handleError(error) {
     util.toast("warning", "Internet bilan aloqa yo'q!");
   } else if (status)
     if (status == 400) {
-      if (detail == "Inactive user") {
+      if (detail == "Not authenticated") {
         store.dispatch("setUser", null);
         router.push("/login");
       } else util.toast("warning", detail);
     } else if (status == 401) {
       store.dispatch("setUser", null);
       router.push("/login");
+    }else if(status == 422){
+      util.toast("error", error.message);
     }
 }

@@ -51,7 +51,11 @@ export default {
         api.file_add(this.fileData).then(() => {
           this.$util.toast().then(() => {
             this.$emit("end");
-          });
+          }).catch((err)=>{
+            this.$util.toastError('error',err.message);
+            console.log(err);
+          })
+          ;
           this.$refs.addFileModal.closeModal();
         });
       } else {
@@ -68,7 +72,7 @@ export default {
 </script>
 
 <template>
-  <Modal ref="addFileModal" size="md">
+  <Modal ref="addFileModal" size="lg">
     <template #header>
       <div class="tahrirlash">
         <div class="title text-uppercase text-success">
@@ -79,31 +83,33 @@ export default {
           @submit.prevent="postCategory"
           class="form_submit d-flex flex-column"
         >
-          <label class="col-12">
-            source_id
-            <div class="input-group d-flex align-items-center">
-              <input
-                type="text"
-                class="form-control"
-                required
-                autocomplete="on"
-                v-model="fileData.source_id"
-              />
-            </div>
-          </label>
+          <div class="d-flex justify-content-between">
+            <label class="col-5">
+              source_id
+              <div class="input-group d-flex align-items-center">
+                <input
+                  type="text"
+                  class="form-control"
+                  required
+                  autocomplete="on"
+                  v-model="fileData.source_id"
+                />
+              </div>
+            </label>
 
-          <label class="col-12">
-            source
-            <div class="input-group d-flex align-items-center">
-              <input
-                type="text"
-                class="form-control"
-                required
-                autocomplete="on"
-                v-model="fileData.source"
-              />
-            </div>
-          </label>
+            <label class="col-5">
+              source
+              <div class="input-group d-flex align-items-center">
+                <input
+                  type="text"
+                  class="form-control"
+                  required
+                  autocomplete="on"
+                  v-model="fileData.source"
+                />
+              </div>
+            </label>
+          </div>
 
           <label class="col-12">
             file haqida
@@ -116,13 +122,14 @@ export default {
               ></textarea>
             </div>
           </label>
-          <label class="col-12 ">
+          <label class="col-12">
             file
-            <div class="input-group d-flex align-items-center">
+            <div class="input-group d-flex align-items-center col-12">
               <input
                 required
                 type="file"
                 @change="fileData.file = $event.target.files[0]"
+                class="col-12"
               />
             </div>
           </label>
@@ -130,7 +137,7 @@ export default {
       </div>
     </template>
     <template #footer>
-      <div class="d-flex justify-content-center ">
+      <div class="d-flex justify-content-center">
         <button
           class="btn btn-success text-capitalize tahrirlash_btn"
           form="submit"
