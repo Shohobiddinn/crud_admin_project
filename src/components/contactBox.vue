@@ -143,7 +143,7 @@ export default {
       },
       // get params lar
       connect_params: {
-        id: 12,
+        id: 5,
       },
 
       // o'zgaruvchi bo'lim

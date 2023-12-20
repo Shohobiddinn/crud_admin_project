@@ -9,10 +9,13 @@ export default {
     return {
       status: "category_item_add",
       category_id: 0,
-      item: [{
-        category_item_id:0,
-        text: "",
-      }],
+      item: [
+        {
+          category_item_id: 0,
+          ordinal_number: 0,
+          text: "",
+        },
+      ],
     };
   },
   computed: {},
@@ -21,12 +24,14 @@ export default {
       if (this.status == "category_item_edit") {
         this.item = {
           category_item_id: item.id,
+          ordinal_number: 0,
           text: item.text,
         };
         this.$refs.addCategoryItemModal.openModal();
       } else {
         this.item[0] = {
           category_id: this.category_id,
+          ordinal_number: '',
           text: "",
         };
         this.$refs.addCategoryItemModal.openModal();
@@ -65,6 +70,12 @@ export default {
           @submit.prevent="postCategoryItem"
           class="form_submit d-flex flex-column"
         >
+          <label class="col-12">
+            ordinal
+            <div class="input-group d-flex align-items-center">
+              <input class="col-12" type="number" v-model="item[0].ordinal_number" />
+            </div>
+          </label>
           <label class="col-12">
             toifa haqida
             <div class="input-group d-flex align-items-center">

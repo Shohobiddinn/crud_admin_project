@@ -8,7 +8,7 @@ export default {
       isNavbarOpen: false,
       navBarItem: null,
       params: {
-        id: 5,
+        id: 6,
       },
       data: {
         source_id: 5,
@@ -36,9 +36,7 @@ export default {
     baseurl,
   },
   computed: {
-    logo() {
-      return this.url + this.navBarFile[0]?.file;
-    },
+ 
   },
   methods: {
     activeFunc() {
@@ -305,7 +303,7 @@ export default {
                   <img
                     id="uploadedImage"
                     class="imgLogo"
-                    :src="logo"
+                    :src="url + navBarFile[0]?.file.replace('media', 'uploaded_files')"
                     alt=""
                     style="width: 200px; height: 50px; object-fit: contain"
                   />

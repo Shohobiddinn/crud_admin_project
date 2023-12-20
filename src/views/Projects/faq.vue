@@ -428,7 +428,7 @@ export default {
     return {
       // get function uchun params
       faq_params: {
-        id: 14,
+        id: 8,
       },
       // o'zgaruvchi uchun
       faqData: [],

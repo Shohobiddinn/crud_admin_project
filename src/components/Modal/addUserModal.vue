@@ -121,7 +121,7 @@ export default {
                 ref="password"
                 v-model="user.password"
               />
-              <div class="input-group_icon btn" @click="inputType">
+              <div class="input-group_icon eye btn" @click="inputType">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   height="16"

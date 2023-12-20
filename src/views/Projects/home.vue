@@ -36,7 +36,14 @@
             @change="imgFunc($event)"
           />
           <label class="imglabel" for="img">
-            <img id="uploadedImage" class="imgLogo" :src="logo" alt="" />
+            <img
+              id="uploadedImage"
+              class="imgLogo"
+              :src="
+                url + navBarFile[0]?.file.replace('media', 'uploaded_files')
+              "
+              alt=""
+            />
           </label>
         </li>
 
@@ -84,7 +91,7 @@
           <img
             id="uploadedImage"
             class="imgLogo"
-            :src="logo"
+            :src="url + navBarFile[0]?.file.replace('media', 'uploaded_files')"
             alt=""
             style="width: 250px; height: 50px"
           />
@@ -119,7 +126,9 @@
                 <img
                   id="uploadedImage"
                   class="imgLogo"
-                  :src="logo"
+                  :src="
+                    url + navBarFile[0]?.file.replace('media', 'uploaded_files')
+                  "
                   alt=""
                   style="width: 250px; height: 50px"
                 />
@@ -164,6 +173,7 @@
         </nav>
       </div>
     </div>
+    <pre class="text-white">{{ homeNavbar }}</pre>
 
     <div class="xozmag-box">
       <h3 v-if="!navBar.besh" class="xozmag-title" @click="navBar5()">
@@ -677,16 +687,16 @@ export default {
       url: baseurl,
       // get uchun params
       params: {
-        id: 8,
+        id: 1,
       },
       result_params: {
-        id: 9,
+        id: 2,
       },
       users_params: {
-        id: 10,
+        id: 3,
       },
       swiperVideo_params: {
-        id: 11,
+        id: 4,
       },
       // put update uchun data
       file_data: {
@@ -769,8 +779,17 @@ export default {
     logo() {
       return this.url + this.navBarFile[0]?.file;
     },
+    data() {
+      return this.homeNavbar.sort(
+        (a, b) => parseFloat(a.ordinal_number) - parseFloat(b.ordinal_number)
+      );
+    },
   },
   methods: {
+    findItems(id) {
+      let item = homeNavbar.find((e) => e.ordinal_number == id);
+      return item;
+    },
     showTitle() {
       this.show = !this.show;
     },
@@ -951,7 +970,6 @@ export default {
           this.$util.toastError("success", "Amaliyot bajarildi");
           this.getNavbar();
           this.getResoult();
-          this.getHomeBannerFile();
           this.navBar.bir = false;
           this.navBar.ikki = false;
           this.navBar.uch = false;
@@ -1032,6 +1050,7 @@ export default {
         .file_update_id(this.file_update_data)
         .then((res) => {
           this.$util.toastError("success", "Amaliyot bajarildi");
+          this.getHomeBannerFile();
         })
         .catch((error) => {
           this.$util.toastError("error", "Ma'lumotni yuklab bo'lmadi");

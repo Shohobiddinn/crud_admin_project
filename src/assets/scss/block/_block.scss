@@ -9,7 +9,9 @@
 @import './videos';
 @import './sidebar-project';
 @import './intro';
-input, textarea {
+
+input,
+textarea {
     @include fond(500, 18, 18);
     color: #fff;
     background: none;
@@ -17,14 +19,21 @@ input, textarea {
     border: none;
     border-bottom: 2px solid blue;
 }
-textarea{
+
+textarea {
     background-color: #fff;
     color: black;
     padding: 20px;
 }
 
-.text{
+.text {
     @include fond(500, 12, 12);
     color: #fff;
     text-transform: capitalize;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
 }
