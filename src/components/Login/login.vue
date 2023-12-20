@@ -7,7 +7,7 @@
       class="login d-flex flex-column align-items-center justify-content-center"
     >
       <div
-        class="login_modal d-flex flex-column align-items-center justify-content-center col-4"
+        class="login_modal d-flex flex-column align-items-center justify-content-center"
       >
         <div class="login_logo">
           <img src="../../assets/images/Logo2.png" alt="logo" />
@@ -15,7 +15,7 @@
         <div class="login_title">xush kelibsiz</div>
         <form
           @submit.prevent="sign_in"
-          class="form_login d-flex flex-column align-items-center justify-content-center"
+          class="form_login d-flex flex-column align-items-center justify-content-center col-12"
         >
           <div class="form_login_input d-flex align-items-center">
             <div class="form_login_input_icon">
@@ -36,7 +36,6 @@
               v-model="data.username"
               autocomplete="off"
               required
-              style="text-transform: lowercase;"
             />
           </div>
           <div class="form_login_input d-flex align-items-center">
@@ -63,8 +62,8 @@
               ref="inputPassword"
               required
               autocomplete="off"
-              style="text-transform: lowercase;"
             />
+            
           </div>
           <button type="submit" class="login_btn text-uppercase">kirish</button>
         </form>

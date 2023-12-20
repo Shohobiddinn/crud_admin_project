@@ -1,19 +1,27 @@
 .login {
     height: 100vh;
     width: 100vw;
+    padding: 20px;
 
     .login_modal {
         background: rgb(237, 240, 247, .2);
         backdrop-filter: blur(5px);
         border-radius: 20px;
-        padding: 50px 0;
+        padding: 50px 20px;
+        max-width: 500px;
+        width: 100%;
 
         .login_logo {
             margin-bottom: 30px;
 
             img {
-                width: 250px;
+                max-width: 250px;
+                width: 100%;
                 object-fit: cover;
+
+                @include media(500px) {
+                    width: 70%;
+                }
             }
         }
 
@@ -22,11 +30,17 @@
             color: #fff;
             text-transform: capitalize;
             margin-bottom: 30px;
+
+            @include media(500px) {
+                font-size: 30px;
+                line-height: 30px;
+            }
         }
 
         .form_login {
             &_input {
-                width: 350px;
+                max-width: 350px;
+                width: 100%;
                 gap: 10px;
                 background: #E8F0F1;
                 backdrop-filter: blur(5px);
@@ -35,6 +49,7 @@
                 height: 40px;
                 padding: 0 0 0 10px;
                 border: 1px solid #6C757D;
+
                 &_icon {
                     padding: 3px 0;
 
@@ -49,6 +64,10 @@
                     height: 100%;
 
                     &[type=text]:focus {
+                        border: 2px solid #990000;
+                    }
+                    
+                    &[type=password]:focus {
                         border: 2px solid #990000;
                     }
 
@@ -73,6 +92,10 @@
                 border: 1px solid $pr_black;
                 border-radius: 10px;
 
+                @include media(400px) {
+                    padding: 5px 10px;
+                    width: 100%;
+                }
             }
         }
     }

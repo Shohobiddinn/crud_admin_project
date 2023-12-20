@@ -47,8 +47,14 @@
   opacity: 1;
   transition: transform 0.4s ease;
   color: #fff;
+  @include media(700px){
+    font-size: 32px;
+  }
   @include media(500px) {
     font-size: 25px;
+  }
+  @include media(400px){
+    font-size: 20px;
   }
 
   & span {

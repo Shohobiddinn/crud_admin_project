@@ -177,7 +177,6 @@
         @change="updateHomeNavbar($event, homeNavbar[0])"
       />
     </div>
-
     <div class="banner">
       <div class="container-c">
         <div class="item">
@@ -185,26 +184,30 @@
             class="d-none"
             id="banner1"
             type="file"
-            @change="fileUpdate($event,homeBannerFile[0])"
+            @change="fileUpdate($event, homeBannerFile[0])"
           />
           <label class="imglabel" for="banner1">
             <img
               class="imgLogo"
-              :src="url + homeBannerFile[0]?.file"
-              alt=""
+              :src="
+                url + homeBannerFile[0]?.file.replace('media', 'uploaded_files')
+              "
+              alt="photo"
             />
           </label>
           <input
             class="d-none"
             id="banner2"
             type="file"
-            @change="fileUpdate($event,homeBannerFile[1])"
+            @change="fileUpdate($event, homeBannerFile[1])"
           />
           <label class="imglabel" for="banner2">
             <img
               class="imgLogo"
-              :src="url + homeBannerFile[1]?.file"
-              alt=""
+              :src="
+                url + homeBannerFile[1]?.file.replace('media', 'uploaded_files')
+              "
+              alt="photo"
             />
           </label>
         </div>
@@ -213,12 +216,14 @@
             class="d-none"
             id="banner3"
             type="file"
-            @change="fileUpdate($event,homeBannerFile[2])"
+            @change="fileUpdate($event, homeBannerFile[2])"
           />
           <label class="imglabel" for="banner3">
             <img
               class="imgLogo"
-              :src="url + homeBannerFile[2]?.file"
+              :src="
+                url + homeBannerFile[2]?.file.replace('media', 'uploaded_files')
+              "
               alt=""
             />
           </label>
@@ -228,12 +233,14 @@
             class="d-none"
             id="banner4"
             type="file"
-            @change="fileUpdate($event,homeBannerFile[3])"
+            @change="fileUpdate($event, homeBannerFile[3])"
           />
           <label class="imglabel" for="banner4">
             <img
               class="imgLogo"
-              :src="url + homeBannerFile[3]?.file"
+              :src="
+                url + homeBannerFile[3]?.file.replace('media', 'uploaded_files')
+              "
               alt=""
             />
           </label>
@@ -242,12 +249,14 @@
             class="d-none"
             id="banner5"
             type="file"
-            @change="fileUpdate($event,homeBannerFile[4])"
+            @change="fileUpdate($event, homeBannerFile[4])"
           />
           <label class="imglabel" for="banner5">
             <img
               class="imgLogo"
-              :src="url + homeBannerFile[4]?.file"
+              :src="
+                url + homeBannerFile[4]?.file.replace('media', 'uploaded_files')
+              "
               alt=""
             />
           </label>
@@ -934,14 +943,15 @@ export default {
     },
     // update put api
     updateHomeNavbar(event, item) {
-      (this.item_data.category_item_id = item.id),
-        (this.item_data.text = event.target.value);
+      this.item_data.category_item_id = item.id;
+      this.item_data.text = event.target.value;
       api
         .category_item_update(this.item_data)
         .then((res) => {
           this.$util.toastError("success", "Amaliyot bajarildi");
           this.getNavbar();
           this.getResoult();
+          this.getHomeBannerFile();
           this.navBar.bir = false;
           this.navBar.ikki = false;
           this.navBar.uch = false;
@@ -1013,11 +1023,11 @@ export default {
         });
     },
     // file update
-    fileUpdate(event,item) {
+    fileUpdate(event, item) {
       this.file_update_data = {
-        file_id:item.id,
-        file:event.target.files[0]
-      }
+        file_id: item.id,
+        file: event.target.files[0],
+      };
       api
         .file_update_id(this.file_update_data)
         .then((res) => {
