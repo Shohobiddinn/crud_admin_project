@@ -13,7 +13,7 @@ export default {
     // users api
     user_all(p = query) {
         const search = p.search ? `search=${p.search}` : ``;
-        return server(`user?id=${p.id}&page=${p.page}&status=${p.status}&limit=${p.limit}&${search}`, "get")
+        return server(`user?id=${p.id}&page=${p.page}&status=${p.status}&limit=${p.limit}&roll=${p.roll}&${search}`, "get")
 
     },
     user_add(data) {

@@ -7,6 +7,20 @@
   position: relative;
   border-radius: 30px;
   margin-bottom: 120px;
+  label{
+    position: absolute;
+    top: 0;
+    right: 0;
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.3s;
+  }
+  &:hover{
+    label{
+      opacity: 1;
+      visibility: visible;
+    }
+  }
 }
 
 .lineUp {
