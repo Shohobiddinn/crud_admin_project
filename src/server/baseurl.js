@@ -1,1 +1,1 @@
-export default "https://crud-9w46.onrender.com/";
+export default "https://crud.pr-akmaljon.uz/";

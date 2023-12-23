@@ -173,7 +173,7 @@
         </nav>
       </div>
     </div>
-    <pre class="text-white">{{ homeNavbar }}</pre>
+    <pre class="text-white">{{ homeBannerFile }}</pre>
 
     <div class="xozmag-box">
       <h3 v-if="!navBar.besh" class="xozmag-title" @click="navBar5()">
@@ -202,7 +202,7 @@
               :src="
                 url + homeBannerFile[0]?.file.replace('media', 'uploaded_files')
               "
-              alt="photo"
+              :alt=" url + homeBannerFile[0]?.file.replace('media', 'uploaded_files')"
             />
           </label>
           <input
@@ -604,9 +604,6 @@
             },
           }"
         >
-          bo'ldimi bo'ldi rahmad hozir shunda 11 qerakmikan 100ming pulimi
-          bering qancha 1 yonida 2 ta nol men dasturlash kampaniya sotvolaman
-          demadimu
           <swiper-slide v-for="item in 8" :key="item">
             <img src="https://picsum.photos/seed/picsum/200/300" alt="" />
           </swiper-slide>

@@ -17,7 +17,7 @@
           <img src="/src/assets/images/slash.svg" alt="" />
           <h3 class="contact_title">Mijozlarimiz fikrlari</h3>
         </div>
-        <!-- <pre class="text-white">{{ swiperVideoData }}</pre> -->
+        <!-- <pre class="text-white">{{ swiperImages1 }}</pre> -->
         <div class="video_carusel">
           <carousel :items-to-show="4" :breakpoints="breakPoints">
             <slide
@@ -39,7 +39,7 @@
                 accept="video/*"
                 @change="updateFileSwiperVideo($event, item)"
               />
-              <label :for="item.id" >
+              <label :for="item.id">
                 <div
                   class="card_content_btn text-bg-warning text-uppercase btn"
                 >
@@ -63,18 +63,45 @@
           <h3 class="contact_title">Bizning mijozlarimiz</h3>
         </div>
         <div class="client-box">
-          <carousel
-            :items-to-show="5"
-            :autoplay="1500"
-            :wrap-around="true"
-            :breakpoints="breakPoints"
-          >
-            <slide v-for="slide in images" :key="slide">
-              <a class="client_link" href="">
-                <img class="client__img" :src="slide" alt="" />
-              </a>
-            </slide>
-          </carousel>
+          <swiper
+          class="mySwiper mb-3"
+          :slidesPerView="4"
+          :spaceBetween="30"
+          :cssMode="true"
+          :mousewheel="true"
+          :keyboard="true"
+          :loop="true"
+          :autoplay="{
+            delay: 1500,
+            disableOnInteraction: false,
+          }"
+          :modules="modules"
+          :breakpoints="{
+            '200': {
+              slidesPerView: 1,
+            },
+            '500': {
+              slidesPerView: 2,
+            },
+            '600': {
+              slidesPerView: 2,
+              spaceBetween: 30,
+            },
+            '800': {
+              slidesPerView: 3,
+            },
+            '1020': {
+              spaceBetween: 30,
+              slidesPerView: 3,
+            },
+          }"
+        >
+          <swiper-slide v-for="item in 8" :key="item">
+            <div class="client_link" href="">
+                <img class="client__img" style="border-radius: 20px; height: 250px;" src="https://picsum.photos/seed/picsum/200/300" alt="" />
+              </div>
+          </swiper-slide>
+        </swiper>
           <carousel
             :items-to-show="5"
             :autoplay="1500"
@@ -107,13 +134,24 @@ import { VideoPlayer } from "@videojs-player/vue";
 import "video.js/dist/video-js.css";
 import "vue3-carousel/dist/carousel.css";
 import { Carousel, Slide } from "vue3-carousel";
+import { Swiper, SwiperSlide } from "swiper/vue";
+import "swiper/css";
+import "swiper/css/autoplay";
+import { Autoplay } from "swiper/modules";
 export default {
+  setup() {
+    return {
+      modules: [Autoplay],
+    };
+  },
   components: {
     VideoPlayer,
     Carousel,
     Slide,
     sidebar,
     contactBox,
+    Swiper,
+    SwiperSlide,
   },
   data() {
     return {
@@ -157,8 +195,12 @@ export default {
       about_swiper_video_params: {
         source_id: 2,
       },
+      about_swiper_images1_params: {
+        source_id: 3,
+      },
       // response data
       swiperVideoData: [],
+      swiperImages1: [],
       // url
       url: baseurl,
       // put update data
@@ -175,6 +217,11 @@ export default {
         this.swiperVideoData = res.data;
       });
     },
+    getSwiperImages1() {
+      api.file_files_source(this.about_swiper_images1_params).then((res) => {
+        this.swiperImages1 = res.data;
+      });
+    },
     // update put function
     updateFileSwiperVideo(event, item) {
       this.item_put_data.file_id = item.id;
@@ -189,8 +236,10 @@ export default {
         });
     },
   },
+  mounted() {},
   created() {
     this.getSwiperVideo();
+    this.getSwiperImages1();
   },
 };
 </script>
