@@ -173,8 +173,6 @@
         </nav>
       </div>
     </div>
-    <pre class="text-white">{{ homeBannerFile }}</pre>
-
     <div class="xozmag-box">
       <h3 v-if="!navBar.besh" class="xozmag-title" @click="navBar5()">
         {{ homeNavbar[0]?.text }}
