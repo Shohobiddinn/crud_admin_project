@@ -33,16 +33,15 @@
             class="d-none"
             id="img"
             type="file"
-            @change="imgFunc($event)"
+            accept="image/*"
+            @change="fileUpdate($event, navBarFile[0])"
           />
           <label class="imglabel" for="img">
             <img
               id="uploadedImage"
               class="imgLogo"
-              :src="
-                url + navBarFile[0]?.file.replace('media', 'uploaded_files')
-              "
-              alt=""
+              :src="url + navBarFile[0]?.file"
+              :alt="url + navBarFile[0]?.file"
             />
           </label>
         </li>
@@ -85,13 +84,14 @@
           ref="logoRef"
           id="img"
           type="file"
-          @change="imgFunc($event)"
+          accept="image/*"
+          @change="fileUpdate($event, navBarFile[0])"
         />
         <label class="imglabel" for="img">
           <img
             id="uploadedImage"
             class="imgLogo"
-            :src="url + navBarFile[0]?.file.replace('media', 'uploaded_files')"
+            :src="url + navBarFile[0]?.file"
             alt=""
             style="width: 250px; height: 50px"
           />
@@ -120,15 +120,14 @@
                 ref="logoRef"
                 id="img"
                 type="file"
-                @change="imgFunc($event)"
+                accept="image/*"
+                @change="fileUpdate($event, navBarFile[0])"
               />
               <label class="imglabel" for="img">
                 <img
                   id="uploadedImage"
                   class="imgLogo"
-                  :src="
-                    url + navBarFile[0]?.file.replace('media', 'uploaded_files')
-                  "
+                  :src="url + navBarFile[0]?.file"
                   alt=""
                   style="width: 250px; height: 50px"
                 />
@@ -192,29 +191,27 @@
             class="d-none"
             id="banner1"
             type="file"
+            accept="image/*"
             @change="fileUpdate($event, homeBannerFile[0])"
           />
           <label class="imglabel" for="banner1">
             <img
               class="imgLogo"
-              :src="
-                url + homeBannerFile[0]?.file.replace('media', 'uploaded_files')
-              "
-              :alt=" url + homeBannerFile[0]?.file.replace('media', 'uploaded_files')"
+              :src="url + homeBannerFile[0]?.file"
+              :alt="url + homeBannerFile[0]?.file"
             />
           </label>
           <input
             class="d-none"
             id="banner2"
             type="file"
+            accept="image/*"
             @change="fileUpdate($event, homeBannerFile[1])"
           />
           <label class="imglabel" for="banner2">
             <img
               class="imgLogo"
-              :src="
-                url + homeBannerFile[1]?.file.replace('media', 'uploaded_files')
-              "
+              :src="url + homeBannerFile[1]?.file"
               alt="photo"
             />
           </label>
@@ -224,16 +221,11 @@
             class="d-none"
             id="banner3"
             type="file"
+            accept="image/*"
             @change="fileUpdate($event, homeBannerFile[2])"
           />
           <label class="imglabel" for="banner3">
-            <img
-              class="imgLogo"
-              :src="
-                url + homeBannerFile[2]?.file.replace('media', 'uploaded_files')
-              "
-              alt=""
-            />
+            <img class="imgLogo" :src="url + homeBannerFile[2]?.file" alt="" />
           </label>
         </div>
         <div class="item">
@@ -241,32 +233,22 @@
             class="d-none"
             id="banner4"
             type="file"
+            accept="image/*"
             @change="fileUpdate($event, homeBannerFile[3])"
           />
           <label class="imglabel" for="banner4">
-            <img
-              class="imgLogo"
-              :src="
-                url + homeBannerFile[3]?.file.replace('media', 'uploaded_files')
-              "
-              alt=""
-            />
+            <img class="imgLogo" :src="url + homeBannerFile[3]?.file" alt="" />
           </label>
 
           <input
             class="d-none"
             id="banner5"
             type="file"
+            accept="image/*"
             @change="fileUpdate($event, homeBannerFile[4])"
           />
           <label class="imglabel" for="banner5">
-            <img
-              class="imgLogo"
-              :src="
-                url + homeBannerFile[4]?.file.replace('media', 'uploaded_files')
-              "
-              alt=""
-            />
+            <img class="imgLogo" :src="url + homeBannerFile[4]?.file" alt="" />
           </label>
         </div>
       </div>
@@ -434,16 +416,23 @@
             data-aos="fade-up"
             data-aos-anchor-placement="top-bottom"
           >
-            <router-link to="/">
-              <div class="images">
-                <img src="https://picsum.photos/id/78/1920/1080" alt="" />
-                <div class="icon_image">
-                  <div class="icon"></div>
-                  <div class="icon"></div>
-                  <div class="icon"></div>
-                </div>
+            <div class="images">
+              <input
+                class="d-none"
+                type="file"
+                id="resoultFile"
+                accept="image/*"
+                @change="fileUpdate($event, homeResoultFile[0])"
+              />
+              <label for="resoultFile">
+                <img :src="url + homeResoultFile[0]?.file" alt="photo" />
+              </label>
+              <div class="icon_image">
+                <div class="icon"></div>
+                <div class="icon"></div>
+                <div class="icon"></div>
               </div>
-            </router-link>
+            </div>
           </div>
         </div>
       </div>
@@ -488,7 +477,16 @@
             data-aos-anchor-placement="top-bottom"
             data-aos-duration="700"
           >
-            <img src="../../assets/images/Vector 2.png" alt="" />
+            <input
+              class="d-none"
+              type="file"
+              id="userFile"
+              accept="image/*"
+              @change="fileUpdate($event, userFile[0])"
+            />
+            <label for="userFile">
+              <img :src="url + userFile[0]?.file" alt="photo" />
+            </label>
           </div>
           <div
             class="content"
@@ -569,19 +567,20 @@
             @change="updateHomeNavbar($event, swiperVideoTitle[1])"
           />
         </div>
+
         <swiper
-          class="mySwiper"
+          class="current_users_swiper"
           :slidesPerView="4"
           :spaceBetween="30"
           :cssMode="true"
           :mousewheel="true"
           :keyboard="true"
           :loop="true"
-          :autoplay="{
-            delay: 1500,
-            disableOnInteraction: false,
-          }"
           :modules="modules"
+          :navigation="{
+              prevEl: '.swiper-button-prev',
+              nextEl: '.swiper-button-next',
+            }"
           :breakpoints="{
             '200': {
               slidesPerView: 1,
@@ -602,9 +601,24 @@
             },
           }"
         >
-          <swiper-slide v-for="item in 8" :key="item">
-            <img src="https://picsum.photos/seed/picsum/200/300" alt="" />
+          <swiper-slide
+            class="current_users_swiper_slide"
+            v-for="item in currentUserFile"
+            :key="item.id"
+          >
+            <input
+              type="file"
+              class="d-none"
+              accept="image/*"
+              :id="item.id"
+              @change="fileUpdate($event, item)"
+            />
+            <label :for="item.id">
+              <img :src="url + item?.file" alt="photo" />
+            </label>
           </swiper-slide>
+          <div class="swiper-button-prev"></div>
+          <div class="swiper-button-next"></div>
         </swiper>
       </div>
     </div>
@@ -648,8 +662,32 @@
         </div>
         <div class="manual_video">
           <VideoPlayer
-            :options="videoOptions"
-            style="width: 95%; background-color: inherit; object-fit: cover"
+            :src="url + manualFile[0]?.file"
+            :fullscreen="true"
+            :controls="true"
+            :responsive="true"
+            style="width: 100%"
+          />
+          <label for="manualFile">
+            <div class="card_content_btn text-bg-warning text-uppercase btn">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                height="18"
+                width="18"
+                viewBox="0 0 512 512"
+              >
+                <path
+                  d="M410.3 231l11.3-11.3-33.9-33.9-62.1-62.1L291.7 89.8l-11.3 11.3-22.6 22.6L58.6 322.9c-10.4 10.4-18 23.3-22.2 37.4L1 480.7c-2.5 8.4-.2 17.5 6.1 23.7s15.3 8.5 23.7 6.1l120.3-35.4c14.1-4.2 27-11.8 37.4-22.2L387.7 253.7 410.3 231zM160 399.4l-9.1 22.7c-4 3.1-8.5 5.4-13.3 6.9L59.4 452l23-78.1c1.4-4.9 3.8-9.4 6.9-13.3l22.7-9.1v32c0 8.8 7.2 16 16 16h32zM362.7 18.7L348.3 33.2 325.7 55.8 314.3 67.1l33.9 33.9 62.1 62.1 33.9 33.9 11.3-11.3 22.6-22.6 14.5-14.5c25-25 25-65.5 0-90.5L453.3 18.7c-25-25-65.5-25-90.5 0zm-47.4 168l-144 144c-6.2 6.2-16.4 6.2-22.6 0s-6.2-16.4 0-22.6l144-144c6.2-6.2 16.4-6.2 22.6 0s6.2 16.4 0 22.6z"
+                />
+              </svg>
+            </div>
+          </label>
+          <input
+            type="file"
+            id="manualFile"
+            class="d-none"
+            accept="video/*"
+            @change="fileUpdate($event, manualFile[0])"
           />
         </div>
       </div>
@@ -661,10 +699,13 @@
 </template>
   <script>
 import { Swiper, SwiperSlide } from "swiper/vue";
-import contactBox from "@/components/contactBox.vue";
 import "swiper/css";
 import "swiper/css/autoplay";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 import { Autoplay } from "swiper/modules";
+import { Navigation, Pagination } from "swiper/modules";
+import contactBox from "@/components/contactBox.vue";
 import { VideoPlayer } from "@videojs-player/vue";
 import "video.js/dist/video-js.css";
 import baseurl from "../../server/baseurl";
@@ -672,7 +713,7 @@ import api from "../../server/api";
 export default {
   setup() {
     return {
-      modules: [Autoplay],
+      modules: [Autoplay, Navigation, Pagination],
     };
   },
   data() {
@@ -693,16 +734,28 @@ export default {
       swiperVideo_params: {
         id: 4,
       },
+      data: {
+        source_id: 6,
+      },
+      resoultFiledata: {
+        source_id: 3,
+      },
+      userFileData: {
+        source_id: 4,
+      },
+      currentUserFileData: {
+        source_id: 7,
+      },
+      manualFileData: {
+        source_id: 8,
+      },
       // put update uchun data
       file_data: {
-        source_id: 1,
+        source_id: 2,
       },
       file_update_data: {
         file_id: 0,
         file: null,
-      },
-      data: {
-        source_id: 5,
       },
       fileData: {
         file_id: 1,
@@ -735,9 +788,13 @@ export default {
       // bo'lim uchun o'zgaruvchi
       homeNavbar: [],
       homeResoult: [],
+      homeResoultFile: [],
       navBarFile: [],
       homeBannerFile: [],
       user: [],
+      userFile: [],
+      currentUserFile: [],
+      manualFile: [],
       swiperVideoTitle: [],
       // text open close
       navBar: {
@@ -794,29 +851,6 @@ export default {
     openRight() {
       this.isNavbarOpen = !this.isNavbarOpen;
     },
-    imgFunc(e) {
-      if (e.target.files[0]) {
-        var picture = new FileReader();
-        picture.readAsDataURL(e.target.files[0]);
-        picture.addEventListener("load", function (event) {
-          document
-            .getElementById("uploadedImage")
-            .setAttribute("src", event.target.result);
-          this.logo = event.target.result;
-        });
-        this.fileData.file = e.target.files[0];
-        this.fileData.file_id = 1;
-        api
-          .file_update_id(this.fileData)
-          .then((res) => {
-            this.$util.toastError("success", "Amaliyot bajarildi");
-            this.getNavbarFile();
-          })
-          .catch((err) => {
-            this.$util.toastError("error", "Ma'lumotni yuklab bo'lmadi");
-          });
-      }
-    },
     // get zapros
     getNavbarFile() {
       api.file_files_source(this.data).then((res) => {
@@ -844,11 +878,40 @@ export default {
         })
         .catch((err) => {});
     },
+    getResoultFile() {
+      api.file_files_source(this.resoultFiledata).then((res) => {
+        this.homeResoultFile = res.data;
+      });
+    },
     getUser() {
       api
         .category_one(this.users_params)
         .then((res) => {
           this.user = res.data?.category_items;
+        })
+        .catch((err) => {});
+    },
+    getUserFile() {
+      api
+        .file_files_source(this.userFileData)
+        .then((res) => {
+          this.userFile = res.data;
+        })
+        .catch((err) => {});
+    },
+    getCurrentUserFile() {
+      api
+        .file_files_source(this.currentUserFileData)
+        .then((res) => {
+          this.currentUserFile = res.data;
+        })
+        .catch((err) => {});
+    },
+    getManualFile() {
+      api
+        .file_files_source(this.manualFileData)
+        .then((res) => {
+          this.manualFile = res.data;
         })
         .catch((err) => {});
     },
@@ -1046,6 +1109,11 @@ export default {
         .then((res) => {
           this.$util.toastError("success", "Amaliyot bajarildi");
           this.getHomeBannerFile();
+          this.getNavbarFile();
+          this.getResoultFile();
+          this.getUserFile();
+          this.getCurrentUserFile();
+          this.getManualFile();
         })
         .catch((error) => {
           this.$util.toastError("error", "Ma'lumotni yuklab bo'lmadi");
@@ -1060,6 +1128,10 @@ export default {
     this.getResoult();
     this.getUser();
     this.getSwiperVideo();
+    this.getResoultFile();
+    this.getUserFile();
+    this.getCurrentUserFile();
+    this.getManualFile();
   },
 };
 </script>

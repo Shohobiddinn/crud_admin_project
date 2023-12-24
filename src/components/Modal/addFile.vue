@@ -10,7 +10,7 @@ export default {
       status: "file_add",
       fileData: {
         file_id: 0,
-        source_id: "",
+        source_id: 0,
         comment: "",
         source: "",
         files: [],
@@ -24,27 +24,22 @@ export default {
       if (this.status == "file_edit") {
         this.fileData = {
           file_id: file.id,
-          source_id: file.source_id,
           comment: file.comment,
           source: file.source,
-          files: file.file,
+          files:[],
         };
         this.files = file;
         this.$refs.addFileModal.openModal();
       } else {
         this.fileData = {
           file_id: 0,
-          source_id: "",
+          source_id: 0,
           source: "",
           comment: "",
           files: [],
         };
         this.$refs.addFileModal.openModal();
       }
-    },
-
-    inputData(event) {
-      this.fileData.file = event.target.files[0];
     },
     postCategory() {
       if (this.status == "file_add") {
@@ -87,7 +82,7 @@ export default {
           class="form_submit d-flex flex-column"
         >
           <div class="d-flex justify-content-between">
-            <label class="col-5">
+            <label class="col-5" v-if="this.status == 'file_add'">
               source_id
               <div class="input-group d-flex align-items-center">
                 <input

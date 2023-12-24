@@ -47,13 +47,16 @@
   opacity: 1;
   transition: transform 0.4s ease;
   color: #fff;
-  @include media(700px){
+
+  @include media(700px) {
     font-size: 32px;
   }
+
   @include media(500px) {
     font-size: 25px;
   }
-  @include media(400px){
+
+  @include media(400px) {
     font-size: 20px;
   }
 
@@ -573,20 +576,24 @@
         @include media(500px) {
           font-size: 18px;
         }
+
+      }
+
+    }
+
+    .current_users_swiper {
+      &_slide {
+        label {
+          img {
+            width: 100%;
+            max-width: 100%;
+            object-fit: cover;
+          }
+        }
       }
     }
 
-    img {
-      min-width: 90%;
-      max-width: fit-content;
-      height: 318px;
-      border-radius: 36px;
-      object-fit: cover;
 
-      @include media(500px) {
-        height: 250px;
-      }
-    }
   }
 }
 
@@ -624,9 +631,24 @@
 
     .manual_video {
       margin-bottom: 145px;
+      position: relative;
 
       @include media(500px) {
         margin-bottom: 90px;
+      }
+      label{
+        position: absolute;
+        top: 10px;
+        right: 30px;
+        opacity: 0;
+        visibility: hidden;
+        transition: 0.3s;
+      }
+      &:hover{
+        label{
+          opacity: 1;
+          visibility: visible;
+        }
       }
     }
   }

@@ -32,9 +32,6 @@
         padding: 0 20px;
         width: 17%;
         transition: 0.3s;
-        position: relative;
-        z-index: 2;
-
         @include media(1000px) {
             position: absolute;
             left: -100%;

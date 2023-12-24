@@ -216,7 +216,7 @@ export default {
         id: 0,
         page: this.users.current_page,
         limit: this.users.limit,
-        roll: "admin",
+        roll: "",
         search: this.search,
         status: true,
       };
