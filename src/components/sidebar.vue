@@ -1,3 +1,231 @@
+<template>
+  <div class="side-nav">
+    <nav class="navigate">
+      <ul class="navigate_list">
+        <li class="navigate_item">
+          <div
+            v-if="!navBarInput.bir"
+            @click="navBarInputBir()"
+            @dblclick="routerBir()"
+            class="navigate_link"
+          >
+            {{ navBar[0]?.text }}
+          </div>
+          <input
+            v-if="navBarInput.bir"
+            type="text"
+            :value="navBar[0]?.text"
+            @change="navBarItemEdit($event, navBar[0])"
+            ref="navbarInput"
+          />
+        </li>
+        <li class="navigate_item"><b>.</b></li>
+
+        <li class="navigate_item">
+          <div
+            v-if="!navBarInput.ikki"
+            @click="navBarInputIkki()"
+            @dblclick="routerIkki()"
+            class="navigate_link"
+          >
+            {{ navBar[1]?.text }}
+          </div>
+          <input
+            v-if="navBarInput.ikki"
+            type="text"
+            :value="navBar[1]?.text"
+            @change="navBarItemEdit($event, navBar[1])"
+            ref="navbarInput"
+          />
+        </li>
+        <li class="navigate_item"><b>.</b></li>
+
+        <li class="navigate_item">
+          <input
+            class="d-none"
+            ref="logoRef"
+            id="img"
+            type="file"
+            @change="imgFunc($event)"
+          />
+          <label class="imglabel" for="img">
+            <img id="uploadedImage" class="imgLogo" :src="url + navBarFile[0]?.file" alt="" />
+          </label>
+        </li>
+
+        <li class="navigate_item">
+          <div
+            v-if="!navBarInput.uch"
+            @click="navBarInputUch()"
+            @dblclick="routerUch()"
+            class="navigate_link"
+          >
+            {{ navBar[2]?.text }}
+          </div>
+          <input
+            v-if="navBarInput.uch"
+            type="text"
+            :value="navBar[2]?.text"
+            @change="navBarItemEdit($event, navBar[2])"
+            ref="navbarInput"
+          />
+        </li>
+        <li class="navigate_item"><b>.</b></li>
+
+        <li class="navigate_item">
+          <div
+            v-if="!navBarInput.tort"
+            @click="navBarInputTort()"
+            @dblclick="routerTort()"
+            class="navigate_link"
+          >
+            {{ navBar[3]?.text }}
+          </div>
+          <input
+            v-if="navBarInput.tort"
+            type="text"
+            :value="navBar[3]?.text"
+            @change="navBarItemEdit($event, navBar[3])"
+            ref="navbarInput"
+          />
+        </li>
+      </ul>
+    </nav>
+    <div class="home-sidebar_navbar col-10 m-auto">
+      <div class="d-flex justify-content-between py-4">
+        <div @click="activeFunc()">
+          <input
+            class="d-none"
+            ref="logoRef"
+            id="img"
+            type="file"
+            @change="imgFunc($event)"
+          />
+          <label class="imglabel" for="img">
+            <img
+              id="uploadedImage"
+              class="imgLogo"
+              :src="url + navBarFile[0]?.file"
+              alt=""
+              style="width: 300px; height: 50px; object-fit: contain"
+            />
+          </label>
+        </div>
+        <nav class="home-sidebar__nav" :class="{ active: isNavbarOpen }">
+          <div
+            class="sidebar-btn d-flex align-items-center justify-content-center"
+            @click="openRight()"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              height="16"
+              width="14"
+              fill="#fff"
+              viewBox="0 0 448 512"
+            >
+              <path
+                d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"
+              />
+            </svg>
+          </div>
+          <ul class="home-sidebar__list">
+            <li class="home-sidebar__item" style="margin-bottom: 50px">
+              <div @click="activeFunc()">
+                <input
+                  class="d-none"
+                  ref="logoRef"
+                  id="img"
+                  type="file"
+                  @change="imgFunc($event)"
+                />
+                <label class="imglabel" for="img">
+                  <img
+                    id="uploadedImage"
+                    class="imgLogo"
+                    :src="url + navBarFile[0]?.file"
+                    alt=""
+                    style="width: 200px; height: 50px; object-fit: contain"
+                  />
+                </label>
+              </div>
+            </li>
+            <li class="home-sidebar__item">
+              <div
+                v-if="!navBarInput.bir"
+                @click="navBarInputBir()"
+                @dblclick="routerBir()"
+                class="home-sidebar__link"
+              >
+                {{ navBar[0]?.text }}
+              </div>
+              <input
+                v-if="navBarInput.bir"
+                type="text"
+                :value="navBar[0]?.text"
+                @change="navBarItemEdit($event, navBar[0])"
+                ref="navbarInput"
+              />
+            </li>
+
+            <li class="home-sidebar__item">
+              <div
+                v-if="!navBarInput.ikki"
+                @click="navBarInputIkki()"
+                @dblclick="routerIkki()"
+                class="home-sidebar__link"
+              >
+                {{ navBar[1]?.text }}
+              </div>
+              <input
+                v-if="navBarInput.ikki"
+                type="text"
+                :value="navBar[1]?.text"
+                @change="navBarItemEdit($event, navBar[1])"
+                ref="navbarInput"
+              />
+            </li>
+
+            <li class="home-sidebar__item">
+              <div
+                v-if="!navBarInput.uch"
+                @click="navBarInputUch()"
+                @dblclick="routerUch()"
+                class="home-sidebar__link"
+              >
+                {{ navBar[2]?.text }}
+              </div>
+              <input
+                v-if="navBarInput.uch"
+                type="text"
+                :value="navBar[2]?.text"
+                @change="navBarItemEdit($event, navBar[2])"
+                ref="navbarInput"
+              />
+            </li>
+
+            <li class="home-sidebar__item">
+              <div
+                v-if="!navBarInput.tort"
+                @click="navBarInputTort()"
+                @dblclick="routerTort()"
+                class="home-sidebar__link"
+              >
+                {{ navBar[3]?.text }}
+              </div>
+              <input
+                v-if="navBarInput.tort"
+                type="text"
+                :value="navBar[3]?.text"
+                @change="navBarItemEdit($event, navBar[3])"
+                ref="navbarInput"
+              />
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+</template>
 <script>
 import api from "../server/api";
 import baseurl from "../server/baseurl";
@@ -11,8 +239,9 @@ export default {
         id: 6,
       },
       data: {
-        source_id: 5,
+        source_id: 6,
       },
+      
       fileData: {
         file_id: 1,
         file: 2,
@@ -158,234 +387,5 @@ export default {
   },
 };
 </script>
-
-<template>
-  <div class="side-nav">
-    <nav class="navigate">
-      <ul class="navigate_list">
-        <li class="navigate_item">
-          <div
-            v-if="!navBarInput.bir"
-            @click="navBarInputBir()"
-            @dblclick="routerBir()"
-            class="navigate_link"
-          >
-            {{ navBar[0]?.text }}
-          </div>
-          <input
-            v-if="navBarInput.bir"
-            type="text"
-            :value="navBar[0]?.text"
-            @change="navBarItemEdit($event, navBar[0])"
-            ref="navbarInput"
-          />
-        </li>
-        <li class="navigate_item"><b>.</b></li>
-
-        <li class="navigate_item">
-          <div
-            v-if="!navBarInput.ikki"
-            @click="navBarInputIkki()"
-            @dblclick="routerIkki()"
-            class="navigate_link"
-          >
-            {{ navBar[1]?.text }}
-          </div>
-          <input
-            v-if="navBarInput.ikki"
-            type="text"
-            :value="navBar[1]?.text"
-            @change="navBarItemEdit($event, navBar[1])"
-            ref="navbarInput"
-          />
-        </li>
-        <li class="navigate_item"><b>.</b></li>
-
-        <li class="navigate_item">
-          <input
-            class="d-none"
-            ref="logoRef"
-            id="img"
-            type="file"
-            @change="imgFunc($event)"
-          />
-          <label class="imglabel" for="img">
-            <img id="uploadedImage" class="imgLogo" :src="logo" alt="" />
-          </label>
-        </li>
-
-        <li class="navigate_item">
-          <div
-            v-if="!navBarInput.uch"
-            @click="navBarInputUch()"
-            @dblclick="routerUch()"
-            class="navigate_link"
-          >
-            {{ navBar[2]?.text }}
-          </div>
-          <input
-            v-if="navBarInput.uch"
-            type="text"
-            :value="navBar[2]?.text"
-            @change="navBarItemEdit($event, navBar[2])"
-            ref="navbarInput"
-          />
-        </li>
-        <li class="navigate_item"><b>.</b></li>
-
-        <li class="navigate_item">
-          <div
-            v-if="!navBarInput.tort"
-            @click="navBarInputTort()"
-            @dblclick="routerTort()"
-            class="navigate_link"
-          >
-            {{ navBar[3]?.text }}
-          </div>
-          <input
-            v-if="navBarInput.tort"
-            type="text"
-            :value="navBar[3]?.text"
-            @change="navBarItemEdit($event, navBar[3])"
-            ref="navbarInput"
-          />
-        </li>
-      </ul>
-    </nav>
-    <div class="home-sidebar_navbar col-10 m-auto">
-      <div class="d-flex justify-content-between py-4">
-        <div @click="activeFunc()">
-          <input
-            class="d-none"
-            ref="logoRef"
-            id="img"
-            type="file"
-            @change="imgFunc($event)"
-          />
-          <label class="imglabel" for="img">
-            <img
-              id="uploadedImage"
-              class="imgLogo"
-              :src="logo"
-              alt=""
-              style="width: 300px; height: 50px; object-fit: contain"
-            />
-          </label>
-        </div>
-        <nav class="home-sidebar__nav" :class="{ active: isNavbarOpen }">
-          <div
-            class="sidebar-btn d-flex align-items-center justify-content-center"
-            @click="openRight()"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              height="16"
-              width="14"
-              fill="#fff"
-              viewBox="0 0 448 512"
-            >
-              <path
-                d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"
-              />
-            </svg>
-          </div>
-          <ul class="home-sidebar__list">
-            <li class="home-sidebar__item" style="margin-bottom: 50px">
-              <div @click="activeFunc()">
-                <input
-                  class="d-none"
-                  ref="logoRef"
-                  id="img"
-                  type="file"
-                  @change="imgFunc($event)"
-                />
-                <label class="imglabel" for="img">
-                  <img
-                    id="uploadedImage"
-                    class="imgLogo"
-                    :src="url + navBarFile[0]?.file.replace('media', 'uploaded_files')"
-                    alt=""
-                    style="width: 200px; height: 50px; object-fit: contain"
-                  />
-                </label>
-              </div>
-            </li>
-            <li class="home-sidebar__item">
-              <div
-                v-if="!navBarInput.bir"
-                @click="navBarInputBir()"
-                @dblclick="routerBir()"
-                class="home-sidebar__link"
-              >
-                {{ navBar[0]?.text }}
-              </div>
-              <input
-                v-if="navBarInput.bir"
-                type="text"
-                :value="navBar[0]?.text"
-                @change="navBarItemEdit($event, navBar[0])"
-                ref="navbarInput"
-              />
-            </li>
-
-            <li class="home-sidebar__item">
-              <div
-                v-if="!navBarInput.ikki"
-                @click="navBarInputIkki()"
-                @dblclick="routerIkki()"
-                class="home-sidebar__link"
-              >
-                {{ navBar[1]?.text }}
-              </div>
-              <input
-                v-if="navBarInput.ikki"
-                type="text"
-                :value="navBar[1]?.text"
-                @change="navBarItemEdit($event, navBar[1])"
-                ref="navbarInput"
-              />
-            </li>
-
-            <li class="home-sidebar__item">
-              <div
-                v-if="!navBarInput.uch"
-                @click="navBarInputUch()"
-                @dblclick="routerUch()"
-                class="home-sidebar__link"
-              >
-                {{ navBar[2]?.text }}
-              </div>
-              <input
-                v-if="navBarInput.uch"
-                type="text"
-                :value="navBar[2]?.text"
-                @change="navBarItemEdit($event, navBar[2])"
-                ref="navbarInput"
-              />
-            </li>
-
-            <li class="home-sidebar__item">
-              <div
-                v-if="!navBarInput.tort"
-                @click="navBarInputTort()"
-                @dblclick="routerTort()"
-                class="home-sidebar__link"
-              >
-                {{ navBar[3]?.text }}
-              </div>
-              <input
-                v-if="navBarInput.tort"
-                type="text"
-                :value="navBar[3]?.text"
-                @change="navBarItemEdit($event, navBar[3])"
-                ref="navbarInput"
-              />
-            </li>
-          </ul>
-        </nav>
-      </div>
-    </div>
-  </div>
-</template>
 
 <style></style>

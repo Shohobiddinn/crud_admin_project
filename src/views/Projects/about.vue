@@ -5,11 +5,19 @@
         <sidebar />
         <div class="title-box">
           <img src="/src/assets/images/slash.svg" alt="" />
-          <h3 class="contact_title">Biz haqimizda</h3>
+          <h3 @click="about1()" v-if="!about.bir" class="contact_title">
+            {{ aboutTitleData[2]?.text }}
+          </h3>
+          <input
+            v-else
+            type="text"
+            :value="aboutTitleData[2]?.text"
+            @change="updateCategory($event, aboutTitleData[2])"
+          />
         </div>
         <div class="about_box">
           <VideoPlayer
-            src="/src/assets/images/video.mp4"
+            :src="url + aboutVideoData[0]?.file"
             :fullscreen="true"
             :controls="true"
             :responsive="true"
@@ -20,7 +28,7 @@
             id="aboutVideo"
             class="d-none"
             accept="video/*"
-            @change="updateFileSwiperVideo($event, item)"
+            @change="updateFileSwiperVideo($event, aboutVideoData[0])"
           />
           <label for="aboutVideo">
             <div class="card_content_btn text-bg-warning text-uppercase btn">
@@ -39,7 +47,15 @@
         </div>
         <div class="title-box">
           <img src="/src/assets/images/slash.svg" alt="" />
-          <h3 class="contact_title">Mijozlarimiz fikrlari</h3>
+          <h3 @click="about2()" v-if="!about.ikki" class="contact_title">
+            {{ aboutTitleData[1]?.text }}
+          </h3>
+          <input
+            v-else
+            type="text"
+            :value="aboutTitleData[1]?.text"
+            @change="updateCategory($event, aboutTitleData[1])"
+          />
         </div>
         <!-- <pre class="text-white">{{ swiperImages1 }}</pre> -->
         <div class="video_carusel">
@@ -50,7 +66,7 @@
               :key="item.id"
             >
               <VideoPlayer
-                src="/src/assets/images/video.mp4"
+                :src="url + item?.file"
                 :fullscreen="true"
                 :controls="true"
                 :responsive="true"
@@ -84,19 +100,38 @@
         </div>
         <div class="title-box">
           <img src="/src/assets/images/slash.svg" alt="" />
-          <h3 class="contact_title">Bizning mijozlarimiz</h3>
+          <h3 @click="about3()" v-if="!about.uch" class="contact_title">
+            {{ aboutTitleData[0]?.text }}
+          </h3>
+          <input
+            v-else
+            type="text"
+            :value="aboutTitleData[0]?.text"
+            @change="updateCategory($event, aboutTitleData[0])"
+          />
         </div>
         <div class="client-box">
           <carousel
             :items-to-show="5"
-            :autoplay="1500"
             :wrap-around="true"
             :breakpoints="breakPoints"
           >
-            <slide v-for="slide in images" :key="slide">
-              <a class="client_link" href="">
-                <img class="client__img" :src="slide" alt="" />
-              </a>
+            <slide v-for="item in swiperImages1" :key="item.id">
+              <div class="client_link" href="">
+                <input
+                  type="file"
+                  accept="image/*"
+                  class="d-none"
+                  :id="item.id"
+                />
+                <label :for="item.id">
+                  <img
+                    class="client__img"
+                    :src="url + item?.file"
+                    alt="photo"
+                  />
+                </label>
+              </div>
             </slide>
           </carousel>
           <carousel
@@ -105,10 +140,22 @@
             :wrap-around="true"
             :breakpoints="breakPoints"
           >
-            <slide v-for="slide in images" :key="slide">
-              <a class="client_link" href="">
-                <img class="client__img" :src="slide" alt="" />
-              </a>
+            <slide v-for="item in swiperImages2" :key="item.id">
+              <div class="client_link">
+                <input
+                  type="file"
+                  accept="image/*"
+                  class="d-none"
+                  :id="item.id"
+                />
+                <label :for="item.id">
+                  <img
+                    class="client__img"
+                    :src="url + item?.file"
+                    alt="photo"
+                  />
+                </label>
+              </div>
             </slide>
           </carousel>
         </div>
@@ -121,11 +168,6 @@
 import api from "../../server/api";
 import baseurl from "../../server/baseurl";
 import sidebar from "/src/components/sidebar.vue";
-import parvoz from "../../assets/images/parvoz.png";
-import ideal from "../../assets/images/ideal.png";
-import ecoBonu from "../../assets/images/eco-bonu.png";
-import dehqon from "../../assets/images/dehqon-uz.png";
-import effectiveEngineering from "../../assets/images/effective-engineering.png";
 import contactBox from "../../components/contactBox.vue";
 import { VideoPlayer } from "@videojs-player/vue";
 import "video.js/dist/video-js.css";
@@ -141,19 +183,6 @@ export default {
   },
   data() {
     return {
-      images: [parvoz, ideal, dehqon, ecoBonu, effectiveEngineering],
-      videoOptions: {
-        fullscreen: true,
-        responsive: true,
-        autoplay: false,
-        controls: true,
-        sources: [
-          {
-            src: "/src/assets/images/video.mp4",
-            type: "video/mp4",
-          },
-        ],
-      },
       breakPoints: {
         320: {
           itemsToShow: 1,
@@ -178,21 +207,43 @@ export default {
         },
       },
       // get params
+      about_video_data: {
+        source_id: 11,
+      },
       about_swiper_video_params: {
-        source_id: 2,
+        source_id: 12,
       },
       about_swiper_images1_params: {
-        source_id: 3,
+        source_id: 13,
+      },
+      about_swiper_images2_params: {
+        source_id: 14,
+      },
+      aboutParams: {
+        id: 10,
       },
       // response data
       swiperVideoData: [],
+      aboutVideoData: [],
       swiperImages1: [],
+      swiperImages2: [],
+      aboutTitleData: [],
       // url
       url: baseurl,
       // put update data
       item_put_data: {
         file_id: 0,
         file: [],
+      },
+      about_category_data: {
+        category_item_id: 0,
+        text: "",
+      },
+      // open close
+      about: {
+        bir: false,
+        ikki: false,
+        uch: false,
       },
     };
   },
@@ -203,9 +254,24 @@ export default {
         this.swiperVideoData = res.data;
       });
     },
+    getAboutVideo() {
+      api.file_files_source(this.about_video_data).then((res) => {
+        this.aboutVideoData = res.data;
+      });
+    },
     getSwiperImages1() {
       api.file_files_source(this.about_swiper_images1_params).then((res) => {
         this.swiperImages1 = res.data;
+      });
+    },
+    getSwiperImages2() {
+      api.file_files_source(this.about_swiper_images2_params).then((res) => {
+        this.swiperImages2 = res.data;
+      });
+    },
+    getCategory() {
+      api.category_one(this.aboutParams).then((res) => {
+        this.aboutTitleData = res.data?.category_items;
       });
     },
     // update put function
@@ -221,11 +287,52 @@ export default {
           this.$util.toastError("error", "Ma'lumot yuklanmadi!");
         });
     },
+    updateCategory(event, item) {
+      this.about_category_data.category_item_id = item.id;
+      this.about_category_data.text = event.target.value;
+      api
+        .category_item_update(this.about_category_data)
+        .then((res) => {
+          this.getCategory();
+          this.$util.toastError("success", "Amaliyot bajarildi");
+          this.about.bir = false;
+          this.about.ikki = false;
+          this.about.uch = false;
+        })
+        .catch((error) => {
+          this.$util.toastError("error", "Ma'lumot yuklanmadi");
+        });
+    },
+    // open close function
+    about1() {
+      setTimeout(() => {
+        this.about.bir = true;
+        this.about.ikki = false;
+        this.about.uch = false;
+      }, 500);
+    },
+    about2() {
+      setTimeout(() => {
+        this.about.bir = false;
+        this.about.ikki = true;
+        this.about.uch = false;
+      }, 500);
+    },
+    about3() {
+      setTimeout(() => {
+        this.about.bir = false;
+        this.about.ikki = false;
+        this.about.uch = true;
+      }, 500);
+    },
   },
   mounted() {},
   created() {
     this.getSwiperVideo();
     this.getSwiperImages1();
+    this.getSwiperImages2();
+    this.getAboutVideo();
+    this.getCategory();
   },
 };
 </script>

@@ -10,7 +10,7 @@ export default {
       status: "file_add",
       fileData: {
         file_id: 0,
-        source_id: 0,
+        source_id: Number,
         comment: "",
         source: "",
         files: [],
@@ -33,7 +33,7 @@ export default {
       } else {
         this.fileData = {
           file_id: 0,
-          source_id: 0,
+          source_id: Number,
           source: "",
           comment: "",
           files: [],
@@ -43,7 +43,6 @@ export default {
     },
     postCategory() {
       if (this.status == "file_add") {
-        console.log(this.fileData);
         api.file_add(this.fileData).then(() => {
           this.$util
             .toast()
@@ -52,7 +51,6 @@ export default {
             })
             .catch((err) => {
               this.$util.toastError("error", err.message);
-              console.log(err);
             });
           this.$refs.addFileModal.closeModal();
         });
