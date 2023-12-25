@@ -1,5 +1,6 @@
 <template>
   <div class="background">
+    <addFilePage @end="getAll()" ref="filePage" />
     <div class="about">
       <div class="container-c">
         <sidebar />
@@ -45,19 +46,44 @@
             </div>
           </label>
         </div>
-        <div class="title-box">
-          <img src="/src/assets/images/slash.svg" alt="" />
-          <h3 @click="about2()" v-if="!about.ikki" class="contact_title">
-            {{ aboutTitleData[1]?.text }}
-          </h3>
-          <input
-            v-else
-            type="text"
-            :value="aboutTitleData[1]?.text"
-            @change="updateCategory($event, aboutTitleData[1])"
-          />
+        <div class="title-box justify-content-between">
+          <div class="d-flex">
+            <img src="/src/assets/images/slash.svg" alt="" />
+            <h3
+              @click="about2()"
+              v-if="!about.ikki"
+              class="contact_title align-self-end"
+            >
+              {{ aboutTitleData[1]?.text }}
+            </h3>
+            <input
+              v-else
+              type="text"
+              :value="aboutTitleData[1]?.text"
+              @change="updateCategory($event, aboutTitleData[1])"
+            />
+          </div>
+          <div
+            class="btn btn-success"
+            @click="
+              ($refs.filePage.status = 'video'),
+                ($refs.filePage.sourceNumber = 12),
+                $refs.filePage.open()
+            "
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              height="16"
+              width="14"
+              fill="#fff"
+              viewBox="0 0 448 512"
+            >
+              <path
+                d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z"
+              />
+            </svg>
+          </div>
         </div>
-        <!-- <pre class="text-white">{{ swiperImages1 }}</pre> -->
         <div class="video_carusel">
           <carousel :items-to-show="4" :breakpoints="breakPoints">
             <slide
@@ -111,53 +137,164 @@
           />
         </div>
         <div class="client-box">
-          <carousel
-            :items-to-show="5"
-            :wrap-around="true"
-            :breakpoints="breakPoints"
-          >
-            <slide v-for="item in swiperImages1" :key="item.id">
-              <div class="client_link" href="">
-                <input
-                  type="file"
-                  accept="image/*"
-                  class="d-none"
-                  :id="item.id"
+          <div class="mb-5 d-flex align-items-center juctify-content-between">
+            <div
+              class="btn btn-success me-3"
+              @click="
+                ($refs.filePage.status = 'image'),
+                  ($refs.filePage.sourceNumber = 13),
+                  $refs.filePage.open()
+              "
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                height="16"
+                width="14"
+                fill="#fff"
+                viewBox="0 0 448 512"
+              >
+                <path
+                  d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z"
                 />
-                <label :for="item.id">
-                  <img
-                    class="client__img"
-                    :src="url + item?.file"
-                    alt="photo"
+              </svg>
+            </div>  
+            <swiper
+              class="current_users_swiper"
+              :slidesPerView="4"
+              :spaceBetween="30"
+              :cssMode="true"
+              :mousewheel="true"
+              :keyboard="true"
+              :loop="true"
+              :modules="modules"
+              :navigation="{
+                prevEl: '.swiper-button-prev',
+                nextEl: '.swiper-button-next',
+              }"
+              :breakpoints="{
+                '200': {
+                  slidesPerView: 1,
+                },
+                '500': {
+                  slidesPerView: 2,
+                },
+                '600': {
+                  slidesPerView: 3,
+                  spaceBetween: 30,
+                },
+                '800': {
+                  slidesPerView: 3,
+                },
+                '1020': {
+                  spaceBetween: 30,
+                  slidesPerView: 4,
+                },
+              }"
+            >
+              <swiper-slide
+                class="current_users_swiper_slide"
+                v-for="item in swiperImages1"
+                :key="item.id"
+              >
+                <div class="client_link" href="">
+                  <input
+                    type="file"
+                    accept="image/*"
+                    class="d-none"
+                    :id="item.id"
                   />
-                </label>
-              </div>
-            </slide>
-          </carousel>
-          <carousel
-            :items-to-show="5"
-            :autoplay="1500"
-            :wrap-around="true"
-            :breakpoints="breakPoints"
-          >
-            <slide v-for="item in swiperImages2" :key="item.id">
-              <div class="client_link">
-                <input
-                  type="file"
-                  accept="image/*"
-                  class="d-none"
-                  :id="item.id"
+                  <label :for="item.id">
+                    <img
+                      class="client__img"
+                      :src="url + item?.file"
+                      alt="photo"
+                    />
+                  </label>
+                </div>
+              </swiper-slide>
+              <div class="swiper-button-prev"></div>
+              <div class="swiper-button-next"></div>
+            </swiper>
+          </div>
+          <div class="d-flex align-items-center juctify-content-between">
+            <div
+              class="btn btn-success me-3"
+              @click="
+                ($refs.filePage.status = 'image'),
+                  ($refs.filePage.sourceNumber = 14),
+                  $refs.filePage.open()
+              "
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                height="16"
+                width="14"
+                fill="#fff"
+                viewBox="0 0 448 512"
+              >
+                <path
+                  d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z"
                 />
-                <label :for="item.id">
-                  <img
-                    class="client__img"
-                    :src="url + item?.file"
-                    alt="photo"
+              </svg>
+            </div>
+            <swiper
+              class="current_users_swiper"
+              :slidesPerView="4"
+              :spaceBetween="30"
+              :cssMode="true"
+              :mousewheel="true"
+              :keyboard="true"
+              :loop="true"
+              :modules="modules"
+              :navigation="{
+                prevEl: '.swiper-button-prev',
+                nextEl: '.swiper-button-next',
+              }"
+              :breakpoints="{
+                '200': {
+                  slidesPerView: 1,
+                },
+                '500': {
+                  slidesPerView: 2,
+                },
+                '600': {
+                  slidesPerView: 3,
+                  spaceBetween: 30,
+                },
+                '800': {
+                  slidesPerView: 3,
+                },
+                '1020': {
+                  spaceBetween: 30,
+                  slidesPerView: 4,
+                },
+              }"
+            >
+              <swiper-slide
+                class="current_users_swiper_slide"
+                v-for="item in swiperImages2"
+                :key="item.id"
+              >
+                <div class="client_link">
+                  <input
+                    type="file"
+                    accept="image/*"
+                    class="d-none"
+                    :id="item.id"
                   />
-                </label>
-              </div>
-            </slide>
-          </carousel>
+                  <label :for="item.id">
+                    <img
+                      class="client__img"
+                      :src="url + item?.file"
+                      alt="photo"
+                    />
+                  </label>
+                </div>
+              </swiper-slide>
+              <div class="swiper-button-prev"></div>
+              <div class="swiper-button-next"></div>
+            </swiper>
+          </div>
         </div>
         <contactBox />
       </div>
@@ -173,13 +310,28 @@ import { VideoPlayer } from "@videojs-player/vue";
 import "video.js/dist/video-js.css";
 import "vue3-carousel/dist/carousel.css";
 import { Carousel, Slide } from "vue3-carousel";
+import addFilePage from "../../components/Modal/addFilePage.vue";
+import { Swiper, SwiperSlide } from "swiper/vue";
+import "swiper/css";
+import "swiper/css/autoplay";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import { Navigation, Pagination, Autoplay } from "swiper/modules";
 export default {
+  setup() {
+    return {
+      modules: [Autoplay, Navigation, Pagination],
+    };
+  },
   components: {
     VideoPlayer,
     Carousel,
     Slide,
     sidebar,
     contactBox,
+    addFilePage,
+    Swiper,
+    SwiperSlide,
   },
   data() {
     return {
@@ -274,6 +426,7 @@ export default {
         this.aboutTitleData = res.data?.category_items;
       });
     },
+    getAll() {},
     // update put function
     updateFileSwiperVideo(event, item) {
       this.item_put_data.file_id = item.id;

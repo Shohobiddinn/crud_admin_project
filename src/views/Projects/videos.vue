@@ -1,5 +1,7 @@
 <template>
   <div class="background">
+    <addFilePage @end="getVideoQoshimcha()" ref="filePage" />
+    
     <sidebar />
     <div class="videos">
       <div class="title-box">
@@ -55,17 +57,28 @@
         </label>
       </div>
 
-      <div class="title-box">
-        <img src="/src/assets/images/slash.svg" alt="" />
-        <h4 class="contact_title" @click="videos3()" v-if="!videos.uch">
-          {{ videosTitleData[0]?.text }}
-        </h4>
-        <input
-          v-else
-          type="text"
-          :value="videosTitleData[0]?.text"
-          @change="categoryUpdate($event, videosTitleData[0])"
-        />
+      <div class="title-box justify-content-between">
+        <div class="d-flex">
+          <img src="/src/assets/images/slash.svg" alt="" />
+          <h4
+            class="contact_title align-self-end"
+            @click="videos3()"
+            v-if="!videos.uch"
+          >
+            {{ videosTitleData[0]?.text }}
+          </h4>
+          <input
+            v-else
+            type="text"
+            :value="videosTitleData[0]?.text"
+            @change="categoryUpdate($event, videosTitleData[0])"
+          />
+        </div>
+        <div class="btn btn-success"       @click="
+          ($refs.filePage.status = 'video'),
+            $refs.filePage.sourceNumber = 10,
+            $refs.filePage.open()
+        "><svg xmlns="http://www.w3.org/2000/svg" height="16" width="14"  fill="#fff" viewBox="0 0 448 512"><path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z"/></svg></div>
       </div>
       <div class="video_content d-flex justify-content-center">
         <div class="content" v-for="item in videoQoshimchaData" :key="item.id">
@@ -76,7 +89,13 @@
             responsive="true"
             style="width: 100%"
           />
-          <input type="file" accept="video/*" @change="fileUpdate($event,item)" class="d-none" :id="item.id" />
+          <input
+            type="file"
+            accept="video/*"
+            @change="fileUpdate($event, item)"
+            class="d-none"
+            :id="item.id"
+          />
           <label :for="item.id">
             <div class="card_content_btn text-bg-warning text-uppercase btn">
               <svg
@@ -104,11 +123,13 @@ import { VideoPlayer } from "@videojs-player/vue";
 import "video.js/dist/video-js.css";
 import api from "../../server/api";
 import baseurl from "../../server/baseurl";
+import addFilePage from "../../components/Modal/addFilePage.vue";
 export default {
   components: {
     VideoPlayer,
     contactBox,
     sidebar,
+    addFilePage
   },
   data() {
     return {

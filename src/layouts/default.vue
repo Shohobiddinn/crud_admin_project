@@ -153,11 +153,11 @@ export default {
           name: "toifalar",
           path: "/categorys",
         },
-        {
-          icon: "file.svg",
-          name: "fayllar",
-          path: "/files",
-        },
+        // {
+        //   icon: "file.svg",
+        //   name: "fayllar",
+        //   path: "/files",
+        // },
       ];
     },
   },
