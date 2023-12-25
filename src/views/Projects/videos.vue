@@ -102,15 +102,11 @@ import sidebar from "/src/components/sidebar.vue";
 import contactBox from "@/components/contactBox.vue";
 import { VideoPlayer } from "@videojs-player/vue";
 import "video.js/dist/video-js.css";
-import "vue3-carousel/dist/carousel.css";
-import { Carousel, Slide } from "vue3-carousel";
 import api from "../../server/api";
 import baseurl from "../../server/baseurl";
 export default {
   components: {
     VideoPlayer,
-    Carousel,
-    Slide,
     contactBox,
     sidebar,
   },

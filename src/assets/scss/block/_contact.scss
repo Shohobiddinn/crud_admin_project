@@ -68,11 +68,32 @@
 
 .contact_location{
   width: 100%;
+  height: 380px;
   padding: 40px 0;
   border-radius: 20px;
+  position: relative;
   & iframe{
     width: 100%;
+    height: 100%;
     border-radius: 20px;
+  }
+  .iframe_edit{
+    position: absolute;
+    top: 30px;
+    right: 20px;
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.3s;
+  }
+  .iframe_edit_input{
+    width: 100%;
+  }
+  &:hover{
+    .iframe_edit{
+      opacity: 1;
+      visibility: visible;
+
+    }
   }
 }
 
