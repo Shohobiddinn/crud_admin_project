@@ -148,11 +148,11 @@ export default {
           name: "targetlar",
           path: "/targets",
         },
-        {
-          icon: "category.svg",
-          name: "toifalar",
-          path: "/categorys",
-        },
+        // {
+        //   icon: "category.svg",
+        //   name: "toifalar",
+        //   path: "/categorys",
+        // },
         // {
         //   icon: "file.svg",
         //   name: "fayllar",
